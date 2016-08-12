@@ -1,0 +1,562 @@
+swagger: '2.0'
+info:
+  title: Namely API
+  description: Move your app forward with the Namely API
+  version: "1.0"
+# the domain of the service
+host: company.namely.com
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /api/{version}
+produces:
+  - profiles
+  - profiles/:id
+paths:
+  /profiles.json:
+    get:
+      summary: Profiles Index
+      description: |
+        This method returns an array of `profiles`, whose format and content will be the same as the show profile endpoint.
+
+        This endpoint uses pagination through two optional parameters. The first, limit, defaults to 30 and accepts EITHER an integer value, OR the string 'all' to return all records. The second, after, should be the id of the first record BEFORE the recrods that you want to retrieve.
+      parameters:
+        - name: per_page
+          in: query
+          description: Integer limit of records retrieved.
+          type: integer
+        - name: page
+          in: query
+          description: The page number to retrieve.
+          type: integer
+        - name: sort
+          in: query
+          description: An attribute to sort by fields on profiles. Allowed attributes are first_name, last_name, and job_title. Prepend with a - (minus) sign to reverse the order.
+          type: string
+        - name: filter
+          in: query
+          description: A hash containing a filter you'd like to apply before profiles are returned.
+          type: object
+      tags:
+        - Profiles
+    post:
+      summary: Create Profile
+      description: Meow
+      parameters:
+        - name: first_name
+          in: query
+          description: First name
+          type: String
+          required: Yes
+        - name: last_name
+          in: query
+          description: Last name
+          type: String
+          required: Yes
+        - name: email
+          in: query
+          description: Email.
+          type: String
+          required: Yes
+        - name: user_status
+          in: query
+          description: User status, should be "active" or "inactive"
+          type: string
+          required: Yes
+        - name: start_date
+          in: query
+          description: Start date
+          type: yyyy-mm-dd
+          required: No
+        - name: departure_date
+          in: query
+          description: Depature date
+          type: yyyy-mm-dd
+          required: No
+        - name: gender
+          in: query
+          description: Gender, should be "male", "female"
+          type: string
+          required: No
+        - name: marital_status
+          in: query
+          description: Marital status, should be "single", "married", "civil partnership", "separated", or "divorced"
+          type: string
+          required: No
+        - name: job_title
+          in: query
+          description: Valid job title GUID
+          type: string
+          required: No
+        - name: resume
+          in: query
+          description: Resume file GUID
+          type: string
+          required: No
+        - name: image
+          in: query
+          description: Image file GUID
+          type: string
+          required: No
+        - name: office
+          in: query
+          description: Office address, hash[see below]
+          type: string
+          required: No
+        - name: home
+          in: query
+          description: Home address, hash[see below]
+          type: string
+          required: No
+      tags:
+        - Profiles
+  /profiles/:id.json:
+    get:
+      summary: Show Profiles
+      description: |
+        This method allows users to retrieve a `profile`.
+
+        The profile entry will contain additional information from all fields that your company has (default and custom) that are currently supported by the API and that the current user has access to for the given user. You can get a full list of accessible fields, as well as information on formatting them from the fields API endpoint.
+      parameters:
+        - name: id
+          in: query
+          type: string
+      tags:
+        - Profiles
+definitions:
+  Profiles Index:
+    type: object
+    properties:
+      id:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      user_status:
+        type: string
+      updated_at:
+        type: integer
+      created_at:
+        type: integer
+      preferred_name:
+        type: string
+      image:
+        type: object
+        properties:
+          id:
+            type: string
+          filename:
+            type: string
+          mime_type:
+            type: string
+          original:
+            type: string
+          thumbs:
+            type: object
+            properties:
+              75x75:
+                type: string
+              75x75c:
+                type: string
+              150x150:
+                type: string
+              150x150c:
+                type: string
+              300x300:
+                type: string
+              300x300c:
+                type: string
+              450x450:
+                type: string
+              550x450c:
+                type: string
+              800x800:
+                type: string
+              800x800c:
+                type: string
+      full_name:
+        type: string
+      job_title:
+        type: object
+        properties:
+          id:
+            type: string
+          title:
+            type: string
+      reports_to:
+        type: object
+        properties:
+          id:
+            type: string
+          first_name:
+            type: string
+          last_name:
+            type: string
+      links:
+        type: object
+        properties:
+          job_title:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+      middle_name:
+        type: string
+      job_change_reason:
+        type: string
+      start_date:
+        type: string
+      depature_date:
+        type: string
+      employee_id:
+        type: string
+      personal_email:
+        type: string
+      dob:
+        type: string
+      ssn:
+        type: string
+      gender:
+        type: string
+      marital_status:
+        type: string
+      bio:
+        type: string
+      asset_management:
+        type: string
+      laptop_asset_number:
+        type: string
+      corporate_card_member:
+        type: string
+      key_tag_number:
+        type: string
+      linkedin_url:
+        type: string
+      office_main_number:
+        type: string
+      office_direct_dial:
+        type: string
+      office_phone:
+        type: string
+      office_fax:
+        type: string
+      office_company_mobile:
+        type: string
+      home_phone:
+        type: string
+      mobile_phone:
+        type: string
+      home:
+        type: object
+        properties:
+          address:
+            type: string
+          address2:
+            type: string
+          city:
+            type: string
+          state_id:
+            type: string
+          zip:
+            type: string
+          country_id:
+            type: string
+      office:
+        type: object
+        properties:
+          address:
+            type: string
+          address2:
+            type: string
+          city:
+            type: string
+          state_id:
+            type: string
+          zip:
+            type: string
+          country_id:
+            type: string
+      emergency_contact:
+        type: string
+      emergency_contact_phone:
+        type: string
+      jobvite_id:
+        type: string
+      3pillar:
+        type: string
+      resume:
+        type: string
+      current_job_description:
+        type: string
+      job_description:
+        type: string
+      salary:
+        type: object
+        properties:
+          yearly_amount:
+            type: integer
+          currency_type:
+            type: string
+          rate:
+            type: string
+          date:
+            type: string
+          guid:
+            type: string
+      healthcare:
+        type: object
+        properties:
+          beneficiary:
+            type: string
+          amount:
+            type: string
+          currency_type:
+            type: string
+      healthcare_info:
+        type: string
+      dental:
+        type: object
+        properties:
+          beneficiary:
+            type: string
+          amount:
+            type: string
+          currency_type:
+            type: string
+      dental_info:
+        type: string
+      vision_plan_info:
+        type: string
+      life_insurance_info:
+        type: string
+      employee_handbook:
+        type: string
+      employee_wage_theft_prevention_act:
+        type: string
+      netsuide_id:
+        type: string
+      icims_id:
+        type: string
+      greenhouse_id:
+        type: string
+  Meta:
+    type: object
+    properties:
+      count:
+        type: integer
+      status:
+        type: integer
+  Links:
+    type: object
+    properties:
+      profiles.job_title:
+        type: object
+        properties:
+          type:
+            type: string
+      profiles.image:
+        type: object
+        properties:
+          type:
+            type: string
+      profiles.groups:
+        type: object
+        properties:
+          type:
+            type: string
+      profiles.teams:
+        type: object
+        properties:
+          type:
+           type: string
+  Show Profiles:
+    type: object
+    properties:
+      id:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      email:
+        type: string
+      user_status:
+        type: string
+      start_date:
+        type: string
+      departure_date:
+        type: string
+      gender:
+        type: string
+      marital_status:
+        type: string
+      job_title:
+        type: object
+        properties:
+          id:
+            type: string
+          title:
+            type: string
+      office_main_number:
+        type: string
+      office_direct_dial:
+        type: string
+      office_phone:
+        type: string
+      office_fax:
+        type: string
+      office_company_mobile:
+        type: string
+      home_phone:
+        type: string
+      mobile_phone:
+        type: string
+      home:
+        type: object
+        properties:
+          address1:
+            type: string
+          address2:
+            type: string
+          city:
+            type: string
+          country_id:
+            type: string
+          state_id:
+            type: string
+          zip:
+            type: string
+      office:
+        type: object
+        properties:
+          address1:
+            type: string
+          address2:
+            type: string
+          city:
+            type: string
+          country_id:
+            type: string
+          state_id:
+            type: string
+          zip:
+            type: string
+      resume:
+        type: string
+      image:
+        type: object
+        properties:
+          id:
+            type: string
+          filename:
+            type: string
+          mime_type:
+            type: string
+          original:
+            type: string
+          thumbs:
+            type: object
+            properties:
+              75x75:
+                type: string
+              75x75c:
+                type: string
+              150x150:
+                type: string
+              150x150c:
+                type: string
+              300x300:
+                type: string
+              300x300c:
+                type: string
+              450x450:
+                type: string
+              550x450c:
+                type: string
+              800x800:
+                type: string
+              800x800c:
+                type: string
+      salary:
+        type: object
+        properties:
+          yearly_amount:
+            type: integer
+          currency_type:
+            type: string
+          date:
+            type: string
+      healthcare:
+        type: object
+        properties:
+          beneficiary:
+           type: string
+          amount:
+            type: string
+          currency_type:
+            type: string
+      healthcare_info:
+        type: string
+      dental:
+        type: object
+        properties:
+          beneficiary:
+            type: string
+          amount:
+            type: string
+          currency_type:
+            type: string
+      dental_info:
+        type: string
+      asset_management:
+        type: object
+  Linked:
+    type: object
+    properties:
+      job_titles:
+        type: object
+        properties:
+          id:
+            type: string
+          title:
+            type: string
+      files:
+        type: object
+        properties:
+          id:
+            type: string
+          filename:
+            type: string
+          mime_type:
+            type: string
+          original:
+            type: string
+          thumbs:
+            type: object
+            properties:
+              75x75:
+                type: string
+              75x75c:
+                type: string
+              150x150:
+                type: string
+              150x150c:
+                type: string
+              300x300:
+                type: string
+              300x300c:
+                type: string
+              450x450:
+                type: string
+              550x450c:
+                type: string
+              800x800:
+                type: string
+              800x800c:
+                type: string
