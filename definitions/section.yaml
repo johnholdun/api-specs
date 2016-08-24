@@ -1,4 +1,4 @@
-Sections:
+Section:
   type: object
   properties:
     General:

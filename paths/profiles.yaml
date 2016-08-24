@@ -22,6 +22,13 @@
         in: query
         description: A hash containing a filter you'd like to apply before profiles are returned.
         type: object
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Profile"
     tags:
       - Profiles
   post:
@@ -93,6 +100,13 @@
         description: Home address, hash[see below]
         type: string
         required: No
+    responses:
+      201:
+        description: "Created Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Profile"
     tags:
       - Profiles
 /profiles/:id:
@@ -106,6 +120,13 @@
       - name: id
         in: query
         type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Profile"
     tags:
       - Profiles
   put:
@@ -116,6 +137,13 @@
       - name: id
         in: query
         type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Profile"
     tags:
       - Profiles
 /profiles/me:
@@ -132,6 +160,13 @@
         in: query
         required: No
         type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Profile"
     tags:
       - Profiles
 /profiles/fields:
@@ -160,6 +195,13 @@
         description: An array of choices for checkboxes and select fields.
         required: No
         type: string
+    responses:
+      201:
+        description: "Created Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Field"
     tags:
       - Profile Fields
   get:
@@ -170,6 +212,13 @@
       NAME is the internal name of the field, which is also the key that should be used in the profile API endpoints. This may be distinct from LABEL, which is what will appear in the web interface.
 
       The valid format info is an attempt to explain what the proper format and possible values are for that field.
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Field"
     tags:
       - Profile Fields
   put:
@@ -186,6 +235,13 @@
         description: Profile Field Section ID
         required: Yes
         type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Field"
     tags:
       - Profile Fields
 /profiles/fields/sections:
@@ -199,6 +255,13 @@
         description: Section ID
         required: Yes
         type: string
+    responses:
+      201:
+        description: "Created Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Sections"
     tags:
       - Profile Fields Sections
   get:
@@ -209,6 +272,13 @@
       NAME is the internal name of the field, which is also the key that should be used in the profile API endpoints. This may be distinct from LABEL, which is what will appear in the web interface.
 
       The valid format info is an attempt to explain what the proper format and possible values are for that field.
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Section"
     tags:
       - Profile Fields Sections
 /profiles/fields/sections:id:
@@ -224,6 +294,13 @@
         description: Section ID
         required: Yes
         type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Section"
     tags:
       - Profile Fields Sections
   put:
@@ -236,5 +313,12 @@
         description: Section ID
         required: Yes
         type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Section"
     tags:
       - Profile Fields Sections

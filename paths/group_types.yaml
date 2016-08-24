@@ -8,6 +8,13 @@
         description: ID
         required: Yes
         type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Group Type"
     tags:
       - Groups
   post:
@@ -29,6 +36,13 @@
         description: Display group in teams section.
         required: No
         type: boolean
+    responses:
+      201:
+        description: "Create Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Group Type"
     tags:
       - Groups
 /group_types/:id:
@@ -51,5 +65,12 @@
         description: Display group in teams section.
         required: No
         type: boolean
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Group Type"
     tags:
       - Groups

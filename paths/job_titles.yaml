@@ -2,6 +2,13 @@
   get:
     summary: Job Titles Index
     description: This endpoint returns all job titles, in the same format as in the show endpoint. Each job title has one linked job tier, and each job tier can have many job titles.
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Job Title"
     tags:
       - Job Title
   post:
@@ -18,6 +25,15 @@
         description: ID of Job Tier.
         required: Yes
         type: string
+    responses:
+      201:
+        description: "Create Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Job Title"
+    tags:
+      - Job Title
 /job_titles/:id:
   get:
     summary: Show Job Title
@@ -28,6 +44,13 @@
         description: ID of Job Title.
         required: Yes
         type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Job Title"
     tags:
       - Job Title
   put:
@@ -44,5 +67,12 @@
         description: ID of Job Tier.
         required: Yes
         type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Job Title"
     tags:
       - Job Title

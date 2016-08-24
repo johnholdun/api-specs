@@ -2,6 +2,13 @@
   get:
     summary: Job Tiers Index
     description: This method returns an array of all job tiers, whose format and content will be the same as the show profile endpoint.
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Job Tier"
     tags:
       - Job Tier
   post:
@@ -13,6 +20,13 @@
         description: Title
         required: Yes
         type: String
+    responses:
+      201:
+        description: "Create Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Job Tier"
     tags:
       - Job Tier
 /job_tiers/:id:
@@ -25,6 +39,13 @@
         description: ID
         required: Yes
         type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Job Tier"
     tags:
       - Job Tier
   put:
@@ -36,5 +57,12 @@
         description: Updates a Job Tier.
         required: Yes
         type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Job Tier"
     tags:
       - Job Tier

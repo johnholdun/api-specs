@@ -1,4 +1,4 @@
-/files:
+/file:
   post:
     summary: Create File
     description: |
@@ -17,5 +17,28 @@
         description: File Object
         required: Yes
         type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/File"
+  get:
+    summary: Download File
+    description: Obtain the "file_url" from GET show resource endpoint and pass as parameter.
+    parameters:
+      - name: file
+        in: string
+        description: ID given by file_url in 'Show Resource GET Endpoint'.
+        required: Yes
+        type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/File"
     tags:
-      - Files
+      - File
