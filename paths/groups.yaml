@@ -2,6 +2,13 @@
   get:
     summary: Groups Index
     description: This method returns an array of groups and department names.
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Group"
     tags:
       - Groups
 /groups/:id:
@@ -14,6 +21,13 @@
         description: Group ID.
         required: Yes
         type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Group"
     tags:
       - Groups
   put:
@@ -35,5 +49,12 @@
         description: Display group in teams section.
         required: No
         type: boolean
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Group"
     tags:
       - Groups

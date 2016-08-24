@@ -1,4 +1,4 @@
-Job Tiers:
+Job Tier:
   type: object
   properties:
     id:

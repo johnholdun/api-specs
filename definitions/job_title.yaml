@@ -1,4 +1,4 @@
-Job Titles:
+Job Title:
   type: object
   properties:
     id:

@@ -1,4 +1,4 @@
-Fields:
+Field:
   type: object
   properties:
     id:

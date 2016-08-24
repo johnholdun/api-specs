@@ -30,6 +30,13 @@
         description: ID of first record BEFORE the reecords you want to retrieve
         required: No
         type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Event"
     tags:
       - Events
   post:
@@ -53,6 +60,13 @@
         description: ID of file object to be included in event.
         required: No
         type: string
+    responses:
+      201:
+        description: "Create Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Event"
     tags:
       - Events
 /events/:id:
@@ -65,6 +79,13 @@
         description: ID of event.
         required: No
         type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Event"
     tags:
       - Events
   put:
@@ -81,5 +102,12 @@
         description: ID of file object to be included in event.
         required: No
         type: string
+    responses:
+      200:
+        description: "Successful Response"
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Event"
     tags:
       - Events
