@@ -1,0 +1,13 @@
+Group Type:
+  type: object
+  properties:
+    id:
+      type: string
+    field_name:
+      type: string
+    title:
+      type: string
+    deletable:
+      type: boolean
+    x_groups_as_teams:
+      type: boolean

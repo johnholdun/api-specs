@@ -1,0 +1,16 @@
+Job Titles:
+  type: object
+  properties:
+    id:
+      type: string
+    parent_id:
+      type: string
+    title:
+      type: string
+    links:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string

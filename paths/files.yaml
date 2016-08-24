@@ -1,0 +1,21 @@
+/files:
+  post:
+    summary: Create File
+    description: |
+      In order to set a file attribute in another API endpoint (such as a profile file or image field, or adding a file to an event), it is first necessary to upload the file in a separate request.
+
+      The format for this post request is different from other endpoints of the API. While other endpoints require a json formatted post request, uploading a file should be in a multipart/form-data format.
+
+      Once you have successfully completed this upload, the response will give you the id of the newly uploaded file, to set for profile attributes or events.
+
+      As a security feature the download links to files will expire after 10 minutes. Every file download link will include a one-time token.
+
+      In the case of an image file, the response will show available thumbs, as shown above.
+    parameters:
+      - name: file
+        in: query
+        description: File Object
+        required: Yes
+        type: string
+    tags:
+      - Files

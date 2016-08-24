@@ -1,0 +1,18 @@
+/countries:
+  get:
+    summary: Countries Index
+    description: Returns all valid countries in Namely. Countries are universal and may not be modified. ID is the value that should be passed when setting address values. Each entry contains the proper naming for it's subdivision (e.g. 'State' or 'Province'). In order to get a list of a state's subdivisions, access the country's show endpoint.
+    tags:
+      - Countries
+/countries/:id:
+  get:
+    summary: Countries Index
+    description: Returns all valid countries in Namely. Countries are universal and may not be modified. ID is the value that should be passed when setting address values. Each entry contains the proper naming for it's subdivision (e.g. 'State' or 'Province'). In order to get a list of a state's subdivisions, access the country's show endpoint.
+    parameters:
+      - name: id
+        in: query
+        description: ID of desired country (an abbreviation of countries name).
+        required: No
+        type: string
+    tags:
+      - Countries
