@@ -1,0 +1,43 @@
+Events:
+  type: object
+  properties:
+    General:
+      type: object
+      properties:
+        id:
+          type: string
+        href:
+          type: string
+        type:
+          type: string
+        time:
+          type: integer
+        ufc_offset:
+          type: integer
+        content:
+          type: string
+        html_content:
+          type: string
+        years_at_company:
+          type: integer
+        use_comments:
+          type: boolean
+        can_comment:
+          type: true
+        can_destroy:
+          type: false
+        links:
+          type: object
+          properties:
+            profile:
+              type: string
+            comments:
+              type: array
+            file:
+              type: string
+        can_like:
+          type: boolean
+        likes_count:
+          type: integer
+        liked_by_current_profile:
+          type: boolean

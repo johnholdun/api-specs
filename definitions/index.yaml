@@ -1,0 +1,11 @@
+$ref: ./common.yaml
+$ref: ./country.yaml
+$ref: ./currency_type.yaml
+$ref: ./event.yaml
+$ref: ./field.yaml
+$ref: ./group.yaml
+$ref: ./group_type.yaml
+$ref: ./job_tier.yaml
+$ref: ./job_title.yaml
+$ref: ./profile.yaml
+$ref: ./section.yaml
