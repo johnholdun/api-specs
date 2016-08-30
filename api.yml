@@ -14,7 +14,7 @@ produces:
   - profiles
   - profiles/:id
 paths:
-  /profiles.json:
+  /profiles:
     get:
       summary: Profiles Index
       description: |
@@ -38,6 +38,13 @@ paths:
           in: query
           description: A hash containing a filter you'd like to apply before profiles are returned.
           type: object
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Profile"
       tags:
         - Profiles
     post:
@@ -109,9 +116,16 @@ paths:
           description: Home address, hash[see below]
           type: string
           required: No
+      responses:
+        201:
+          description: "Created Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Profile"
       tags:
         - Profiles
-  /profiles/:id.json:
+  /profiles/:id:
     get:
       summary: Show Profiles
       description: |
@@ -122,6 +136,13 @@ paths:
         - name: id
           in: query
           type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Profile"
       tags:
         - Profiles
     put:
@@ -132,9 +153,16 @@ paths:
         - name: id
           in: query
           type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Profile"
       tags:
         - Profiles
-  /profiles/me.json:
+  /profiles/me:
     get:
       summary: Current User
       description: |
@@ -148,9 +176,16 @@ paths:
           in: query
           required: No
           type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Profile"
       tags:
         - Profiles
-  /profiles/fields.json:
+  /profiles/fields:
     post:
       summary: Create Profile Field
       description: |
@@ -176,6 +211,13 @@ paths:
           description: An array of choices for checkboxes and select fields.
           required: No
           type: string
+      responses:
+        201:
+          description: "Created Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Field"
       tags:
         - Profile Fields
     get:
@@ -186,6 +228,13 @@ paths:
         NAME is the internal name of the field, which is also the key that should be used in the profile API endpoints. This may be distinct from LABEL, which is what will appear in the web interface.
 
         The valid format info is an attempt to explain what the proper format and possible values are for that field.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Field"
       tags:
         - Profile Fields
     put:
@@ -202,9 +251,16 @@ paths:
           description: Profile Field Section ID
           required: Yes
           type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Field"
       tags:
         - Profile Fields
-  /profiles/fields/sections.json:
+  /profiles/fields/sections:
     post:
       summary: Create Section
       description: |
@@ -215,6 +271,13 @@ paths:
           description: Section ID
           required: Yes
           type: string
+      responses:
+        201:
+          description: "Created Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Sections"
       tags:
         - Profile Fields Sections
     get:
@@ -225,9 +288,16 @@ paths:
         NAME is the internal name of the field, which is also the key that should be used in the profile API endpoints. This may be distinct from LABEL, which is what will appear in the web interface.
 
         The valid format info is an attempt to explain what the proper format and possible values are for that field.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Sections"
       tags:
         - Profile Fields Sections
-  /profiles/fields/sections:id.json:
+  /profiles/fields/sections:id:
     get:
       summary: Show Section
       description: |
@@ -240,6 +310,13 @@ paths:
           description: Section ID
           required: Yes
           type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Sections"
       tags:
         - Profile Fields Sections
     put:
@@ -252,6 +329,13 @@ paths:
           description: Section ID
           required: Yes
           type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Sections"
       tags:
         - Profile Fields Sections
   /files:
@@ -307,6 +391,13 @@ paths:
           description: ID of first record BEFORE the reecords you want to retrieve
           required: No
           type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Event"
       tags:
         - Events
     post:
@@ -330,9 +421,16 @@ paths:
           description: ID of file object to be included in event.
           required: No
           type: string
+      responses:
+        201:
+          description: "Create Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Event"
       tags:
         - Events
-  /events/:id.json:
+  /events/:id:
     get:
       summary: Show Event
       description: This endpoint has the same return format as the events index, except that it returns only one event.
@@ -342,6 +440,13 @@ paths:
           description: ID of event.
           required: No
           type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Event"
       tags:
         - Events
     put:
@@ -358,17 +463,31 @@ paths:
           description: ID of file object to be included in event.
           required: No
           type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Event"
       tags:
         - Events
-  /countries.json:
+  /countries:
     get:
       summary: Countries Index
       description: Returns all valid countries in Namely. Countries are universal and may not be modified. ID is the value that should be passed when setting address values. Each entry contains the proper naming for it's subdivision (e.g. 'State' or 'Province'). In order to get a list of a state's subdivisions, access the country's show endpoint.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Countries"
       tags:
         - Countries
-  /countries/:id.json:
+  /countries/:id:
     get:
-      summary: Countries Index
+      summary: Show Country
       description: Returns all valid countries in Namely. Countries are universal and may not be modified. ID is the value that should be passed when setting address values. Each entry contains the proper naming for it's subdivision (e.g. 'State' or 'Province'). In order to get a list of a state's subdivisions, access the country's show endpoint.
       parameters:
         - name: id
@@ -376,12 +495,26 @@ paths:
           description: ID of desired country (an abbreviation of countries name).
           required: No
           type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Countries"
       tags:
         - Countries
-  /job_titles.json:
+  /job_titles:
     get:
       summary: Job Titles Index
       description: This endpoint returns all job titles, in the same format as in the show endpoint. Each job title has one linked job tier, and each job tier can have many job titles.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Job Title"
       tags:
         - Job Title
     post:
@@ -398,7 +531,16 @@ paths:
           description: ID of Job Tier.
           required: Yes
           type: string
-  /job_titles/:id.json:
+      responses:
+        201:
+          description: "Create Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Job Title"
+      tags:
+        - Job Title
+  /job_titles/:id:
     get:
       summary: Show Job Title
       description: This endpoint returns information about one job title. Each job title has one job tier, which is included in the "linked" section. For more information about how "links" and "linked" work, please consult the JSON API section of the documentation.
@@ -408,6 +550,13 @@ paths:
           description: ID of Job Title.
           required: Yes
           type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Job Title"
       tags:
         - Job Title
     put:
@@ -424,12 +573,26 @@ paths:
           description: ID of Job Tier.
           required: Yes
           type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Job Title"
       tags:
         - Job Title
-  /job_tiers/.json:
+  /job_tiers:
     get:
       summary: Job Tiers Index
       description: This method returns an array of all job tiers, whose format and content will be the same as the show profile endpoint.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Job Tier"
       tags:
         - Job Tier
     post:
@@ -441,9 +604,16 @@ paths:
           description: Title
           required: Yes
           type: String
+      responses:
+        201:
+          description: "Create Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Job Tier"
       tags:
         - Job Tier
-  /job_tiers/:id.json:
+  /job_tiers/:id:
     get:
       summary: Show Job Tier
       description: The linked objects will contain information on all of the job titles assosciated with the job tier. For more information on how "links" and "linked" work, please consult the JSON API section of the documentation.
@@ -453,6 +623,13 @@ paths:
           description: ID
           required: Yes
           type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Job Tier"
       tags:
         - Job Tier
     put:
@@ -464,15 +641,22 @@ paths:
           description: Updates a Job Tier.
           required: Yes
           type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Job Tier"
       tags:
         - Job Tier
-  /groups.json:
+  /groups:
     get:
       summary: Groups Index
       description: This method returns an array of groups and department names.
       tags:
         - Groups
-  /groups/:id.json:
+  /groups/:id:
     get:
       summary: Show Group
       description: This method allows users to retrieve a specific group.
@@ -482,6 +666,13 @@ paths:
           description: Group ID.
           required: Yes
           type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Group"
       tags:
         - Groups
     put:
@@ -503,9 +694,16 @@ paths:
           description: Display group in teams section.
           required: No
           type: boolean
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Group"
       tags:
         - Groups
-  /group_types.json:
+  /group_types:
     get:
       summary: Group Types Index
       description: This endpoint returns an array of group types.
@@ -515,6 +713,13 @@ paths:
           description: ID
           required: Yes
           type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Group Type"
       tags:
         - Groups
     post:
@@ -536,9 +741,16 @@ paths:
           description: Display group in teams section.
           required: No
           type: boolean
+      responses:
+        201:
+          description: "Create Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Group Type"
       tags:
         - Groups
-  /group_types/:id.json:
+  /group_types/:id:
     put:
       summary: Update Group Type
       description: You can update a Group Type with the viable parameters.
@@ -558,8 +770,55 @@ paths:
           description: Display group in teams section.
           required: No
           type: boolean
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Group Type"
       tags:
         - Groups
+  /file:
+    post:
+      summary: Create File
+      description: |
+        In order to set a file attribute in another API endpoint (such as a profile file or image field, or adding a file to an event), it is first necessary to upload the file in a separate request.
+        The format for this post request is different from other endpoints of the API. While other endpoints require a json formatted post request, uploading a file should be in a multipart/form-data format.
+        Once you have successfully completed this upload, the response will give you the id of the newly uploaded file, to set for profile attributes or events.
+        As a security feature the download links to files will expire after 10 minutes. Every file download link will include a one-time token.
+        In the case of an image file, the response will show available thumbs, as shown above.
+      parameters:
+        - name: file
+          in: query
+          description: File Object
+          required: Yes
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/File"
+    get:
+      summary: Download File
+      description: Obtain the "file_url" from GET show resource endpoint and pass as parameter.
+      parameters:
+        - name: file
+          in: string
+          description: ID given by file_url in 'Show Resource GET Endpoint'.
+          required: Yes
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/File"
+      tags:
+        - File
 definitions:
   Profile:
     type: object
@@ -846,7 +1105,7 @@ definitions:
         properties:
           type:
            type: string
-  Fields:
+  Field:
     type: object
     properties:
       id:
@@ -865,7 +1124,7 @@ definitions:
         type: string
       links:
         type: array
-  Sections:
+  Section:
     type: object
     properties:
       General:
@@ -932,7 +1191,7 @@ definitions:
             type: string
           date:
             type: string
-  Events:
+  Event:
     type: object
     properties:
       General:
@@ -975,7 +1234,7 @@ definitions:
             type: integer
           liked_by_current_profile:
             type: boolean
-  Currency Types:
+  Currency Type:
     type: object
     properties:
       iso:
@@ -1000,7 +1259,7 @@ definitions:
             type: string
           name:
             type: string
-  Job Titles:
+  Job Title:
     type: object
     properties:
       id:
@@ -1016,7 +1275,7 @@ definitions:
             type: string
           name:
             type: string
-  Job Tiers:
+  Job Tier:
     type: object
     properties:
       id:
@@ -1059,3 +1318,37 @@ definitions:
         type: boolean
       x_groups_as_teams:
         type: boolean
+    File:
+      type: object
+      properties:
+        id:
+          type: string
+        filename:
+          type: string
+        mime_type:
+          type: string
+        original:
+          type: string
+        thumbs:
+          type: object
+          properties:
+            75x75:
+              type: string
+            75x75c:
+              type: string
+            150x150:
+              type: string
+            150x150c:
+              type: string
+            300x300:
+              type: string
+            300x300c:
+              type: string
+            450x450:
+              type: string
+            550x450c:
+              type: string
+            800x800:
+              type: string
+            800x800c:
+              type: string
