@@ -1,8 +1,0 @@
-$ref: ./profiles.yaml
-$ref: ./files.yaml
-$ref: ./events.yaml
-$ref: ./countries.yaml
-$ref: ./job_titles.yaml
-$ref: ./job_tiers.yaml
-$ref: ./groups.yaml
-$ref: ./group_types.yaml

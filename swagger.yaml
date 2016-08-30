@@ -10,10 +10,1316 @@ schemes:
   - https
 # will be prefixed to all paths
 basePath: /api/{version}
-produces:
-  - profiles
-  - profiles/:id
 paths:
-  $ref: ./paths/index.yaml
+  /profiles:
+    get:
+      summary: Profiles Index
+      description: |
+        This method returns an array of `profiles`, whose format and content will be the same as the show profile endpoint.
+        This endpoint uses pagination through two optional parameters. The first, limit, defaults to 30 and accepts EITHER an integer value, OR the string 'all' to return all records. The second, after, should be the id of the first record BEFORE the recrods that you want to retrieve.
+      parameters:
+        - name: per_page
+          in: query
+          description: Integer limit of records retrieved.
+          type: integer
+        - name: page
+          in: query
+          description: The page number to retrieve.
+          type: integer
+        - name: sort
+          in: query
+          description: An attribute to sort by fields on profiles. Allowed attributes are first_name, last_name, and job_title. Prepend with a - (minus) sign to reverse the order.
+          type: string
+        - name: filter
+          in: query
+          description: A hash containing a filter you'd like to apply before profiles are returned.
+          type: object
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Profile"
+      tags:
+        - Profiles
+    post:
+      summary: Create Profile
+      description: The fields that you can set and will receive are a combination of Namely's defaults fields and custom fields that exist only for your company.
+      parameters:
+        - name: first_name
+          in: query
+          description: First name
+          type: String
+          required: Yes
+        - name: last_name
+          in: query
+          description: Last name
+          type: String
+          required: Yes
+        - name: email
+          in: query
+          description: Email.
+          type: String
+          required: Yes
+        - name: user_status
+          in: query
+          description: User status, should be "active" or "inactive"
+          type: string
+          required: Yes
+        - name: start_date
+          in: query
+          description: Start date
+          type: yyyy-mm-dd
+          required: No
+        - name: departure_date
+          in: query
+          description: Depature date
+          type: yyyy-mm-dd
+          required: No
+        - name: gender
+          in: query
+          description: Gender, should be "male", "female"
+          type: string
+          required: No
+        - name: marital_status
+          in: query
+          description: Marital status, should be "single", "married", "civil partnership", "separated", or "divorced"
+          type: string
+          required: No
+        - name: job_title
+          in: query
+          description: Valid job title GUID
+          type: string
+          required: No
+        - name: resume
+          in: query
+          description: Resume file GUID
+          type: string
+          required: No
+        - name: image
+          in: query
+          description: Image file GUID
+          type: string
+          required: No
+        - name: office
+          in: query
+          description: Office address, hash[see below]
+          type: string
+          required: No
+        - name: home
+          in: query
+          description: Home address, hash[see below]
+          type: string
+          required: No
+      responses:
+        201:
+          description: "Created Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Profile"
+      tags:
+        - Profiles
+  /profiles/:id:
+    get:
+      summary: Show Profiles
+      description: |
+        This method allows users to retrieve a `profile`.
+        The profile entry will contain additional information from all fields that your company has (default and custom) that are currently supported by the API and that the current user has access to for the given user. You can get a full list of accessible fields, as well as information on formatting them from the fields API endpoint.
+      parameters:
+        - name: id
+          in: query
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Profile"
+      tags:
+        - Profiles
+    put:
+      summary: Update Profile
+      description: |
+        The update action is similar to the create action in what is modifiable and how it should be set. You need only pass the attributes that you would like to modify. Any others will remain as they are.
+      parameters:
+        - name: id
+          in: query
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Profile"
+      tags:
+        - Profiles
+  /profiles/me:
+    get:
+      summary: Current User
+      description: |
+        The response will contain information about the user who owns the access token used to access the API.
+        If the access token belongs to a full Profile, the response content and format will be identical as if you did a show request for that profile.
+        However, if you are accessing via a dedicated API user, the response will be much shorter. The most important element in such a response would be EMAIL. FIRST_NAME and LAST_NAME will both be "Admin".
+      parameters:
+        - name: id
+          in: query
+          required: No
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Profile"
+      tags:
+        - Profiles
+  /profiles/fields:
+    post:
+      summary: Create Profile Field
+      description: |
+        Allows you to create a profile field within a section.
+      parameters:
+        - name: section_id
+          in: query
+          description: Section ID
+          required: Yes
+          type: string
+        - name: title
+          in: query
+          description: Field Title
+          required: Yes
+          type: string
+        - name: type
+          in: query
+          description: Field Type
+          required: Yes
+          type: string
+        - name: choices
+          in: query
+          description: An array of choices for checkboxes and select fields.
+          required: No
+          type: string
+      responses:
+        201:
+          description: "Created Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Field"
+      tags:
+        - Profile Fields
+    get:
+      summary: Profile Fields Index
+      description: |
+        Returns all currently supported Fields, default and custom.
+        NAME is the internal name of the field, which is also the key that should be used in the profile API endpoints. This may be distinct from LABEL, which is what will appear in the web interface.
+        The valid format info is an attempt to explain what the proper format and possible values are for that field.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Field"
+      tags:
+        - Profile Fields
+    put:
+      summary: Update Profile Field
+      description: |
+        Returns all currently supported Fields, default and custom.
+        NAME is the internal name of the field, which is also the key that should be used in the profile API endpoints. This may be distinct from LABEL, which is what will appear in the web interface.
+        The valid format info is an attempt to explain what the proper format and possible values are for that field.
+      parameters:
+        - name: section
+          in: query
+          description: Profile Field Section ID
+          required: Yes
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Field"
+      tags:
+        - Profile Fields
+  /profiles/fields/sections:
+    post:
+      summary: Create Section
+      description: |
+        Allows you to create a section that will include several profile fields. For example, a "General" section can include profile fields for "First Name", "Last Name", "Titles", etc.
+      parameters:
+        - name: title
+          in: query
+          description: Section ID
+          required: Yes
+          type: string
+      responses:
+        201:
+          description: "Created Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Sections"
+      tags:
+        - Profile Fields Sections
+    get:
+      summary: Sections Index
+      description: |
+        Returns all currently supported Sections, default and custom.
+        NAME is the internal name of the field, which is also the key that should be used in the profile API endpoints. This may be distinct from LABEL, which is what will appear in the web interface.
+        The valid format info is an attempt to explain what the proper format and possible values are for that field.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Sections"
+      tags:
+        - Profile Fields Sections
+  /profiles/fields/sections:id:
+    get:
+      summary: Show Section
+      description: |
+        This method allows users to retrieve a section.
+        The results will contain additional information from all fields that your company has (default and custom) in that particular section that are currently supported by the API and that the current user has access to for the given user. You can get a full list of accessible fields, as well as information on formatting them from the fields API endpoint.
+      parameters:
+        - name: id
+          in: query
+          description: Section ID
+          required: Yes
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Sections"
+      tags:
+        - Profile Fields Sections
+    put:
+      summary: Update Section
+      description: |
+        The update action is similar to the create action in what is modifiable and how it should be set. You need only pass the attribute (name of section) that you would like to modify. Any others will remain as they are.
+      parameters:
+        - name: id
+          in: query
+          description: Section ID
+          required: Yes
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Sections"
+      tags:
+        - Profile Fields Sections
+  /files:
+    post:
+      summary: Create File
+      description: |
+        In order to set a file attribute in another API endpoint (such as a profile file or image field, or adding a file to an event), it is first necessary to upload the file in a separate request.
+        The format for this post request is different from other endpoints of the API. While other endpoints require a json formatted post request, uploading a file should be in a multipart/form-data format.
+        Once you have successfully completed this upload, the response will give you the id of the newly uploaded file, to set for profile attributes or events.
+        As a security feature the download links to files will expire after 10 minutes. Every file download link will include a one-time token.
+        In the case of an image file, the response will show available thumbs, as shown above.
+      parameters:
+        - name: file
+          in: query
+          description: File Object
+          required: Yes
+          type: string
+      tags:
+        - Files
+  /events:
+    get:
+      summary: Events Index
+      description: |
+        This method allows a user to retrieve a list of events from their company's home page feed.
+        Each event may have one or more linked comments. Each event and comment will have a linked profile, which may have a linked image.
+        Announcement events may have an associated file, which will appear in the linked files section. If that file is an image, it will have its available thumbnails
+        For more information on how the links/linked system works, please consult the JSON API section of the documentation.
+        There are several types of events: "anniversary", "birthday", "announcement", and "new_arrival".
+        Anniversary events will have "years_at_company" filled in with the integer value of how many years the profile has been at the company.
+        Announcement events will contain "html_content" which is the html formatted content of the event.
+        Each event and comment will contain information about whether the user can destroy it, located in "can_destroy".
+        This endpoint uses pagination through two optional parameters. The first, limit, defaults to 30 and accepts an integer value. The second, after, should be the id of the first record BEFORE the records that you want to retrieve.
+      parameters:
+        - name: limit
+          in: query
+          description: Limit of records to be retrieved
+          required: No
+          type: integer
+        - name: after
+          in: query
+          description: ID of first record BEFORE the reecords you want to retrieve
+          required: No
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Event"
+      tags:
+        - Events
+    post:
+      summary: Create Event
+      description: |
+        This endpoint will create an "announcement" type event. It is not possible to create other types of events via the API. Instead, they are created automatically when certain event like an employee birthday occurs.
+        The content can contain markdown, which will automatically be parsed.
+        The file parameters allows you to include file in the crated in the event. As with uploading a file to a profile, the file must be previously uploaded via the file create endpoint.
+        Events belong to a profile and therefore cannot be created by a dedicated API user.
+      parameters:
+        - name: content
+          in: query
+          description: Content of event, whch may contain markdown.
+          required: No
+          type: string
+        - name: file
+          in: query
+          description: ID of file object to be included in event.
+          required: No
+          type: string
+      responses:
+        201:
+          description: "Create Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Event"
+      tags:
+        - Events
+  /events/:id:
+    get:
+      summary: Show Event
+      description: This endpoint has the same return format as the events index, except that it returns only one event.
+      parameters:
+        - name: id
+          in: query
+          description: ID of event.
+          required: No
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Event"
+      tags:
+        - Events
+    put:
+      summary: Update Event
+      description: Only "announcement" events can be updated in this way. You can only update an event if a) you created the event or b) you have permission to modify all events. Unlike creating an event, this action is not restricted to access made via a profile. For more information on this endpoint, please consult the create event endpoint.
+      parameters:
+        - name: content
+          in: query
+          description: Content of event, whch may contain markdown.
+          required: No
+          type: string
+        - name: file
+          in: query
+          description: ID of file object to be included in event.
+          required: No
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Event"
+      tags:
+        - Events
+  /countries:
+    get:
+      summary: Countries Index
+      description: Returns all valid countries in Namely. Countries are universal and may not be modified. ID is the value that should be passed when setting address values. Each entry contains the proper naming for it's subdivision (e.g. 'State' or 'Province'). In order to get a list of a state's subdivisions, access the country's show endpoint.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Countries"
+      tags:
+        - Countries
+  /countries/:id:
+    get:
+      summary: Show Country
+      description: Returns all valid countries in Namely. Countries are universal and may not be modified. ID is the value that should be passed when setting address values. Each entry contains the proper naming for it's subdivision (e.g. 'State' or 'Province'). In order to get a list of a state's subdivisions, access the country's show endpoint.
+      parameters:
+        - name: id
+          in: query
+          description: ID of desired country (an abbreviation of countries name).
+          required: No
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Countries"
+      tags:
+        - Countries
+  /job_titles:
+    get:
+      summary: Job Titles Index
+      description: This endpoint returns all job titles, in the same format as in the show endpoint. Each job title has one linked job tier, and each job tier can have many job titles.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Job Title"
+      tags:
+        - Job Title
+    post:
+      summary: Create Job Title
+      description: To get a list of available job tiers, use the job tiers index endpoint.
+      parameters:
+        - name: title
+          in: query
+          description: Title.
+          required: Yes
+          type: string
+        - name: job_tier
+          in: query
+          description: ID of Job Tier.
+          required: Yes
+          type: string
+      responses:
+        201:
+          description: "Create Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Job Title"
+      tags:
+        - Job Title
+  /job_titles/:id:
+    get:
+      summary: Show Job Title
+      description: This endpoint returns information about one job title. Each job title has one job tier, which is included in the "linked" section. For more information about how "links" and "linked" work, please consult the JSON API section of the documentation.
+      parameters:
+        - name: id
+          in: query
+          description: ID of Job Title.
+          required: Yes
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Job Title"
+      tags:
+        - Job Title
+    put:
+      summary: Update Job Title
+      description: Allows you to modify an existing job title. To get a list of available job tiers, use the job tiers index endpoint.
+      parameters:
+        - name: title
+          in: query
+          description: Title.
+          required: Yes
+          type: string
+        - name: job_tier
+          in: query
+          description: ID of Job Tier.
+          required: Yes
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Job Title"
+      tags:
+        - Job Title
+  /job_tiers:
+    get:
+      summary: Job Tiers Index
+      description: This method returns an array of all job tiers, whose format and content will be the same as the show profile endpoint.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Job Tier"
+      tags:
+        - Job Tier
+    post:
+      summary: Create Job Tier
+      description: Create a job tier. It's only parameter is title, which is required.
+      parameters:
+        - name: title
+          in: query
+          description: Title
+          required: Yes
+          type: String
+      responses:
+        201:
+          description: "Create Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Job Tier"
+      tags:
+        - Job Tier
+  /job_tiers/:id:
+    get:
+      summary: Show Job Tier
+      description: The linked objects will contain information on all of the job titles assosciated with the job tier. For more information on how "links" and "linked" work, please consult the JSON API section of the documentation.
+      parameters:
+        - name: id
+          in: query
+          description: ID
+          required: Yes
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Job Tier"
+      tags:
+        - Job Tier
+    put:
+      summary: Update Job Tier
+      description: Updates a Job Tier.
+      parameters:
+        - name: title
+          in: query
+          description: Updates a Job Tier.
+          required: Yes
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Job Tier"
+      tags:
+        - Job Tier
+  /groups:
+    get:
+      summary: Groups Index
+      description: This method returns an array of groups and department names.
+      tags:
+        - Groups
+  /groups/:id:
+    get:
+      summary: Show Group
+      description: This method allows users to retrieve a specific group.
+      parameters:
+        - name: id
+          in: query
+          description: Group ID.
+          required: Yes
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Group"
+      tags:
+        - Groups
+    put:
+      summary: Update Group
+      description: This method updates a specific group.
+      parameters:
+        - name: title
+          in: query
+          description: Group type title.
+          required: Yes
+          type: string
+        - name: office_title
+          in: query
+          description:
+          required: No
+          type: boolean
+        - name: x_groups_as_teams
+          in: query
+          description: Display group in teams section.
+          required: No
+          type: boolean
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Group"
+      tags:
+        - Groups
+  /group_types:
+    get:
+      summary: Group Types Index
+      description: This endpoint returns an array of group types.
+      parameters:
+        - name: id
+          in: query
+          description: ID
+          required: Yes
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Group Type"
+      tags:
+        - Groups
+    post:
+      summary: Create Group
+      description: This endpoint creates a new group type.
+      parameters:
+        - name: title
+          in: query
+          description: Group type title.
+          required: Yes
+          type: string
+        - name: office_title
+          in: query
+          description:
+          required: No
+          type: boolean
+        - name: x_groups_as_teams
+          in: query
+          description: Display group in teams section.
+          required: No
+          type: boolean
+      responses:
+        201:
+          description: "Create Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Group Type"
+      tags:
+        - Groups
+  /group_types/:id:
+    put:
+      summary: Update Group Type
+      description: You can update a Group Type with the viable parameters.
+      parameters:
+        - name: title
+          in: query
+          description: Group type title.
+          required: Yes
+          type: string
+        - name: office_title
+          in: query
+          description:
+          required: No
+          type: boolean
+        - name: x_groups_as_teams
+          in: query
+          description: Display group in teams section.
+          required: No
+          type: boolean
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Group Type"
+      tags:
+        - Groups
+  /file:
+    post:
+      summary: Create File
+      description: |
+        In order to set a file attribute in another API endpoint (such as a profile file or image field, or adding a file to an event), it is first necessary to upload the file in a separate request.
+        The format for this post request is different from other endpoints of the API. While other endpoints require a json formatted post request, uploading a file should be in a multipart/form-data format.
+        Once you have successfully completed this upload, the response will give you the id of the newly uploaded file, to set for profile attributes or events.
+        As a security feature the download links to files will expire after 10 minutes. Every file download link will include a one-time token.
+        In the case of an image file, the response will show available thumbs, as shown above.
+      parameters:
+        - name: file
+          in: query
+          description: File Object
+          required: Yes
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/File"
+    get:
+      summary: Download File
+      description: Obtain the "file_url" from GET show resource endpoint and pass as parameter.
+      parameters:
+        - name: file
+          in: string
+          description: ID given by file_url in 'Show Resource GET Endpoint'.
+          required: Yes
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/File"
+      tags:
+        - File
 definitions:
-  $ref: ./definitions/index.yaml
+  Profile:
+    type: object
+    properties:
+      id:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      user_status:
+        type: string
+      updated_at:
+        type: integer
+      created_at:
+        type: integer
+      preferred_name:
+        type: string
+      image:
+        type: object
+        properties:
+          id:
+            type: string
+          filename:
+            type: string
+          mime_type:
+            type: string
+          original:
+            type: string
+          thumbs:
+            type: object
+            properties:
+              75x75:
+                type: string
+              75x75c:
+                type: string
+              150x150:
+                type: string
+              150x150c:
+                type: string
+              300x300:
+                type: string
+              300x300c:
+                type: string
+              450x450:
+                type: string
+              550x450c:
+                type: string
+              800x800:
+                type: string
+              800x800c:
+                type: string
+      full_name:
+        type: string
+      job_title:
+        type: object
+        properties:
+          id:
+            type: string
+          title:
+            type: string
+      reports_to:
+        type: object
+        properties:
+          id:
+            type: string
+          first_name:
+            type: string
+          last_name:
+            type: string
+      links:
+        type: object
+        properties:
+          job_title:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+          groups:
+            type: array
+          teams:
+            type: array
+      middle_name:
+        type: string
+      job_change_reason:
+        type: string
+      start_date:
+        type: string
+      depature_date:
+        type: string
+      employee_id:
+        type: string
+      personal_email:
+        type: string
+      dob:
+        type: string
+      ssn:
+        type: string
+      gender:
+        type: string
+      marital_status:
+        type: string
+      bio:
+        type: string
+      asset_management:
+        type: string
+      laptop_asset_number:
+        type: string
+      corporate_card_member:
+        type: string
+      key_tag_number:
+        type: string
+      linkedin_url:
+        type: string
+      office_main_number:
+        type: string
+      office_direct_dial:
+        type: string
+      office_phone:
+        type: string
+      office_fax:
+        type: string
+      office_company_mobile:
+        type: string
+      home_phone:
+        type: string
+      mobile_phone:
+        type: string
+      home:
+        type: object
+        properties:
+          address1:
+            type: string
+          address2:
+            type: string
+          city:
+            type: string
+          state_id:
+            type: string
+          country_id:
+            type: string
+          zip:
+            type: string
+      office:
+        type: object
+        properties:
+          address1:
+            type: string
+          address2:
+            type: string
+          city:
+            type: string
+          state_id:
+            type: string
+          country_id:
+            type: string
+          zip:
+            type: string
+          phone:
+            type: string
+      emergency_contact:
+        type: string
+      emergency_contact_phone:
+        type: string
+      resume:
+        type: string
+      current_job_description:
+        type: string
+      job_description:
+        type: string
+      salary:
+        type: object
+        properties:
+          yearly_amount:
+            type: integer
+          currency_type:
+            type: string
+          rate:
+            type: string
+          guid:
+            type: string
+      healthcare:
+        type: object
+        properties:
+          beneficiary:
+            type: string
+          amount:
+            type: string
+          currency_type:
+            type: string
+      healthcare_info:
+        type: string
+      dental:
+        type: object
+        properties:
+          beneficiary:
+            type: string
+          amount:
+            type: string
+          currency_type:
+            type: string
+      dental_info:
+        type: string
+      vision_plan_info:
+        type: string
+      life_insurance_info:
+        type: string
+      employee_handbook:
+        type: string
+      employee_wage_theft_prevention_act:
+        type: string
+  Meta:
+    type: object
+    properties:
+      count:
+        type: integer
+      status:
+        type: integer
+  Links:
+    type: object
+    properties:
+      profiles.job_title:
+        type: object
+        properties:
+          type:
+            type: string
+      profiles.image:
+        type: object
+        properties:
+          type:
+            type: string
+      profiles.groups:
+        type: object
+        properties:
+          type:
+            type: string
+      profiles.teams:
+        type: object
+        properties:
+          type:
+           type: string
+  Linked:
+    type: object
+    properties:
+      job_titles:
+        type: array
+        properties:
+          job_titles:
+            type: object
+            properties:
+              id:
+                type: string
+              parent_id:
+                type: string
+              title:
+                type: string
+              links:
+                type: object
+                properties:
+                    job_tier:
+                      type: string
+      files:
+        type: array
+      groups:
+        type: array
+      teams:
+        type: array
+      profiles.image:
+        type: object
+        properties:
+          type:
+            type: string
+      profiles.groups:
+        type: object
+        properties:
+          type:
+            type: string
+      profiles.teams:
+        type: object
+        properties:
+          type:
+           type: string
+  Field:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      label:
+        type: string
+      type:
+        type: string
+      default:
+        type: boolean
+      deletable:
+        type: boolean
+      valid_format_info:
+        type: string
+      links:
+        type: array
+  Section:
+    type: object
+    properties:
+      General:
+        type: object
+        properties:
+          first_name:
+            type: string
+          last_name:
+            type: string
+          email:
+            type: string
+          user_status:
+            type: string
+          start_date:
+            type: string
+          depature_date:
+            type: string
+          gender:
+            type: string
+          marital_status:
+            type: string
+          job_title:
+            type: string
+      Compensation & Benefits:
+        type: object
+        properties:
+          address1:
+            type: string
+          address2:
+            type: string
+          city:
+            type: string
+          country_id:
+            type: string
+          state_id:
+            type: string
+          zip:
+            type: string
+      Office:
+        type: object
+        properties:
+          address1:
+            type: string
+          address2:
+            type: string
+          city:
+            type: string
+          country_id:
+            type: string
+          state_id:
+            type: string
+          zip:
+            type: string
+      resume:
+        type: string
+      image:
+        type: string
+      salary:
+        type: object
+        properties:
+          yearly_amount:
+            type: integer
+          currency_type:
+            type: string
+          date:
+            type: string
+  Event:
+    type: object
+    properties:
+      General:
+        type: object
+        properties:
+          id:
+            type: string
+          href:
+            type: string
+          type:
+            type: string
+          time:
+            type: integer
+          ufc_offset:
+            type: integer
+          content:
+            type: string
+          html_content:
+            type: string
+          years_at_company:
+            type: integer
+          use_comments:
+            type: boolean
+          can_comment:
+            type: true
+          can_destroy:
+            type: false
+          links:
+            type: object
+            properties:
+              profile:
+                type: string
+              comments:
+                type: array
+              file:
+                type: string
+          can_like:
+            type: boolean
+          likes_count:
+            type: integer
+          liked_by_current_profile:
+            type: boolean
+  Currency Type:
+    type: object
+    properties:
+      iso:
+        type: string
+      name:
+        type: string
+      symbol:
+        type: string
+  Countries:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      subdivision_type:
+        type: string
+      links:
+        type: object
+        properties:
+          id:
+            type: string
+          name:
+            type: string
+  Job Title:
+    type: object
+    properties:
+      id:
+        type: string
+      parent_id:
+        type: string
+      title:
+        type: string
+      links:
+        type: object
+        properties:
+          id:
+            type: string
+          name:
+            type: string
+  Job Tier:
+    type: object
+    properties:
+      id:
+        type: string
+      numerical_id:
+        type: string
+      title:
+        type: string
+      links:
+        type: object
+        properties:
+          job_titles:
+            type: string
+  Group:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      type:
+        type: string
+      address:
+        type: string
+      links:
+        type: object
+        properties:
+          group_type:
+            type: string
+  Group Type:
+    type: object
+    properties:
+      id:
+        type: string
+      field_name:
+        type: string
+      title:
+        type: string
+      deletable:
+        type: boolean
+      x_groups_as_teams:
+        type: boolean
+    File:
+      type: object
+      properties:
+        id:
+          type: string
+        filename:
+          type: string
+        mime_type:
+          type: string
+        original:
+          type: string
+        thumbs:
+          type: object
+          properties:
+            75x75:
+              type: string
+            75x75c:
+              type: string
+            150x150:
+              type: string
+            150x150c:
+              type: string
+            300x300:
+              type: string
+            300x300c:
+              type: string
+            450x450:
+              type: string
+            550x450c:
+              type: string
+            800x800:
+              type: string
+            800x800c:
+              type: string
