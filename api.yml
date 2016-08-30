@@ -10,9 +10,6 @@ schemes:
   - https
 # will be prefixed to all paths
 basePath: /api/{version}
-produces:
-  - profiles
-  - profiles/:id
 paths:
   /profiles:
     get:
