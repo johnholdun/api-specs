@@ -1,9 +1,0 @@
-Currency Types:
-  type: object
-  properties:
-    iso:
-      type: string
-    name:
-      type: string
-    symbol:
-      type: string
