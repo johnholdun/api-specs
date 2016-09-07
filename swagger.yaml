@@ -811,9 +811,12 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Time Off Type"
+            type: object
+            properties:
+              plan_presenters:
+                type: array
+                items:
+                  $ref: "#/definitions/Time Off Plan"
       tags:
         - Time Off
   /time_off/usage:
@@ -1386,7 +1389,7 @@ definitions:
         type: string
       year:
         type: integer
-  Plan Presenter:
+  Time Off Plan:
     type: object
     properties:
       id:
