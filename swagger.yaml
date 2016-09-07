@@ -790,6 +790,58 @@ paths:
               $ref: "#/definitions/File"
       tags:
         - File
+  /time_off/holidays:
+    get:
+      summary: Holidays Index
+      description: This endpoint returns an array of holidays.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Holidays"
+      tags:
+        - Time Off
+  /time_off/plans:
+    get:
+      summary: Time Off Plans Index
+      description: This endpoint returns an array of time off plans.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Time Off Type"
+      tags:
+        - Time Off
+  /time_off/usage:
+    get:
+      summary: Usages Index
+      description: This endpoint returns an array of time off usage.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Usage"
+      tags:
+        - Time Off
+  /time_off/requests:
+    get:
+      summary: Time Off Requests Index
+      description: This endpoint returns an array of all time off requests.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Request"
+      tags:
+        - Time Off
 definitions:
   Profile:
     type: object
@@ -1289,37 +1341,226 @@ definitions:
         type: boolean
       x_groups_as_teams:
         type: boolean
-    File:
-      type: object
-      properties:
-        id:
-          type: string
-        filename:
-          type: string
-        mime_type:
-          type: string
-        original:
-          type: string
-        thumbs:
-          type: object
-          properties:
-            75x75:
-              type: string
-            75x75c:
-              type: string
-            150x150:
-              type: string
-            150x150c:
-              type: string
-            300x300:
-              type: string
-            300x300c:
-              type: string
-            450x450:
-              type: string
-            550x450c:
-              type: string
-            800x800:
-              type: string
-            800x800c:
-              type: string
+  File:
+    type: object
+    properties:
+      id:
+        type: string
+      filename:
+        type: string
+      mime_type:
+        type: string
+      original:
+        type: string
+      thumbs:
+        type: object
+        properties:
+          75x75:
+            type: string
+          75x75c:
+            type: string
+          150x150:
+            type: string
+          150x150c:
+            type: string
+          300x300:
+            type: string
+          300x300c:
+            type: string
+          450x450:
+            type: string
+          550x450c:
+            type: string
+          800x800:
+            type: string
+          800x800c:
+            type: string
+  Holiday:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      date:
+        type: string
+      year:
+        type: integer
+  Plan Presenter:
+    type: object
+    properties:
+      id:
+        type: string
+      is_default:
+        type: boolean
+      accordion_is_open:
+        type: boolean
+      requires_approval:
+        type: boolean
+      prorate_first_accrual:
+        type: boolean
+      carries_over:
+        type: boolean
+      formatted_base_days_off:
+        type: string
+      hide_details:
+        type: boolean
+      new_hire_delay:
+        type: string
+      accrual_rate:
+        type: string
+      formatted_max_accrual:
+        type: integer
+      formatted_next_accrual:
+        type: string
+      formatted_next_renewal:
+        type: string
+      formatted_carryover_expiration_this_accrual_year:
+        type: string
+      formatted_carryover_maximum:
+        type: integer
+      carryover_expires:
+        type: boolean
+      carryover_expired:
+        type: boolean
+      qualifiers:
+        type: array
+      title:
+        type: string
+      notes:
+        type: string
+      units:
+        type: string
+      formatted_next_accrual_unit:
+        type: string
+      links:
+        type: object
+        properties:
+          time_off_type:
+            type: string
+      allow_negative_usage:
+        type: boolean
+      unlimited:
+        type: boolean
+  Time Off Type:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      notes:
+        type: string
+      include_on_paystub:
+        type: boolean
+      calendar_options_alt_title:
+        type: boolean
+      calendar_options_strip_pattern:
+        type: boolean
+  Usage:
+    type: array
+    properties:
+      usages:
+        type: object
+        properties:
+          year:
+            type: array
+          display_era:
+            type: array
+          plan_details_link:
+            type: array
+          time_off_type:
+            type: array
+          plan_hide_details:
+            type: array
+          units:
+            type: array
+          accrual_entitlement:
+            type: array
+          accrued:
+            type: array
+          used_from_accrued:
+            type: array
+          scheduled_from_accrued:
+            type: array
+          carryover_entitlement:
+            type: array
+          carryover_expired:
+            type: array
+          used_from_carryover:
+            type: array
+          scheduled_from_carryover:
+            type: array
+          used:
+            type: array
+          scheduled:
+            type: array
+          available_now:
+            type: array
+          used_in_period:
+            type: array
+          plan_period:
+            type: array
+  Time Off Request:
+    type: object
+    properties:
+      id:
+        type: string
+      duration:
+        type: integer
+      used_carryover:
+        type: integer
+      is_hourly:
+        type: boolean
+      is_requester:
+        type: boolean
+      hourly_multiplier:
+        type: string
+      employee_notes:
+        type: string
+      manager_notes:
+        type: string
+      leave_start:
+        type: string
+      leave_end:
+        type: string
+      requires_approval:
+        type: boolean
+      approved:
+        type: boolean
+      time_off_type:
+        type: string
+      profile_id:
+        type: string
+      requester_id:
+        type: string
+      responder_id:
+        type: string
+      time_off_type_id:
+        type: string
+      time_off_plan_id:
+        type: string
+      urls:
+        type: object
+        properties:
+          link_type:
+            type: string
+          link_url:
+            type: string
+          link_text:
+            type: string
+      status:
+        type: string
+      status_color:
+        type: string
+      units:
+        type: string
+      links:
+        type: object
+        properties:
+          profile:
+            type: string
+          requester:
+            type: string
+          responder:
+            type: string
