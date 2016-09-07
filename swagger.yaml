@@ -1323,3 +1323,73 @@ definitions:
               type: string
             800x800c:
               type: string
+    TimeOff Plan:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - is_default
+        - requires_approval
+        - prorate_first_accrual
+        - carries_over
+        - base_days_off
+        - new_hire_delay
+        - accrual_rate
+        - units
+        - max_accrual
+        - carryover_maximum
+        - carryover_expires
+        - next_carryover_expiration
+        - last_carryover_expiration
+        - title
+        - notes
+        - links
+        - allow_negative_usage
+      properties:
+        id:
+          type: string
+        is_default:
+          type: boolean
+        requires_approval:
+          type: boolean
+        prorate_first_accrual:
+          type: boolean
+        carries_over:
+          type: boolean
+        base_days_off:
+          type: string
+        new_hire_delay:
+          type: string
+        accrual_rate:
+          type: string
+        units:
+          type: string
+        max_accrual:
+          type: string
+        carryover_maximum:
+          type: string
+        carryover_expires:
+          type: boolean
+        next_carryover_expiration:
+          type: string
+        last_carryover_expiration:
+          type: string
+        title:
+          type:
+            - 'null'
+            - string
+        notes:
+          type:
+            - 'null'
+            - string
+        links:
+          type: object
+          additionalProperties: false
+          required:
+            - time_off_type
+          properties:
+            time_off_type:
+              type: string
+        allow_negative_usage:
+          type: boolean
+
