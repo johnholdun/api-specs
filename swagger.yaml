@@ -1242,9 +1242,11 @@ definitions:
           use_comments:
             type: boolean
           can_comment:
-            type: true
+            type: boolean
+            default: true
           can_destroy:
-            type: false
+            type: boolean
+            default: false
           links:
             type: object
             properties:
