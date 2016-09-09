@@ -387,6 +387,8 @@ paths:
                 properties:
                   sections:
                     type: array
+                    items:
+                      $ref: "#/definitions/Section"
       tags:
         - Profile Fields
     get:
@@ -442,7 +444,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: "#/definitions/Sections"
+              $ref: "#/definitions/Section"
       tags:
         - Profile Fields Sections
     get:
@@ -457,7 +459,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: "#/definitions/Sections"
+              $ref: "#/definitions/Section"
       tags:
         - Profile Fields Sections
   /profiles/fields/sections/:id:
@@ -478,7 +480,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: "#/definitions/Sections"
+              $ref: "#/definitions/Section"
       tags:
         - Profile Fields Sections
     put:
@@ -497,7 +499,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: "#/definitions/Sections"
+              $ref: "#/definitions/Section"
       tags:
         - Profile Fields Sections
   /files:
@@ -1172,8 +1174,12 @@ definitions:
                 type: string
           groups:
             type: array
+            items:
+              $ref: "#/definitions/Group"
           teams:
             type: array
+            items:
+              $ref: "#/definitions/Team"
       middle_name:
         type: string
       job_change_reason:
@@ -1502,6 +1508,8 @@ definitions:
                 type: string
               comments:
                 type: array
+                items:
+                  $ref: "#/definitions/Comment"
               file:
                 type: string
           can_like:
@@ -1678,6 +1686,8 @@ definitions:
         type: boolean
       qualifiers:
         type: array
+        items:
+          $ref: "#/definitions/Qualifier"
       title:
         type: string
       notes:
@@ -1710,50 +1720,96 @@ definitions:
         type: boolean
       calendar_options_strip_pattern:
         type: boolean
-  Usage:
-    type: array
+  Qualifier:
+    type: object
     properties:
-      usages:
-        type: object
-        properties:
-          year:
-            type: array
-          display_era:
-            type: array
-          plan_details_link:
-            type: array
-          time_off_type:
-            type: array
-          plan_hide_details:
-            type: array
-          units:
-            type: array
-          accrual_entitlement:
-            type: array
-          accrued:
-            type: array
-          used_from_accrued:
-            type: array
-          scheduled_from_accrued:
-            type: array
-          carryover_entitlement:
-            type: array
-          carryover_expired:
-            type: array
-          used_from_carryover:
-            type: array
-          scheduled_from_carryover:
-            type: array
-          used:
-            type: array
-          scheduled:
-            type: array
-          available_now:
-            type: array
-          used_in_period:
-            type: array
-          plan_period:
-            type: array
+      test:
+        type: string
+  Usage:
+    type: object
+    properties:
+      year:
+        type: array
+        items:
+          type: integer
+      display_era:
+        type: array
+        items:
+          type: string
+      plan_details_link:
+        type: array
+        items:
+          type: string
+      time_off_type:
+        type: array
+        items:
+          type: string
+      plan_hide_details:
+        type: array
+        items:
+          type: boolean
+      units:
+        type: array
+        items:
+          type: string
+      accrual_entitlement:
+        type: array
+        items:
+          type: string
+      used_from_accrued:
+        type: array
+        items:
+          type:
+            - string
+            - integer
+      accrued:
+        type: array
+        items:
+          type: string
+      scheduled_from_accrued:
+        type: array
+        items:
+          type: integer
+      carryover_entitlement:
+        type: array
+        items:
+          type: string
+      carryover_expired:
+        type: array
+        items:
+          type: string
+      used_from_carryover:
+        type: array
+        items:
+          type: string
+      scheduled_from_carryover:
+        type: array
+        items:
+          type: string
+      used:
+        type: array
+        items:
+          type:
+            - string
+            - integer
+      scheduled:
+        type: array
+        items:
+          type: integer
+      available_now:
+        type: array
+        items:
+          type: string
+      used_in_period:
+        type: array
+        items:
+          type:
+            - string
+            - integer
+      plan_period:
+        type: array
+        items:
+          type: string
   Time Off Request:
     type: object
     properties:
