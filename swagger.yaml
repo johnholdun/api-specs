@@ -1756,12 +1756,6 @@ definitions:
         type: array
         items:
           type: string
-      used_from_accrued:
-        type: array
-        items:
-          type:
-            - string
-            - integer
       accrued:
         type: array
         items:
@@ -1786,12 +1780,6 @@ definitions:
         type: array
         items:
           type: string
-      used:
-        type: array
-        items:
-          type:
-            - string
-            - integer
       scheduled:
         type: array
         items:
@@ -1800,12 +1788,6 @@ definitions:
         type: array
         items:
           type: string
-      used_in_period:
-        type: array
-        items:
-          type:
-            - string
-            - integer
       plan_period:
         type: array
         items:
