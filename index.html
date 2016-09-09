@@ -1,0 +1,3286 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Namely API</title>
+    <style type="text/css">
+      body { 
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+	display: none;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+    </style>
+  </head>
+  <body>
+  <h1>Namely API</h1>
+    <div class="app-desc">Move your app forward with the Namely API</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="hello@helloreverb.com">hello@helloreverb.com</a></div>
+    <div class="app-desc">Version: 1.0</div>
+    <div class="app-desc">BasePath:/api/{version}</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h2>Table of Contents </h2>
+  <div class="method-summary"></div>
+  <ol>
+  <li><a href="#countriesGet"><code><span class="http-method">get</span> /countries</code></a></li>
+  <li><a href="#countriesidGet"><code><span class="http-method">get</span> /countries/:id</code></a></li>
+  <li><a href="#filePost"><code><span class="http-method">post</span> /file</code></a></li>
+  <li><a href="#eventsGet"><code><span class="http-method">get</span> /events</code></a></li>
+  <li><a href="#eventsPost"><code><span class="http-method">post</span> /events</code></a></li>
+  <li><a href="#eventsidGet"><code><span class="http-method">get</span> /events/:id</code></a></li>
+  <li><a href="#eventsidPut"><code><span class="http-method">put</span> /events/:id</code></a></li>
+  <li><a href="#fileGet"><code><span class="http-method">get</span> /file</code></a></li>
+  <li><a href="#filesPost"><code><span class="http-method">post</span> /files</code></a></li>
+  <li><a href="#groupTypesGet"><code><span class="http-method">get</span> /group_types</code></a></li>
+  <li><a href="#groupTypesPost"><code><span class="http-method">post</span> /group_types</code></a></li>
+  <li><a href="#groupTypesidPut"><code><span class="http-method">put</span> /group_types/:id</code></a></li>
+  <li><a href="#groupsGet"><code><span class="http-method">get</span> /groups</code></a></li>
+  <li><a href="#groupsidGet"><code><span class="http-method">get</span> /groups/:id</code></a></li>
+  <li><a href="#groupsidPut"><code><span class="http-method">put</span> /groups/:id</code></a></li>
+  <li><a href="#jobTiersGet"><code><span class="http-method">get</span> /job_tiers</code></a></li>
+  <li><a href="#jobTiersPost"><code><span class="http-method">post</span> /job_tiers</code></a></li>
+  <li><a href="#jobTiersidGet"><code><span class="http-method">get</span> /job_tiers/:id</code></a></li>
+  <li><a href="#jobTiersidPut"><code><span class="http-method">put</span> /job_tiers/:id</code></a></li>
+  <li><a href="#jobTitlesGet"><code><span class="http-method">get</span> /job_titles</code></a></li>
+  <li><a href="#jobTitlesPost"><code><span class="http-method">post</span> /job_titles</code></a></li>
+  <li><a href="#jobTitlesidGet"><code><span class="http-method">get</span> /job_titles/:id</code></a></li>
+  <li><a href="#jobTitlesidPut"><code><span class="http-method">put</span> /job_titles/:id</code></a></li>
+  <li><a href="#profilesFieldsGet"><code><span class="http-method">get</span> /profiles/fields</code></a></li>
+  <li><a href="#profilesFieldsPost"><code><span class="http-method">post</span> /profiles/fields</code></a></li>
+  <li><a href="#profilesFieldsPut"><code><span class="http-method">put</span> /profiles/fields</code></a></li>
+  <li><a href="#profilesFieldsSectionsGet"><code><span class="http-method">get</span> /profiles/fields/sections</code></a></li>
+  <li><a href="#profilesFieldsSectionsPost"><code><span class="http-method">post</span> /profiles/fields/sections</code></a></li>
+  <li><a href="#profilesFieldsSectionsidGet"><code><span class="http-method">get</span> /profiles/fields/sections/:id</code></a></li>
+  <li><a href="#profilesFieldsSectionsidPut"><code><span class="http-method">put</span> /profiles/fields/sections/:id</code></a></li>
+  <li><a href="#profilesGet"><code><span class="http-method">get</span> /profiles</code></a></li>
+  <li><a href="#profilesMeGet"><code><span class="http-method">get</span> /profiles/me</code></a></li>
+  <li><a href="#profilesPost"><code><span class="http-method">post</span> /profiles</code></a></li>
+  <li><a href="#profilesidGet"><code><span class="http-method">get</span> /profiles/:id</code></a></li>
+  <li><a href="#profilesidPut"><code><span class="http-method">put</span> /profiles/:id</code></a></li>
+  <li><a href="#timeOffHolidaysGet"><code><span class="http-method">get</span> /time_off/holidays</code></a></li>
+  <li><a href="#timeOffPlansGet"><code><span class="http-method">get</span> /time_off/plans</code></a></li>
+  <li><a href="#timeOffRequestsGet"><code><span class="http-method">get</span> /time_off/requests</code></a></li>
+  <li><a href="#timeOffUsageGet"><code><span class="http-method">get</span> /time_off/usage</code></a></li>
+  </ol>
+
+  <div class="method"><a name="countriesGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /countries</code></pre></div>
+    <div class="method-summary">Countries Index (<span class="nickname">countriesGet</span>)</div>
+    <div class="method-notes">Returns all valid countries in Namely. Countries are universal and may not be modified. ID is the value that should be passed when setting address values. Each entry contains the proper naming for it&#39;s subdivision (e.g. &#39;State&#39; or &#39;Province&#39;). In order to get a list of a state&#39;s subdivisions, access the country&#39;s show endpoint.</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Countries">Countries</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "subdivision_type" : "aeiou",
+  "name" : "aeiou",
+  "links" : {
+    "name" : "aeiou",
+    "id" : "aeiou"
+  },
+  "id" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="countriesidGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /countries/:id</code></pre></div>
+    <div class="method-summary">Show Country (<span class="nickname">countriesidGet</span>)</div>
+    <div class="method-notes">Returns all valid countries in Namely. Countries are universal and may not be modified. ID is the value that should be passed when setting address values. Each entry contains the proper naming for it&#39;s subdivision (e.g. &#39;State&#39; or &#39;Province&#39;). In order to get a list of a state&#39;s subdivisions, access the country&#39;s show endpoint.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; ID of desired country (an abbreviation of countries name). </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Countries">Countries</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "subdivision_type" : "aeiou",
+  "name" : "aeiou",
+  "links" : {
+    "name" : "aeiou",
+    "id" : "aeiou"
+  },
+  "id" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="filePost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /file</code></pre></div>
+    <div class="method-summary">Create File (<span class="nickname">filePost</span>)</div>
+    <div class="method-notes">In order to set a file attribute in another API endpoint (such as a profile file or image field, or adding a file to an event), it is first necessary to upload the file in a separate request. The format for this post request is different from other endpoints of the API. While other endpoints require a json formatted post request, uploading a file should be in a multipart/form-data format. Once you have successfully completed this upload, the response will give you the id of the newly uploaded file, to set for profile attributes or events. As a security feature the download links to files will expire after 10 minutes. Every file download link will include a one-time token. In the case of an image file, the response will show available thumbs, as shown above. </div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">file (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; File Object </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#File">File</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "filename" : "aeiou",
+  "original" : "aeiou",
+  "mime_type" : "aeiou",
+  "id" : "aeiou",
+  "thumbs" : {
+    "800x800c" : "aeiou",
+    "450x450" : "aeiou",
+    "75x75c" : "aeiou",
+    "300x300c" : "aeiou",
+    "75x75" : "aeiou",
+    "550x450c" : "aeiou",
+    "800x800" : "aeiou",
+    "300x300" : "aeiou",
+    "150x150" : "aeiou",
+    "150x150c" : "aeiou"
+  }
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="eventsGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /events</code></pre></div>
+    <div class="method-summary">Events Index (<span class="nickname">eventsGet</span>)</div>
+    <div class="method-notes">This method allows a user to retrieve a list of events from their company&#39;s home page feed. Each event may have one or more linked comments. Each event and comment will have a linked profile, which may have a linked image. Announcement events may have an associated file, which will appear in the linked files section. If that file is an image, it will have its available thumbnails For more information on how the links/linked system works, please consult the JSON API section of the documentation. There are several types of events: \&quot;anniversary\&quot;, \&quot;birthday\&quot;, \&quot;announcement\&quot;, and \&quot;new_arrival\&quot;. Anniversary events will have \&quot;years_at_company\&quot; filled in with the integer value of how many years the profile has been at the company. Announcement events will contain \&quot;html_content\&quot; which is the html formatted content of the event. Each event and comment will contain information about whether the user can destroy it, located in \&quot;can_destroy\&quot;. This endpoint uses pagination through two optional parameters. The first, limit, defaults to 30 and accepts an integer value. The second, after, should be the id of the first record BEFORE the records that you want to retrieve. </div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">limit (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Limit of records to be retrieved </div><div class="param">after (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; ID of first record BEFORE the reecords you want to retrieve </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Event">Event</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "General" : {
+    "can_destroy" : true,
+    "liked_by_current_profile" : true,
+    "years_at_company" : "",
+    "type" : "aeiou",
+    "content" : "aeiou",
+    "use_comments" : true,
+    "ufc_offset" : "",
+    "likes_count" : "",
+    "html_content" : "aeiou",
+    "can_comment" : true,
+    "can_like" : true,
+    "links" : {
+      "comments" : "",
+      "file" : "aeiou",
+      "profile" : "aeiou"
+    },
+    "id" : "aeiou",
+    "href" : "aeiou",
+    "time" : ""
+  }
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="eventsPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /events</code></pre></div>
+    <div class="method-summary">Create Event (<span class="nickname">eventsPost</span>)</div>
+    <div class="method-notes">This endpoint will create an \&quot;announcement\&quot; type event. It is not possible to create other types of events via the API. Instead, they are created automatically when certain event like an employee birthday occurs. The content can contain markdown, which will automatically be parsed. The file parameters allows you to include file in the crated in the event. As with uploading a file to a profile, the file must be previously uploaded via the file create endpoint. Events belong to a profile and therefore cannot be created by a dedicated API user. </div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">content (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Content of event, whch may contain markdown. </div><div class="param">file (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; ID of file object to be included in event. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Event">Event</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "General" : {
+    "can_destroy" : true,
+    "liked_by_current_profile" : true,
+    "years_at_company" : "",
+    "type" : "aeiou",
+    "content" : "aeiou",
+    "use_comments" : true,
+    "ufc_offset" : "",
+    "likes_count" : "",
+    "html_content" : "aeiou",
+    "can_comment" : true,
+    "can_like" : true,
+    "links" : {
+      "comments" : "",
+      "file" : "aeiou",
+      "profile" : "aeiou"
+    },
+    "id" : "aeiou",
+    "href" : "aeiou",
+    "time" : ""
+  }
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Create Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="eventsidGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /events/:id</code></pre></div>
+    <div class="method-summary">Show Event (<span class="nickname">eventsidGet</span>)</div>
+    <div class="method-notes">This endpoint has the same return format as the events index, except that it returns only one event.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; ID of event. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Event">Event</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "General" : {
+    "can_destroy" : true,
+    "liked_by_current_profile" : true,
+    "years_at_company" : "",
+    "type" : "aeiou",
+    "content" : "aeiou",
+    "use_comments" : true,
+    "ufc_offset" : "",
+    "likes_count" : "",
+    "html_content" : "aeiou",
+    "can_comment" : true,
+    "can_like" : true,
+    "links" : {
+      "comments" : "",
+      "file" : "aeiou",
+      "profile" : "aeiou"
+    },
+    "id" : "aeiou",
+    "href" : "aeiou",
+    "time" : ""
+  }
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="eventsidPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /events/:id</code></pre></div>
+    <div class="method-summary">Update Event (<span class="nickname">eventsidPut</span>)</div>
+    <div class="method-notes">Only \&quot;announcement\&quot; events can be updated in this way. You can only update an event if a) you created the event or b) you have permission to modify all events. Unlike creating an event, this action is not restricted to access made via a profile. For more information on this endpoint, please consult the create event endpoint.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">content (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Content of event, whch may contain markdown. </div><div class="param">file (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; ID of file object to be included in event. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Event">Event</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "General" : {
+    "can_destroy" : true,
+    "liked_by_current_profile" : true,
+    "years_at_company" : "",
+    "type" : "aeiou",
+    "content" : "aeiou",
+    "use_comments" : true,
+    "ufc_offset" : "",
+    "likes_count" : "",
+    "html_content" : "aeiou",
+    "can_comment" : true,
+    "can_like" : true,
+    "links" : {
+      "comments" : "",
+      "file" : "aeiou",
+      "profile" : "aeiou"
+    },
+    "id" : "aeiou",
+    "href" : "aeiou",
+    "time" : ""
+  }
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="fileGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /file</code></pre></div>
+    <div class="method-summary">Download File (<span class="nickname">fileGet</span>)</div>
+    <div class="method-notes">Obtain the \&quot;file_url\&quot; from GET show resource endpoint and pass as parameter.</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#File">File</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "filename" : "aeiou",
+  "original" : "aeiou",
+  "mime_type" : "aeiou",
+  "id" : "aeiou",
+  "thumbs" : {
+    "800x800c" : "aeiou",
+    "450x450" : "aeiou",
+    "75x75c" : "aeiou",
+    "300x300c" : "aeiou",
+    "75x75" : "aeiou",
+    "550x450c" : "aeiou",
+    "800x800" : "aeiou",
+    "300x300" : "aeiou",
+    "150x150" : "aeiou",
+    "150x150c" : "aeiou"
+  }
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="filesPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /files</code></pre></div>
+    <div class="method-summary">Create File (<span class="nickname">filesPost</span>)</div>
+    <div class="method-notes">In order to set a file attribute in another API endpoint (such as a profile file or image field, or adding a file to an event), it is first necessary to upload the file in a separate request. The format for this post request is different from other endpoints of the API. While other endpoints require a json formatted post request, uploading a file should be in a multipart/form-data format. Once you have successfully completed this upload, the response will give you the id of the newly uploaded file, to set for profile attributes or events. As a security feature the download links to files will expire after 10 minutes. Every file download link will include a one-time token. In the case of an image file, the response will show available thumbs, as shown above. </div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">file (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; File Object </div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="groupTypesGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /group_types</code></pre></div>
+    <div class="method-summary">Group Types Index (<span class="nickname">groupTypesGet</span>)</div>
+    <div class="method-notes">This endpoint returns an array of group types.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; ID </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Group Type">Group Type</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "x_groups_as_teams" : true,
+  "deletable" : true,
+  "id" : "aeiou",
+  "title" : "aeiou",
+  "field_name" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="groupTypesPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /group_types</code></pre></div>
+    <div class="method-summary">Create Group (<span class="nickname">groupTypesPost</span>)</div>
+    <div class="method-notes">This endpoint creates a new group type.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">title (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Group type title. </div><div class="param">office_title (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; null </div><div class="param">x_groups_as_teams (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Display group in teams section. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Group Type">Group Type</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "x_groups_as_teams" : true,
+  "deletable" : true,
+  "id" : "aeiou",
+  "title" : "aeiou",
+  "field_name" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Create Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="groupTypesidPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /group_types/:id</code></pre></div>
+    <div class="method-summary">Update Group Type (<span class="nickname">groupTypesidPut</span>)</div>
+    <div class="method-notes">You can update a Group Type with the viable parameters.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">title (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Group type title. </div><div class="param">office_title (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; null </div><div class="param">x_groups_as_teams (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Display group in teams section. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Group Type">Group Type</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "x_groups_as_teams" : true,
+  "deletable" : true,
+  "id" : "aeiou",
+  "title" : "aeiou",
+  "field_name" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="groupsGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /groups</code></pre></div>
+    <div class="method-summary">Groups Index (<span class="nickname">groupsGet</span>)</div>
+    <div class="method-notes">This method returns an array of groups and department names.</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="groupsidGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /groups/:id</code></pre></div>
+    <div class="method-summary">Show Group (<span class="nickname">groupsidGet</span>)</div>
+    <div class="method-notes">This method allows users to retrieve a specific group.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Group ID. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Group">Group</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "address" : "aeiou",
+  "links" : {
+    "group_type" : "aeiou"
+  },
+  "id" : "aeiou",
+  "title" : "aeiou",
+  "type" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="groupsidPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /groups/:id</code></pre></div>
+    <div class="method-summary">Update Group (<span class="nickname">groupsidPut</span>)</div>
+    <div class="method-notes">This method updates a specific group.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">title (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Group type title. </div><div class="param">office_title (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; null </div><div class="param">x_groups_as_teams (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Display group in teams section. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Group">Group</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "address" : "aeiou",
+  "links" : {
+    "group_type" : "aeiou"
+  },
+  "id" : "aeiou",
+  "title" : "aeiou",
+  "type" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="jobTiersGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /job_tiers</code></pre></div>
+    <div class="method-summary">Job Tiers Index (<span class="nickname">jobTiersGet</span>)</div>
+    <div class="method-notes">This method returns an array of all job tiers, whose format and content will be the same as the show profile endpoint.</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Job Tier">Job Tier</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "links" : {
+    "job_titles" : "aeiou"
+  },
+  "id" : "aeiou",
+  "title" : "aeiou",
+  "numerical_id" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="jobTiersPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /job_tiers</code></pre></div>
+    <div class="method-summary">Create Job Tier (<span class="nickname">jobTiersPost</span>)</div>
+    <div class="method-notes">Create a job tier. It&#39;s only parameter is title, which is required.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">title (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Title </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Job Tier">Job Tier</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "links" : {
+    "job_titles" : "aeiou"
+  },
+  "id" : "aeiou",
+  "title" : "aeiou",
+  "numerical_id" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Create Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="jobTiersidGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /job_tiers/:id</code></pre></div>
+    <div class="method-summary">Show Job Tier (<span class="nickname">jobTiersidGet</span>)</div>
+    <div class="method-notes">The linked objects will contain information on all of the job titles assosciated with the job tier. For more information on how \&quot;links\&quot; and \&quot;linked\&quot; work, please consult the JSON API section of the documentation.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; ID </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Job Tier">Job Tier</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "links" : {
+    "job_titles" : "aeiou"
+  },
+  "id" : "aeiou",
+  "title" : "aeiou",
+  "numerical_id" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="jobTiersidPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /job_tiers/:id</code></pre></div>
+    <div class="method-summary">Update Job Tier (<span class="nickname">jobTiersidPut</span>)</div>
+    <div class="method-notes">Updates a Job Tier.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">title (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Updates a Job Tier. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Job Tier">Job Tier</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "links" : {
+    "job_titles" : "aeiou"
+  },
+  "id" : "aeiou",
+  "title" : "aeiou",
+  "numerical_id" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="jobTitlesGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /job_titles</code></pre></div>
+    <div class="method-summary">Job Titles Index (<span class="nickname">jobTitlesGet</span>)</div>
+    <div class="method-notes">This endpoint returns all job titles, in the same format as in the show endpoint. Each job title has one linked job tier, and each job tier can have many job titles.</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Job Title">Job Title</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "parent_id" : "aeiou",
+  "links" : {
+    "name" : "aeiou",
+    "id" : "aeiou"
+  },
+  "id" : "aeiou",
+  "title" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="jobTitlesPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /job_titles</code></pre></div>
+    <div class="method-summary">Create Job Title (<span class="nickname">jobTitlesPost</span>)</div>
+    <div class="method-notes">To get a list of available job tiers, use the job tiers index endpoint.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">title (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Title. </div><div class="param">job_tier (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; ID of Job Tier. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Job Title">Job Title</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "parent_id" : "aeiou",
+  "links" : {
+    "name" : "aeiou",
+    "id" : "aeiou"
+  },
+  "id" : "aeiou",
+  "title" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Create Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="jobTitlesidGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /job_titles/:id</code></pre></div>
+    <div class="method-summary">Show Job Title (<span class="nickname">jobTitlesidGet</span>)</div>
+    <div class="method-notes">This endpoint returns information about one job title. Each job title has one job tier, which is included in the \&quot;linked\&quot; section. For more information about how \&quot;links\&quot; and \&quot;linked\&quot; work, please consult the JSON API section of the documentation.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; ID of Job Title. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Job Title">Job Title</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "parent_id" : "aeiou",
+  "links" : {
+    "name" : "aeiou",
+    "id" : "aeiou"
+  },
+  "id" : "aeiou",
+  "title" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="jobTitlesidPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /job_titles/:id</code></pre></div>
+    <div class="method-summary">Update Job Title (<span class="nickname">jobTitlesidPut</span>)</div>
+    <div class="method-notes">Allows you to modify an existing job title. To get a list of available job tiers, use the job tiers index endpoint.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">title (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Title. </div><div class="param">job_tier (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; ID of Job Tier. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Job Title">Job Title</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "parent_id" : "aeiou",
+  "links" : {
+    "name" : "aeiou",
+    "id" : "aeiou"
+  },
+  "id" : "aeiou",
+  "title" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="profilesFieldsGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /profiles/fields</code></pre></div>
+    <div class="method-summary">Profile Fields Index (<span class="nickname">profilesFieldsGet</span>)</div>
+    <div class="method-notes">Returns all currently supported Fields, default and custom. NAME is the internal name of the field, which is also the key that should be used in the profile API endpoints. This may be distinct from LABEL, which is what will appear in the web interface. The valid format info is an attempt to explain what the proper format and possible values are for that field. </div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Field">Field</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "default" : true,
+  "valid_format_info" : "aeiou",
+  "name" : "aeiou",
+  "deletable" : true,
+  "links" : "",
+  "id" : "aeiou",
+  "label" : "aeiou",
+  "type" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="profilesFieldsPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /profiles/fields</code></pre></div>
+    <div class="method-summary">Create Profile Field (<span class="nickname">profilesFieldsPost</span>)</div>
+    <div class="method-notes">Allows you to create a profile field within a section. </div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">section_id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Section ID </div><div class="param">title (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Field Title </div><div class="param">type (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Field Type </div><div class="param">choices (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; An array of choices for checkboxes and select fields. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_201">inline_response_201</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "meta" : {
+    "count" : "",
+    "status" : ""
+  },
+  "links" : "{}",
+  "fields" : [ {
+    "default" : true,
+    "valid_format_info" : "aeiou",
+    "name" : "aeiou",
+    "deletable" : true,
+    "links" : "",
+    "id" : "aeiou",
+    "label" : "aeiou",
+    "type" : "aeiou"
+  } ],
+  "linked" : {
+    "sections" : ""
+  }
+}</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created Response
+        <a href="#inline_response_201">inline_response_201</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="profilesFieldsPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /profiles/fields</code></pre></div>
+    <div class="method-summary">Update Profile Field (<span class="nickname">profilesFieldsPut</span>)</div>
+    <div class="method-notes">Returns all currently supported Fields, default and custom. NAME is the internal name of the field, which is also the key that should be used in the profile API endpoints. This may be distinct from LABEL, which is what will appear in the web interface. The valid format info is an attempt to explain what the proper format and possible values are for that field. </div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">section (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Profile Field Section ID </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Field">Field</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "default" : true,
+  "valid_format_info" : "aeiou",
+  "name" : "aeiou",
+  "deletable" : true,
+  "links" : "",
+  "id" : "aeiou",
+  "label" : "aeiou",
+  "type" : "aeiou"
+} ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="profilesFieldsSectionsGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /profiles/fields/sections</code></pre></div>
+    <div class="method-summary">Sections Index (<span class="nickname">profilesFieldsSectionsGet</span>)</div>
+    <div class="method-notes">Returns all currently supported Sections, default and custom. NAME is the internal name of the field, which is also the key that should be used in the profile API endpoints. This may be distinct from LABEL, which is what will appear in the web interface. The valid format info is an attempt to explain what the proper format and possible values are for that field. </div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      array[Sections]
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ "" ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="profilesFieldsSectionsPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /profiles/fields/sections</code></pre></div>
+    <div class="method-summary">Create Section (<span class="nickname">profilesFieldsSectionsPost</span>)</div>
+    <div class="method-notes">Allows you to create a section that will include several profile fields. For example, a \&quot;General\&quot; section can include profile fields for \&quot;First Name\&quot;, \&quot;Last Name\&quot;, \&quot;Titles\&quot;, etc. </div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">title (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Section ID </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      array[Sections]
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ "" ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="profilesFieldsSectionsidGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /profiles/fields/sections/:id</code></pre></div>
+    <div class="method-summary">Show Section (<span class="nickname">profilesFieldsSectionsidGet</span>)</div>
+    <div class="method-notes">This method allows users to retrieve a section. The results will contain additional information from all fields that your company has (default and custom) in that particular section that are currently supported by the API and that the current user has access to for the given user. You can get a full list of accessible fields, as well as information on formatting them from the fields API endpoint. </div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Section ID </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      array[Sections]
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ "" ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="profilesFieldsSectionsidPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /profiles/fields/sections/:id</code></pre></div>
+    <div class="method-summary">Update Section (<span class="nickname">profilesFieldsSectionsidPut</span>)</div>
+    <div class="method-notes">The update action is similar to the create action in what is modifiable and how it should be set. You need only pass the attribute (name of section) that you would like to modify. Any others will remain as they are. </div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Section ID </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      array[Sections]
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ "" ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="profilesGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /profiles</code></pre></div>
+    <div class="method-summary">Profiles Index (<span class="nickname">profilesGet</span>)</div>
+    <div class="method-notes">This method returns an array of &#x60;profiles&#x60;, whose format and content will be the same as the show profile endpoint. This endpoint uses pagination through two optional parameters. The first, limit, defaults to 30 and accepts EITHER an integer value, OR the string &#39;all&#39; to return all records. The second, after, should be the id of the first record BEFORE the recrods that you want to retrieve. </div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">per_page (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Integer limit of records retrieved. </div><div class="param">page (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The page number to retrieve. </div><div class="param">sort (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; An attribute to sort by fields on profiles. Allowed attributes are first_name, last_name, and job_title. Prepend with a - (minus) sign to reverse the order. </div><div class="param">filter (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; A hash containing a filter you&#39;d like to apply before profiles are returned. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200">inline_response_200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "meta" : {
+    "count" : "",
+    "status" : ""
+  },
+  "profiles" : [ {
+    "healthcare_info" : "aeiou",
+    "corporate_card_member" : "aeiou",
+    "bio" : "aeiou",
+    "employee_wage_theft_prevention_act" : "aeiou",
+    "laptop_asset_number" : "aeiou",
+    "office" : {
+      "zip" : "aeiou",
+      "address2" : "aeiou",
+      "city" : "aeiou",
+      "phone" : "aeiou",
+      "address1" : "aeiou",
+      "state_id" : "aeiou",
+      "country_id" : "aeiou"
+    },
+    "salary" : {
+      "currency_type" : "aeiou",
+      "rate" : "aeiou",
+      "guid" : "aeiou",
+      "yearly_amount" : ""
+    },
+    "ssn" : "aeiou",
+    "dental" : "",
+    "links" : {
+      "teams" : "",
+      "groups" : "",
+      "job_title" : ""
+    },
+    "office_direct_dial" : "aeiou",
+    "id" : "aeiou",
+    "job_title" : {
+      "id" : "aeiou",
+      "title" : "aeiou"
+    },
+    "emergency_contact_phone" : "aeiou",
+    "vision_plan_info" : "aeiou",
+    "image" : {
+      "filename" : "aeiou",
+      "original" : "aeiou",
+      "mime_type" : "aeiou",
+      "id" : "aeiou",
+      "thumbs" : {
+        "800x800c" : "aeiou",
+        "450x450" : "aeiou",
+        "75x75c" : "aeiou",
+        "300x300c" : "aeiou",
+        "75x75" : "aeiou",
+        "550x450c" : "aeiou",
+        "800x800" : "aeiou",
+        "300x300" : "aeiou",
+        "150x150" : "aeiou",
+        "150x150c" : "aeiou"
+      }
+    },
+    "home_phone" : "aeiou",
+    "job_change_reason" : "aeiou",
+    "full_name" : "aeiou",
+    "office_main_number" : "aeiou",
+    "job_description" : "aeiou",
+    "dob" : "aeiou",
+    "employee_id" : "aeiou",
+    "linkedin_url" : "aeiou",
+    "preferred_name" : "aeiou",
+    "life_insurance_info" : "aeiou",
+    "key_tag_number" : "aeiou",
+    "gender" : "aeiou",
+    "created_at" : "",
+    "asset_management" : "aeiou",
+    "healthcare" : {
+      "amount" : "aeiou",
+      "beneficiary" : "aeiou",
+      "currency_type" : "aeiou"
+    },
+    "updated_at" : "",
+    "mobile_phone" : "aeiou",
+    "reports_to" : {
+      "last_name" : "aeiou",
+      "id" : "aeiou",
+      "first_name" : "aeiou"
+    },
+    "office_company_mobile" : "aeiou",
+    "first_name" : "aeiou",
+    "email" : "aeiou",
+    "start_date" : "aeiou",
+    "resume" : "aeiou",
+    "user_status" : "aeiou",
+    "employee_handbook" : "aeiou",
+    "dental_info" : "aeiou",
+    "last_name" : "aeiou",
+    "middle_name" : "aeiou",
+    "home" : {
+      "zip" : "aeiou",
+      "address2" : "aeiou",
+      "city" : "aeiou",
+      "address1" : "aeiou",
+      "state_id" : "aeiou",
+      "country_id" : "aeiou"
+    },
+    "office_phone" : "aeiou",
+    "marital_status" : "aeiou",
+    "office_fax" : "aeiou",
+    "depature_date" : "aeiou",
+    "personal_email" : "aeiou",
+    "emergency_contact" : "aeiou",
+    "current_job_description" : "aeiou"
+  } ],
+  "links" : "{}",
+  "linked" : {
+    "job_titles" : [ {
+      "parent_id" : "aeiou",
+      "links" : {
+        "name" : "aeiou",
+        "id" : "aeiou"
+      },
+      "id" : "aeiou",
+      "title" : "aeiou"
+    } ],
+    "files" : [ "" ],
+    "groups" : [ "" ]
+  }
+}</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        <a href="#inline_response_200">inline_response_200</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="profilesMeGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /profiles/me</code></pre></div>
+    <div class="method-summary">Current User (<span class="nickname">profilesMeGet</span>)</div>
+    <div class="method-notes">The response will contain information about the user who owns the access token used to access the API. If the access token belongs to a full Profile, the response content and format will be identical as if you did a show request for that profile. However, if you are accessing via a dedicated API user, the response will be much shorter. The most important element in such a response would be EMAIL. FIRST_NAME and LAST_NAME will both be \&quot;Admin\&quot;. </div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200">inline_response_200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "meta" : {
+    "count" : "",
+    "status" : ""
+  },
+  "profiles" : [ {
+    "healthcare_info" : "aeiou",
+    "corporate_card_member" : "aeiou",
+    "bio" : "aeiou",
+    "employee_wage_theft_prevention_act" : "aeiou",
+    "laptop_asset_number" : "aeiou",
+    "office" : {
+      "zip" : "aeiou",
+      "address2" : "aeiou",
+      "city" : "aeiou",
+      "phone" : "aeiou",
+      "address1" : "aeiou",
+      "state_id" : "aeiou",
+      "country_id" : "aeiou"
+    },
+    "salary" : {
+      "currency_type" : "aeiou",
+      "rate" : "aeiou",
+      "guid" : "aeiou",
+      "yearly_amount" : ""
+    },
+    "ssn" : "aeiou",
+    "dental" : "",
+    "links" : {
+      "teams" : "",
+      "groups" : "",
+      "job_title" : ""
+    },
+    "office_direct_dial" : "aeiou",
+    "id" : "aeiou",
+    "job_title" : {
+      "id" : "aeiou",
+      "title" : "aeiou"
+    },
+    "emergency_contact_phone" : "aeiou",
+    "vision_plan_info" : "aeiou",
+    "image" : {
+      "filename" : "aeiou",
+      "original" : "aeiou",
+      "mime_type" : "aeiou",
+      "id" : "aeiou",
+      "thumbs" : {
+        "800x800c" : "aeiou",
+        "450x450" : "aeiou",
+        "75x75c" : "aeiou",
+        "300x300c" : "aeiou",
+        "75x75" : "aeiou",
+        "550x450c" : "aeiou",
+        "800x800" : "aeiou",
+        "300x300" : "aeiou",
+        "150x150" : "aeiou",
+        "150x150c" : "aeiou"
+      }
+    },
+    "home_phone" : "aeiou",
+    "job_change_reason" : "aeiou",
+    "full_name" : "aeiou",
+    "office_main_number" : "aeiou",
+    "job_description" : "aeiou",
+    "dob" : "aeiou",
+    "employee_id" : "aeiou",
+    "linkedin_url" : "aeiou",
+    "preferred_name" : "aeiou",
+    "life_insurance_info" : "aeiou",
+    "key_tag_number" : "aeiou",
+    "gender" : "aeiou",
+    "created_at" : "",
+    "asset_management" : "aeiou",
+    "healthcare" : {
+      "amount" : "aeiou",
+      "beneficiary" : "aeiou",
+      "currency_type" : "aeiou"
+    },
+    "updated_at" : "",
+    "mobile_phone" : "aeiou",
+    "reports_to" : {
+      "last_name" : "aeiou",
+      "id" : "aeiou",
+      "first_name" : "aeiou"
+    },
+    "office_company_mobile" : "aeiou",
+    "first_name" : "aeiou",
+    "email" : "aeiou",
+    "start_date" : "aeiou",
+    "resume" : "aeiou",
+    "user_status" : "aeiou",
+    "employee_handbook" : "aeiou",
+    "dental_info" : "aeiou",
+    "last_name" : "aeiou",
+    "middle_name" : "aeiou",
+    "home" : {
+      "zip" : "aeiou",
+      "address2" : "aeiou",
+      "city" : "aeiou",
+      "address1" : "aeiou",
+      "state_id" : "aeiou",
+      "country_id" : "aeiou"
+    },
+    "office_phone" : "aeiou",
+    "marital_status" : "aeiou",
+    "office_fax" : "aeiou",
+    "depature_date" : "aeiou",
+    "personal_email" : "aeiou",
+    "emergency_contact" : "aeiou",
+    "current_job_description" : "aeiou"
+  } ],
+  "links" : "{}",
+  "linked" : {
+    "job_titles" : [ {
+      "parent_id" : "aeiou",
+      "links" : {
+        "name" : "aeiou",
+        "id" : "aeiou"
+      },
+      "id" : "aeiou",
+      "title" : "aeiou"
+    } ],
+    "files" : [ "" ],
+    "groups" : [ "" ]
+  }
+}</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        <a href="#inline_response_200">inline_response_200</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="profilesPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /profiles</code></pre></div>
+    <div class="method-summary">Create Profile (<span class="nickname">profilesPost</span>)</div>
+    <div class="method-notes">The fields that you can set and will receive are a combination of Namely&#39;s defaults fields and custom fields that exist only for your company.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">first_name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; First name </div><div class="param">last_name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Last name </div><div class="param">email (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Email. </div><div class="param">user_status (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User status, should be \&quot;active\&quot; or \&quot;inactive\&quot; </div><div class="param">start_date (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Start date </div><div class="param">departure_date (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Depature date </div><div class="param">gender (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Gender, should be \&quot;male\&quot;, \&quot;female\&quot; </div><div class="param">marital_status (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Marital status, should be \&quot;single\&quot;, \&quot;married\&quot;, \&quot;civil partnership\&quot;, \&quot;separated\&quot;, or \&quot;divorced\&quot; </div><div class="param">job_title (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Valid job title GUID </div><div class="param">resume (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Resume file GUID </div><div class="param">image (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Image file GUID </div><div class="param">office (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Office address, hash[see below] </div><div class="param">home (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Home address, hash[see below] </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200">inline_response_200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "meta" : {
+    "count" : "",
+    "status" : ""
+  },
+  "profiles" : [ {
+    "healthcare_info" : "aeiou",
+    "corporate_card_member" : "aeiou",
+    "bio" : "aeiou",
+    "employee_wage_theft_prevention_act" : "aeiou",
+    "laptop_asset_number" : "aeiou",
+    "office" : {
+      "zip" : "aeiou",
+      "address2" : "aeiou",
+      "city" : "aeiou",
+      "phone" : "aeiou",
+      "address1" : "aeiou",
+      "state_id" : "aeiou",
+      "country_id" : "aeiou"
+    },
+    "salary" : {
+      "currency_type" : "aeiou",
+      "rate" : "aeiou",
+      "guid" : "aeiou",
+      "yearly_amount" : ""
+    },
+    "ssn" : "aeiou",
+    "dental" : "",
+    "links" : {
+      "teams" : "",
+      "groups" : "",
+      "job_title" : ""
+    },
+    "office_direct_dial" : "aeiou",
+    "id" : "aeiou",
+    "job_title" : {
+      "id" : "aeiou",
+      "title" : "aeiou"
+    },
+    "emergency_contact_phone" : "aeiou",
+    "vision_plan_info" : "aeiou",
+    "image" : {
+      "filename" : "aeiou",
+      "original" : "aeiou",
+      "mime_type" : "aeiou",
+      "id" : "aeiou",
+      "thumbs" : {
+        "800x800c" : "aeiou",
+        "450x450" : "aeiou",
+        "75x75c" : "aeiou",
+        "300x300c" : "aeiou",
+        "75x75" : "aeiou",
+        "550x450c" : "aeiou",
+        "800x800" : "aeiou",
+        "300x300" : "aeiou",
+        "150x150" : "aeiou",
+        "150x150c" : "aeiou"
+      }
+    },
+    "home_phone" : "aeiou",
+    "job_change_reason" : "aeiou",
+    "full_name" : "aeiou",
+    "office_main_number" : "aeiou",
+    "job_description" : "aeiou",
+    "dob" : "aeiou",
+    "employee_id" : "aeiou",
+    "linkedin_url" : "aeiou",
+    "preferred_name" : "aeiou",
+    "life_insurance_info" : "aeiou",
+    "key_tag_number" : "aeiou",
+    "gender" : "aeiou",
+    "created_at" : "",
+    "asset_management" : "aeiou",
+    "healthcare" : {
+      "amount" : "aeiou",
+      "beneficiary" : "aeiou",
+      "currency_type" : "aeiou"
+    },
+    "updated_at" : "",
+    "mobile_phone" : "aeiou",
+    "reports_to" : {
+      "last_name" : "aeiou",
+      "id" : "aeiou",
+      "first_name" : "aeiou"
+    },
+    "office_company_mobile" : "aeiou",
+    "first_name" : "aeiou",
+    "email" : "aeiou",
+    "start_date" : "aeiou",
+    "resume" : "aeiou",
+    "user_status" : "aeiou",
+    "employee_handbook" : "aeiou",
+    "dental_info" : "aeiou",
+    "last_name" : "aeiou",
+    "middle_name" : "aeiou",
+    "home" : {
+      "zip" : "aeiou",
+      "address2" : "aeiou",
+      "city" : "aeiou",
+      "address1" : "aeiou",
+      "state_id" : "aeiou",
+      "country_id" : "aeiou"
+    },
+    "office_phone" : "aeiou",
+    "marital_status" : "aeiou",
+    "office_fax" : "aeiou",
+    "depature_date" : "aeiou",
+    "personal_email" : "aeiou",
+    "emergency_contact" : "aeiou",
+    "current_job_description" : "aeiou"
+  } ],
+  "links" : "{}",
+  "linked" : {
+    "job_titles" : [ {
+      "parent_id" : "aeiou",
+      "links" : {
+        "name" : "aeiou",
+        "id" : "aeiou"
+      },
+      "id" : "aeiou",
+      "title" : "aeiou"
+    } ],
+    "files" : [ "" ],
+    "groups" : [ "" ]
+  }
+}</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Created Response
+        <a href="#inline_response_200">inline_response_200</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="profilesidGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /profiles/:id</code></pre></div>
+    <div class="method-summary">Show Profiles (<span class="nickname">profilesidGet</span>)</div>
+    <div class="method-notes">This method allows users to retrieve a &#x60;profile&#x60;. The profile entry will contain additional information from all fields that your company has (default and custom) that are currently supported by the API and that the current user has access to for the given user. You can get a full list of accessible fields, as well as information on formatting them from the fields API endpoint. </div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200">inline_response_200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "meta" : {
+    "count" : "",
+    "status" : ""
+  },
+  "profiles" : [ {
+    "healthcare_info" : "aeiou",
+    "corporate_card_member" : "aeiou",
+    "bio" : "aeiou",
+    "employee_wage_theft_prevention_act" : "aeiou",
+    "laptop_asset_number" : "aeiou",
+    "office" : {
+      "zip" : "aeiou",
+      "address2" : "aeiou",
+      "city" : "aeiou",
+      "phone" : "aeiou",
+      "address1" : "aeiou",
+      "state_id" : "aeiou",
+      "country_id" : "aeiou"
+    },
+    "salary" : {
+      "currency_type" : "aeiou",
+      "rate" : "aeiou",
+      "guid" : "aeiou",
+      "yearly_amount" : ""
+    },
+    "ssn" : "aeiou",
+    "dental" : "",
+    "links" : {
+      "teams" : "",
+      "groups" : "",
+      "job_title" : ""
+    },
+    "office_direct_dial" : "aeiou",
+    "id" : "aeiou",
+    "job_title" : {
+      "id" : "aeiou",
+      "title" : "aeiou"
+    },
+    "emergency_contact_phone" : "aeiou",
+    "vision_plan_info" : "aeiou",
+    "image" : {
+      "filename" : "aeiou",
+      "original" : "aeiou",
+      "mime_type" : "aeiou",
+      "id" : "aeiou",
+      "thumbs" : {
+        "800x800c" : "aeiou",
+        "450x450" : "aeiou",
+        "75x75c" : "aeiou",
+        "300x300c" : "aeiou",
+        "75x75" : "aeiou",
+        "550x450c" : "aeiou",
+        "800x800" : "aeiou",
+        "300x300" : "aeiou",
+        "150x150" : "aeiou",
+        "150x150c" : "aeiou"
+      }
+    },
+    "home_phone" : "aeiou",
+    "job_change_reason" : "aeiou",
+    "full_name" : "aeiou",
+    "office_main_number" : "aeiou",
+    "job_description" : "aeiou",
+    "dob" : "aeiou",
+    "employee_id" : "aeiou",
+    "linkedin_url" : "aeiou",
+    "preferred_name" : "aeiou",
+    "life_insurance_info" : "aeiou",
+    "key_tag_number" : "aeiou",
+    "gender" : "aeiou",
+    "created_at" : "",
+    "asset_management" : "aeiou",
+    "healthcare" : {
+      "amount" : "aeiou",
+      "beneficiary" : "aeiou",
+      "currency_type" : "aeiou"
+    },
+    "updated_at" : "",
+    "mobile_phone" : "aeiou",
+    "reports_to" : {
+      "last_name" : "aeiou",
+      "id" : "aeiou",
+      "first_name" : "aeiou"
+    },
+    "office_company_mobile" : "aeiou",
+    "first_name" : "aeiou",
+    "email" : "aeiou",
+    "start_date" : "aeiou",
+    "resume" : "aeiou",
+    "user_status" : "aeiou",
+    "employee_handbook" : "aeiou",
+    "dental_info" : "aeiou",
+    "last_name" : "aeiou",
+    "middle_name" : "aeiou",
+    "home" : {
+      "zip" : "aeiou",
+      "address2" : "aeiou",
+      "city" : "aeiou",
+      "address1" : "aeiou",
+      "state_id" : "aeiou",
+      "country_id" : "aeiou"
+    },
+    "office_phone" : "aeiou",
+    "marital_status" : "aeiou",
+    "office_fax" : "aeiou",
+    "depature_date" : "aeiou",
+    "personal_email" : "aeiou",
+    "emergency_contact" : "aeiou",
+    "current_job_description" : "aeiou"
+  } ],
+  "links" : "{}",
+  "linked" : {
+    "job_titles" : [ {
+      "parent_id" : "aeiou",
+      "links" : {
+        "name" : "aeiou",
+        "id" : "aeiou"
+      },
+      "id" : "aeiou",
+      "title" : "aeiou"
+    } ],
+    "files" : [ "" ],
+    "groups" : [ "" ]
+  }
+}</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        <a href="#inline_response_200">inline_response_200</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="profilesidPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /profiles/:id</code></pre></div>
+    <div class="method-summary">Update Profile (<span class="nickname">profilesidPut</span>)</div>
+    <div class="method-notes">The update action is similar to the create action in what is modifiable and how it should be set. You need only pass the attributes that you would like to modify. Any others will remain as they are. </div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200">inline_response_200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "meta" : {
+    "count" : "",
+    "status" : ""
+  },
+  "profiles" : [ {
+    "healthcare_info" : "aeiou",
+    "corporate_card_member" : "aeiou",
+    "bio" : "aeiou",
+    "employee_wage_theft_prevention_act" : "aeiou",
+    "laptop_asset_number" : "aeiou",
+    "office" : {
+      "zip" : "aeiou",
+      "address2" : "aeiou",
+      "city" : "aeiou",
+      "phone" : "aeiou",
+      "address1" : "aeiou",
+      "state_id" : "aeiou",
+      "country_id" : "aeiou"
+    },
+    "salary" : {
+      "currency_type" : "aeiou",
+      "rate" : "aeiou",
+      "guid" : "aeiou",
+      "yearly_amount" : ""
+    },
+    "ssn" : "aeiou",
+    "dental" : "",
+    "links" : {
+      "teams" : "",
+      "groups" : "",
+      "job_title" : ""
+    },
+    "office_direct_dial" : "aeiou",
+    "id" : "aeiou",
+    "job_title" : {
+      "id" : "aeiou",
+      "title" : "aeiou"
+    },
+    "emergency_contact_phone" : "aeiou",
+    "vision_plan_info" : "aeiou",
+    "image" : {
+      "filename" : "aeiou",
+      "original" : "aeiou",
+      "mime_type" : "aeiou",
+      "id" : "aeiou",
+      "thumbs" : {
+        "800x800c" : "aeiou",
+        "450x450" : "aeiou",
+        "75x75c" : "aeiou",
+        "300x300c" : "aeiou",
+        "75x75" : "aeiou",
+        "550x450c" : "aeiou",
+        "800x800" : "aeiou",
+        "300x300" : "aeiou",
+        "150x150" : "aeiou",
+        "150x150c" : "aeiou"
+      }
+    },
+    "home_phone" : "aeiou",
+    "job_change_reason" : "aeiou",
+    "full_name" : "aeiou",
+    "office_main_number" : "aeiou",
+    "job_description" : "aeiou",
+    "dob" : "aeiou",
+    "employee_id" : "aeiou",
+    "linkedin_url" : "aeiou",
+    "preferred_name" : "aeiou",
+    "life_insurance_info" : "aeiou",
+    "key_tag_number" : "aeiou",
+    "gender" : "aeiou",
+    "created_at" : "",
+    "asset_management" : "aeiou",
+    "healthcare" : {
+      "amount" : "aeiou",
+      "beneficiary" : "aeiou",
+      "currency_type" : "aeiou"
+    },
+    "updated_at" : "",
+    "mobile_phone" : "aeiou",
+    "reports_to" : {
+      "last_name" : "aeiou",
+      "id" : "aeiou",
+      "first_name" : "aeiou"
+    },
+    "office_company_mobile" : "aeiou",
+    "first_name" : "aeiou",
+    "email" : "aeiou",
+    "start_date" : "aeiou",
+    "resume" : "aeiou",
+    "user_status" : "aeiou",
+    "employee_handbook" : "aeiou",
+    "dental_info" : "aeiou",
+    "last_name" : "aeiou",
+    "middle_name" : "aeiou",
+    "home" : {
+      "zip" : "aeiou",
+      "address2" : "aeiou",
+      "city" : "aeiou",
+      "address1" : "aeiou",
+      "state_id" : "aeiou",
+      "country_id" : "aeiou"
+    },
+    "office_phone" : "aeiou",
+    "marital_status" : "aeiou",
+    "office_fax" : "aeiou",
+    "depature_date" : "aeiou",
+    "personal_email" : "aeiou",
+    "emergency_contact" : "aeiou",
+    "current_job_description" : "aeiou"
+  } ],
+  "links" : "{}",
+  "linked" : {
+    "job_titles" : [ {
+      "parent_id" : "aeiou",
+      "links" : {
+        "name" : "aeiou",
+        "id" : "aeiou"
+      },
+      "id" : "aeiou",
+      "title" : "aeiou"
+    } ],
+    "files" : [ "" ],
+    "groups" : [ "" ]
+  }
+}</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        <a href="#inline_response_200">inline_response_200</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="timeOffHolidaysGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /time_off/holidays</code></pre></div>
+    <div class="method-summary">Holidays Index (<span class="nickname">timeOffHolidaysGet</span>)</div>
+    <div class="method-notes">This endpoint returns an array of holidays.</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200_1">inline_response_200_1</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "holidays" : [ "" ],
+  "meta" : {
+    "has_profile" : true,
+    "current_user_date_format" : "aeiou",
+    "items" : {
+      "count" : "",
+      "current_user_date_format" : "aeiou",
+      "has_profile" : true,
+      "status" : ""
+    },
+    "status" : ""
+  }
+}</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        <a href="#inline_response_200_1">inline_response_200_1</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="timeOffPlansGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /time_off/plans</code></pre></div>
+    <div class="method-summary">Time Off Plans Index (<span class="nickname">timeOffPlansGet</span>)</div>
+    <div class="method-notes">This endpoint returns an array of time off plans.</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200_2">inline_response_200_2</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "plan_presenters" : [ {
+    "formatted_next_accrual" : "aeiou",
+    "formatted_next_renewal" : "aeiou",
+    "notes" : "aeiou",
+    "formatted_base_days_off" : "aeiou",
+    "units" : "aeiou",
+    "title" : "aeiou",
+    "formatted_carryover_maximum" : "",
+    "carryover_expired" : true,
+    "hide_details" : true,
+    "formatted_max_accrual" : "",
+    "prorate_first_accrual" : true,
+    "links" : {
+      "time_off_type" : "aeiou"
+    },
+    "id" : "aeiou",
+    "carryover_expires" : true,
+    "unlimited" : true,
+    "qualifiers" : "",
+    "formatted_next_accrual_unit" : "aeiou",
+    "is_default" : true,
+    "requires_approval" : true,
+    "accrual_rate" : "aeiou",
+    "allow_negative_usage" : true,
+    "accordion_is_open" : true,
+    "new_hire_delay" : "aeiou",
+    "formatted_carryover_expiration_this_accrual_year" : "aeiou",
+    "carries_over" : true
+  } ],
+  "meta" : {
+    "has_profile" : true,
+    "current_user_date_format" : "aeiou",
+    "status" : ""
+  },
+  "links" : {
+    "plan_presenters.time_off_type" : {
+      "type" : "aeiou"
+    }
+  },
+  "linked" : {
+    "time_off_types" : [ {
+      "notes" : "aeiou",
+      "include_on_paystub" : true,
+      "id" : "aeiou",
+      "calendar_options_alt_title" : true,
+      "calendar_options_strip_pattern" : true,
+      "title" : "aeiou"
+    } ]
+  }
+}</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        <a href="#inline_response_200_2">inline_response_200_2</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="timeOffRequestsGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /time_off/requests</code></pre></div>
+    <div class="method-summary">Time Off Requests Index (<span class="nickname">timeOffRequestsGet</span>)</div>
+    <div class="method-notes">This endpoint returns an array of all time off requests.</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200_3">inline_response_200_3</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "time_off_requests" : [ "" ],
+  "meta" : "{}",
+  "links" : "{}",
+  "linked" : "{}"
+}</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        <a href="#inline_response_200_3">inline_response_200_3</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="timeOffUsageGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /time_off/usage</code></pre></div>
+    <div class="method-summary">Usages Index (<span class="nickname">timeOffUsageGet</span>)</div>
+    <div class="method-notes">This endpoint returns an array of time off usage.</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Usage">Usage</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ "" ]</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful Response
+        
+  </div> <!-- method -->
+  <hr/>
+
+  <div class="up"><a href="#__Models">Up</a></div>
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#Countries"><code>Countries</code></a></li>
+    <li><a href="#Countries_links"><code>Countries_links</code></a></li>
+    <li><a href="#Currency Type"><code>Currency Type</code></a></li>
+    <li><a href="#Event"><code>Event</code></a></li>
+    <li><a href="#Event_General"><code>Event_General</code></a></li>
+    <li><a href="#Event_General_links"><code>Event_General_links</code></a></li>
+    <li><a href="#Field"><code>Field</code></a></li>
+    <li><a href="#File"><code>File</code></a></li>
+    <li><a href="#Group"><code>Group</code></a></li>
+    <li><a href="#Group Type"><code>Group Type</code></a></li>
+    <li><a href="#Group_links"><code>Group_links</code></a></li>
+    <li><a href="#Holiday"><code>Holiday</code></a></li>
+    <li><a href="#inline_response_200"><code>inline_response_200</code></a></li>
+    <li><a href="#inline_response_200_1"><code>inline_response_200_1</code></a></li>
+    <li><a href="#inline_response_200_1_meta"><code>inline_response_200_1_meta</code></a></li>
+    <li><a href="#inline_response_200_2"><code>inline_response_200_2</code></a></li>
+    <li><a href="#inline_response_200_2_linked"><code>inline_response_200_2_linked</code></a></li>
+    <li><a href="#inline_response_200_2_links"><code>inline_response_200_2_links</code></a></li>
+    <li><a href="#inline_response_200_2_links_plan_presenters.time_off_type"><code>inline_response_200_2_links_plan_presenters.time_off_type</code></a></li>
+    <li><a href="#inline_response_200_2_meta"><code>inline_response_200_2_meta</code></a></li>
+    <li><a href="#inline_response_200_3"><code>inline_response_200_3</code></a></li>
+    <li><a href="#inline_response_200_linked"><code>inline_response_200_linked</code></a></li>
+    <li><a href="#inline_response_200_meta"><code>inline_response_200_meta</code></a></li>
+    <li><a href="#inline_response_201"><code>inline_response_201</code></a></li>
+    <li><a href="#inline_response_201_linked"><code>inline_response_201_linked</code></a></li>
+    <li><a href="#Job Tier"><code>Job Tier</code></a></li>
+    <li><a href="#Job Tier_links"><code>Job Tier_links</code></a></li>
+    <li><a href="#Job Title"><code>Job Title</code></a></li>
+    <li><a href="#Linked"><code>Linked</code></a></li>
+    <li><a href="#Linked_job_titles"><code>Linked_job_titles</code></a></li>
+    <li><a href="#Linked_job_titles_links"><code>Linked_job_titles_links</code></a></li>
+    <li><a href="#Links"><code>Links</code></a></li>
+    <li><a href="#Meta"><code>Meta</code></a></li>
+    <li><a href="#Profile"><code>Profile</code></a></li>
+    <li><a href="#Profile_healthcare"><code>Profile_healthcare</code></a></li>
+    <li><a href="#Profile_home"><code>Profile_home</code></a></li>
+    <li><a href="#Profile_image"><code>Profile_image</code></a></li>
+    <li><a href="#Profile_image_thumbs"><code>Profile_image_thumbs</code></a></li>
+    <li><a href="#Profile_job_title"><code>Profile_job_title</code></a></li>
+    <li><a href="#Profile_links"><code>Profile_links</code></a></li>
+    <li><a href="#Profile_office"><code>Profile_office</code></a></li>
+    <li><a href="#Profile_reports_to"><code>Profile_reports_to</code></a></li>
+    <li><a href="#Profile_salary"><code>Profile_salary</code></a></li>
+    <li><a href="#Section"><code>Section</code></a></li>
+    <li><a href="#Section_Compensation  Benefits"><code>Section_Compensation  Benefits</code></a></li>
+    <li><a href="#Section_General"><code>Section_General</code></a></li>
+    <li><a href="#Section_salary"><code>Section_salary</code></a></li>
+    <li><a href="#Time Off Plan"><code>Time Off Plan</code></a></li>
+    <li><a href="#Time Off Plan_links"><code>Time Off Plan_links</code></a></li>
+    <li><a href="#Time Off Request"><code>Time Off Request</code></a></li>
+    <li><a href="#Time Off Request_links"><code>Time Off Request_links</code></a></li>
+    <li><a href="#Time Off Request_urls"><code>Time Off Request_urls</code></a></li>
+    <li><a href="#Time Off Type"><code>Time Off Type</code></a></li>
+    <li><a href="#Usage"><code>Usage</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3 class="field-label"><a name="Countries">Countries</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">subdivision_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">links (optional)</div><div class="param-desc"><span class="param-type"><a href="#Countries_links">Countries_links</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Countries_links">Countries_links</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Currency Type">Currency Type</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">iso (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Event">Event</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">General (optional)</div><div class="param-desc"><span class="param-type"><a href="#Event_General">Event_General</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Event_General">Event_General</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">href (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">time (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">ufc_offset (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">content (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">html_content (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">years_at_company (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">use_comments (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">can_comment (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">can_destroy (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">links (optional)</div><div class="param-desc"><span class="param-type"><a href="#Event_General_links">Event_General_links</a></span>  </div>
+<div class="param">can_like (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">likes_count (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">liked_by_current_profile (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Event_General_links">Event_General_links</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">profile (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">comments (optional)</div><div class="param-desc"><span class="param-type"><a href="#">array[null]</a></span>  </div>
+<div class="param">file (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Field">Field</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">label (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">default (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">deletable (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">valid_format_info (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">links (optional)</div><div class="param-desc"><span class="param-type"><a href="#">array[null]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="File">File</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">filename (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">mime_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">original (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">thumbs (optional)</div><div class="param-desc"><span class="param-type"><a href="#Profile_image_thumbs">Profile_image_thumbs</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Group">Group</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">address (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">links (optional)</div><div class="param-desc"><span class="param-type"><a href="#Group_links">Group_links</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Group Type">Group Type</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">field_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">deletable (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">x_groups_as_teams (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Group_links">Group_links</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">group_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Holiday">Holiday</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">date (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">year (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="inline_response_200">inline_response_200</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">profiles (optional)</div><div class="param-desc"><span class="param-type"><a href="#Profile">array[Profile]</a></span>  </div>
+<div class="param">meta (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_meta">inline_response_200_meta</a></span>  </div>
+<div class="param">links (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">Object</a></span>  </div>
+<div class="param">linked (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_linked">inline_response_200_linked</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="inline_response_200_1">inline_response_200_1</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">holidays (optional)</div><div class="param-desc"><span class="param-type"><a href="#Holidays">array[Holidays]</a></span>  </div>
+<div class="param">meta (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_1_meta">inline_response_200_1_meta</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="inline_response_200_1_meta">inline_response_200_1_meta</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">has_profile (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">current_user_date_format (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">items (optional)</div><div class="param-desc"><span class="param-type"><a href="#Meta">Meta</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="inline_response_200_2">inline_response_200_2</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">plan_presenters (optional)</div><div class="param-desc"><span class="param-type"><a href="#Time Off Plan">array[Time Off Plan]</a></span>  </div>
+<div class="param">meta (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_2_meta">inline_response_200_2_meta</a></span>  </div>
+<div class="param">links (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_2_links">inline_response_200_2_links</a></span>  </div>
+<div class="param">linked (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_2_linked">inline_response_200_2_linked</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="inline_response_200_2_linked">inline_response_200_2_linked</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">time_off_types (optional)</div><div class="param-desc"><span class="param-type"><a href="#Time Off Type">array[Time Off Type]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="inline_response_200_2_links">inline_response_200_2_links</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">plan_presenters.time_off_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_2_links_plan_presenters.time_off_type">inline_response_200_2_links_plan_presenters.time_off_type</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="inline_response_200_2_links_plan_presenters.time_off_type">inline_response_200_2_links_plan_presenters.time_off_type</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="inline_response_200_2_meta">inline_response_200_2_meta</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">has_profile (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">current_user_date_format (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="inline_response_200_3">inline_response_200_3</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">time_off_requests (optional)</div><div class="param-desc"><span class="param-type"><a href="#Request">array[Request]</a></span>  </div>
+<div class="param">meta (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">Object</a></span>  </div>
+<div class="param">links (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">Object</a></span>  </div>
+<div class="param">linked (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">Object</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="inline_response_200_linked">inline_response_200_linked</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">job_titles (optional)</div><div class="param-desc"><span class="param-type"><a href="#Job Title">array[Job Title]</a></span>  </div>
+<div class="param">files (optional)</div><div class="param-desc"><span class="param-type"><a href="#Files">array[Files]</a></span>  </div>
+<div class="param">groups (optional)</div><div class="param-desc"><span class="param-type"><a href="#Groups">array[Groups]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="inline_response_200_meta">inline_response_200_meta</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">count (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="inline_response_201">inline_response_201</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">fields (optional)</div><div class="param-desc"><span class="param-type"><a href="#Field">array[Field]</a></span>  </div>
+<div class="param">meta (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_meta">inline_response_200_meta</a></span>  </div>
+<div class="param">links (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">Object</a></span>  </div>
+<div class="param">linked (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_201_linked">inline_response_201_linked</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="inline_response_201_linked">inline_response_201_linked</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">sections (optional)</div><div class="param-desc"><span class="param-type"><a href="#">array[null]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Job Tier">Job Tier</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">numerical_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">links (optional)</div><div class="param-desc"><span class="param-type"><a href="#Job Tier_links">Job Tier_links</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Job Tier_links">Job Tier_links</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">job_titles (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Job Title">Job Title</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">parent_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">links (optional)</div><div class="param-desc"><span class="param-type"><a href="#Countries_links">Countries_links</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Linked">Linked</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">job_titles (optional)</div><div class="param-desc"><span class="param-type"><a href="#Linked_job_titles">Linked_job_titles</a></span>  </div>
+<div class="param">files (optional)</div><div class="param-desc"><span class="param-type"><a href="#">array[null]</a></span>  </div>
+<div class="param">groups (optional)</div><div class="param-desc"><span class="param-type"><a href="#">array[null]</a></span>  </div>
+<div class="param">teams (optional)</div><div class="param-desc"><span class="param-type"><a href="#">array[null]</a></span>  </div>
+<div class="param">profiles.image (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_2_links_plan_presenters.time_off_type">inline_response_200_2_links_plan_presenters.time_off_type</a></span>  </div>
+<div class="param">profiles.groups (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_2_links_plan_presenters.time_off_type">inline_response_200_2_links_plan_presenters.time_off_type</a></span>  </div>
+<div class="param">profiles.teams (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_2_links_plan_presenters.time_off_type">inline_response_200_2_links_plan_presenters.time_off_type</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Linked_job_titles">Linked_job_titles</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">parent_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">links (optional)</div><div class="param-desc"><span class="param-type"><a href="#Linked_job_titles_links">Linked_job_titles_links</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Linked_job_titles_links">Linked_job_titles_links</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">job_tier (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Links">Links</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">profiles.job_title (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_2_links_plan_presenters.time_off_type">inline_response_200_2_links_plan_presenters.time_off_type</a></span>  </div>
+<div class="param">profiles.image (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_2_links_plan_presenters.time_off_type">inline_response_200_2_links_plan_presenters.time_off_type</a></span>  </div>
+<div class="param">profiles.groups (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_2_links_plan_presenters.time_off_type">inline_response_200_2_links_plan_presenters.time_off_type</a></span>  </div>
+<div class="param">profiles.teams (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_2_links_plan_presenters.time_off_type">inline_response_200_2_links_plan_presenters.time_off_type</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Meta">Meta</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">count (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">current_user_date_format (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">has_profile (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Profile">Profile</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">email (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">first_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">last_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">user_status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">updated_at (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">created_at (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">preferred_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">image (optional)</div><div class="param-desc"><span class="param-type"><a href="#Profile_image">Profile_image</a></span>  </div>
+<div class="param">full_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">job_title (optional)</div><div class="param-desc"><span class="param-type"><a href="#Profile_job_title">Profile_job_title</a></span>  </div>
+<div class="param">reports_to (optional)</div><div class="param-desc"><span class="param-type"><a href="#Profile_reports_to">Profile_reports_to</a></span>  </div>
+<div class="param">links (optional)</div><div class="param-desc"><span class="param-type"><a href="#Profile_links">Profile_links</a></span>  </div>
+<div class="param">middle_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">job_change_reason (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">start_date (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">depature_date (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">employee_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">personal_email (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">dob (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">ssn (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">gender (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">marital_status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">bio (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">asset_management (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">laptop_asset_number (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">corporate_card_member (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">key_tag_number (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">linkedin_url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">office_main_number (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">office_direct_dial (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">office_phone (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">office_fax (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">office_company_mobile (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">home_phone (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">mobile_phone (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">home (optional)</div><div class="param-desc"><span class="param-type"><a href="#Profile_home">Profile_home</a></span>  </div>
+<div class="param">office (optional)</div><div class="param-desc"><span class="param-type"><a href="#Profile_office">Profile_office</a></span>  </div>
+<div class="param">emergency_contact (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">emergency_contact_phone (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">resume (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">current_job_description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">job_description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">salary (optional)</div><div class="param-desc"><span class="param-type"><a href="#Profile_salary">Profile_salary</a></span>  </div>
+<div class="param">healthcare (optional)</div><div class="param-desc"><span class="param-type"><a href="#Profile_healthcare">Profile_healthcare</a></span>  </div>
+<div class="param">healthcare_info (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">dental (optional)</div><div class="param-desc"><span class="param-type"><a href="#Profile_healthcare">Profile_healthcare</a></span>  </div>
+<div class="param">dental_info (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">vision_plan_info (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">life_insurance_info (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">employee_handbook (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">employee_wage_theft_prevention_act (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Profile_healthcare">Profile_healthcare</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">beneficiary (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">currency_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Profile_home">Profile_home</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">address1 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">address2 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">city (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">state_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">country_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">zip (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Profile_image">Profile_image</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">filename (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">mime_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">original (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">thumbs (optional)</div><div class="param-desc"><span class="param-type"><a href="#Profile_image_thumbs">Profile_image_thumbs</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Profile_image_thumbs">Profile_image_thumbs</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">75x75 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">75x75c (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">150x150 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">150x150c (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">300x300 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">300x300c (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">450x450 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">550x450c (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">800x800 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">800x800c (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Profile_job_title">Profile_job_title</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Profile_links">Profile_links</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">job_title (optional)</div><div class="param-desc"><span class="param-type"><a href="#Profile_job_title">Profile_job_title</a></span>  </div>
+<div class="param">groups (optional)</div><div class="param-desc"><span class="param-type"><a href="#">array[null]</a></span>  </div>
+<div class="param">teams (optional)</div><div class="param-desc"><span class="param-type"><a href="#">array[null]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Profile_office">Profile_office</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">address1 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">address2 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">city (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">state_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">country_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">zip (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">phone (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Profile_reports_to">Profile_reports_to</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">first_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">last_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Profile_salary">Profile_salary</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">yearly_amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">currency_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">rate (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">guid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Section">Section</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">General (optional)</div><div class="param-desc"><span class="param-type"><a href="#Section_General">Section_General</a></span>  </div>
+<div class="param">Compensation &amp; Benefits (optional)</div><div class="param-desc"><span class="param-type"><a href="#Section_Compensation  Benefits">Section_Compensation  Benefits</a></span>  </div>
+<div class="param">Office (optional)</div><div class="param-desc"><span class="param-type"><a href="#Section_Compensation  Benefits">Section_Compensation  Benefits</a></span>  </div>
+<div class="param">resume (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">image (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">salary (optional)</div><div class="param-desc"><span class="param-type"><a href="#Section_salary">Section_salary</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Section_Compensation  Benefits">Section_Compensation  Benefits</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">address1 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">address2 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">city (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">country_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">state_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">zip (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Section_General">Section_General</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">first_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">last_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">email (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">user_status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">start_date (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">depature_date (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">gender (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">marital_status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">job_title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Section_salary">Section_salary</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">yearly_amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">currency_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">date (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Time Off Plan">Time Off Plan</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">is_default (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">accordion_is_open (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">requires_approval (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">prorate_first_accrual (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">carries_over (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">formatted_base_days_off (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">hide_details (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">new_hire_delay (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">accrual_rate (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">formatted_max_accrual (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">formatted_next_accrual (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">formatted_next_renewal (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">formatted_carryover_expiration_this_accrual_year (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">formatted_carryover_maximum (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">carryover_expires (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">carryover_expired (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">qualifiers (optional)</div><div class="param-desc"><span class="param-type"><a href="#">array[null]</a></span>  </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">notes (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">units (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">formatted_next_accrual_unit (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">links (optional)</div><div class="param-desc"><span class="param-type"><a href="#Time Off Plan_links">Time Off Plan_links</a></span>  </div>
+<div class="param">allow_negative_usage (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">unlimited (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Time Off Plan_links">Time Off Plan_links</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">time_off_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Time Off Request">Time Off Request</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">duration (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">used_carryover (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">is_hourly (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">is_requester (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">hourly_multiplier (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">employee_notes (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">manager_notes (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">leave_start (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">leave_end (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">requires_approval (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">approved (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">time_off_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">profile_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">requester_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">responder_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">time_off_type_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">time_off_plan_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">urls (optional)</div><div class="param-desc"><span class="param-type"><a href="#Time Off Request_urls">Time Off Request_urls</a></span>  </div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">status_color (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">units (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">links (optional)</div><div class="param-desc"><span class="param-type"><a href="#Time Off Request_links">Time Off Request_links</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Time Off Request_links">Time Off Request_links</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">profile (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">requester (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">responder (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Time Off Request_urls">Time Off Request_urls</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">link_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">link_url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">link_text (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Time Off Type">Time Off Type</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">notes (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">include_on_paystub (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">calendar_options_alt_title (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">calendar_options_strip_pattern (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Usage">Usage</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

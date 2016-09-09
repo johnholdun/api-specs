@@ -67,7 +67,7 @@ paths:
                   files:
                     type: array
                     items:
-                      $ref: "#/definitions/Files"
+                      $ref: "#/definitions/File"
                   groups:
                     type: array
                     items:
@@ -176,7 +176,7 @@ paths:
                   files:
                     type: array
                     items:
-                      $ref: "#/definitions/Files"
+                      $ref: "#/definitions/File"
                   groups:
                     type: array
                     items:
@@ -226,7 +226,7 @@ paths:
                   files:
                     type: array
                     items:
-                      $ref: "#/definitions/Files"
+                      $ref: "#/definitions/File"
                   groups:
                     type: array
                     items:
@@ -274,7 +274,7 @@ paths:
                   files:
                     type: array
                     items:
-                      $ref: "#/definitions/Files"
+                      $ref: "#/definitions/File"
                   groups:
                     type: array
                     items:
@@ -326,7 +326,7 @@ paths:
                   files:
                     type: array
                     items:
-                      $ref: "#/definitions/Files"
+                      $ref: "#/definitions/File"
                   groups:
                     type: array
                     items:
@@ -1052,9 +1052,12 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Usage"
+            type: object
+            properties:
+              usages:
+                type: array
+                items:
+                  $ref: "#/definitions/Usage"
       tags:
         - Time Off
   /time_off/requests:
@@ -1065,9 +1068,24 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Request"
+            type: object
+            properties:
+              time_off_requests:
+                type: array
+                items:
+                  $ref: "#/definitions/Request"
+              meta:
+                type: object
+                items:
+                  $ref: "#/definitions/Meta"
+              links:
+                type: object
+                items:
+                  $ref: "#/definitions/Time Off Requests Links"
+              linked:
+                type: object
+                items:
+                  $ref: "#definitions/Profile"
       tags:
         - Time Off
 definitions:
@@ -1292,6 +1310,10 @@ definitions:
         type: integer
       status:
         type: integer
+      current_user_date_format:
+        type: string
+      has_profile:
+        type: boolean
   Links:
     type: object
     properties:
@@ -1334,10 +1356,16 @@ definitions:
                 type: string
       files:
         type: array
+        items:
+          $ref: "#/definitions/File"
       groups:
         type: array
+        items:
+          $ref: "#/definitions/Group"
       teams:
         type: array
+        items:
+          $ref: "#/definitions/Team"
       profiles.image:
         type: object
         properties:
@@ -1370,8 +1398,8 @@ definitions:
         type: boolean
       valid_format_info:
         type: string
-      links:
-        type: array
+      # links:
+      #   type: array
   Section:
     type: object
     properties:
@@ -1518,11 +1546,11 @@ definitions:
         type: string
       links:
         type: object
-        properties:
-          id:
-            type: string
-          name:
-            type: string
+        # properties:
+        #   id:
+        #     type: string
+        #   name:
+        #     type: string
   Job Tier:
     type: object
     properties:
@@ -1789,3 +1817,13 @@ definitions:
             type: string
           responder:
             type: string
+    Time Off Request Links:
+      type: object
+      properties:
+        time_off_requests.profile:
+          $ref: "#/definitions/Link"
+    Link:
+      type: object
+      properties:
+        type:
+          type: string

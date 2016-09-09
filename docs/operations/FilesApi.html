@@ -1,0 +1,29 @@
+<div class="main-content">
+  <h2><a name=""></a></h2>
+  <p>This is the  API</p>
+
+  <h2><a name="filesPost"></a>filesPost</h2>
+  <hr>
+  <p></p>
+  <p>In order to set a file attribute in another API endpoint (such as a profile file or image field, or adding a file to an event), it is first necessary to upload the file in a separate request. The format for this post request is different from other endpoints of the API. While other endpoints require a json formatted post request, uploading a file should be in a multipart/form-data format. Once you have successfully completed this upload, the response will give you the id of the newly uploaded file, to set for profile attributes or events. As a security feature the download links to files will expire after 10 minutes. Every file download link will include a one-time token. In the case of an image file, the response will show available thumbs, as shown above. </p>
+  <h3 class="section">URL</h3>
+  <code>https://company.namely.com/api/{version}/files</code>
+  <h3 class="section">HTTP Method</h3>
+  <code>POST</code>
+  <h3 class="section">Response Type</h3>
+  <div class="model" data-model=""><a href=""></a></div>
+  <h3 class="section">Parameters</h3>
+  <ul>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">file</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">File Object</p>
+	  </li>
+  </ul>
+</div>
