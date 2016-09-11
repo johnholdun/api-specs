@@ -38,9 +38,35 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Profile"
+            type: object
+            properties:
+              profiles:
+                type: array
+                items:
+                  $ref: "#/definitions/Profile"
+              meta:
+                type: object
+                items:
+                  $ref: "#/definitions/Meta"
+              links:
+                type: object
+                items:
+                  $ref: "#/definitions/Profile Links"
+              linked:
+                type: object
+                properties:
+                  job_titles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Job Title"
+                  files:
+                    type: array
+                    items:
+                      $ref: "#/definitions/File"
+                  groups:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Groups"
       tags:
         - Profiles
     post:
@@ -116,9 +142,40 @@ paths:
         201:
           description: "Created Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Profile"
+            type: object
+            properties:
+              profiles:
+                type: array
+                items:
+                  $ref: "#/definitions/Profile"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+                    items:
+                      $ref: "#/definitions/Meta"
+              links:
+                type: object
+                items:
+                  $ref: "#/definitions/Links"
+              linked:
+                type: object
+                properties:
+                  job_titles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Job Title"
+                  files:
+                    type: array
+                    items:
+                      $ref: "#/definitions/File"
+                  groups:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Groups"
       tags:
         - Profiles
   /profiles/:id:
@@ -135,9 +192,40 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Profile"
+            type: object
+            properties:
+              profiles:
+                type: array
+                items:
+                  $ref: "#/definitions/Profile"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+                    items:
+                      $ref: "#/definitions/Meta"
+              links:
+                type: object
+                items:
+                  $ref: "#/definitions/Links"
+              linked:
+                type: object
+                properties:
+                  job_titles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Job Title"
+                  files:
+                    type: array
+                    items:
+                      $ref: "#/definitions/File"
+                  groups:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Groups"
       tags:
         - Profiles
     put:
@@ -152,9 +240,40 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Profile"
+            type: object
+            properties:
+              profiles:
+                type: array
+                items:
+                  $ref: "#/definitions/Profile"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+                    items:
+                      $ref: "#/definitions/Meta"
+              links:
+                type: object
+                items:
+                  $ref: "#/definitions/Links"
+              linked:
+                type: object
+                properties:
+                  job_titles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Job Title"
+                  files:
+                    type: array
+                    items:
+                      $ref: "#/definitions/File"
+                  groups:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Groups"
       tags:
         - Profiles
   /profiles/me:
@@ -173,9 +292,40 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Profile"
+            type: object
+            properties:
+              profiles:
+                type: array
+                items:
+                  $ref: "#/definitions/Profile"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+                    items:
+                      $ref: "#/definitions/Meta"
+              links:
+                type: object
+                items:
+                  $ref: "#/definitions/Links"
+              linked:
+                type: object
+                properties:
+                  job_titles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Job Title"
+                  files:
+                    type: array
+                    items:
+                      $ref: "#/definitions/File"
+                  groups:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Groups"
       tags:
         - Profiles
   /profiles/fields:
@@ -208,9 +358,32 @@ paths:
         201:
           description: "Created Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Field"
+            type: object
+            properties:
+              fields:
+                type: array
+                items:
+                  $ref: "#/definitions/Field"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+                    items:
+                      $ref: "#/definitions/Meta"
+              links:
+                type: object
+                items:
+                  $ref: "#/definitions/Links"
+              linked:
+                type: object
+                properties:
+                  sections:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Section"
       tags:
         - Profile Fields
     get:
@@ -266,7 +439,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: "#/definitions/Sections"
+              $ref: "#/definitions/Section"
       tags:
         - Profile Fields Sections
     get:
@@ -281,7 +454,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: "#/definitions/Sections"
+              $ref: "#/definitions/Section"
       tags:
         - Profile Fields Sections
   /profiles/fields/sections/:id:
@@ -302,7 +475,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: "#/definitions/Sections"
+              $ref: "#/definitions/Section"
       tags:
         - Profile Fields Sections
     put:
@@ -321,7 +494,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: "#/definitions/Sections"
+              $ref: "#/definitions/Section"
       tags:
         - Profile Fields Sections
   /files:
@@ -798,15 +971,35 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Holidays"
+            type: object
+            properties:
+              holidays:
+                type: array
+                items:
+                  $ref: "#/definitions/Holidays"
+              meta:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  has_profile:
+                    type: boolean
+                  current_user_date_format:
+                    type: string
+                  items:
+                    $ref: "#/definitions/Meta"
       tags:
         - Time Off
   /time_off/plans:
     get:
       summary: Time Off Plans Index
       description: This endpoint returns an array of time off plans.
+      parameters:
+        - name: profile_id
+          in: string
+          description: ID given by file_url in 'Show Resource GET Endpoint'.
+          required: Yes
+          type: string
       responses:
         200:
           description: "Successful Response"
@@ -817,6 +1010,35 @@ paths:
                 type: array
                 items:
                   $ref: "#/definitions/Time Off Plan"
+              meta:
+                type: object
+                additionalProperties: boolean
+                properties:
+                  status:
+                    type: integer
+                  has_profile:
+                    type: boolean
+                  current_user_date_format:
+                    type: string
+              links:
+                type: object
+                additionalProperties: boolean
+                properties:
+                  plan_presenters.time_off_type:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        items:
+                          $ref: "#/definitions/Time Off Type"
+              linked:
+                type: object
+                additionalProperties: boolean
+                properties:
+                  time_off_types:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Time Off Type"
       tags:
         - Time Off
   /time_off/usage:
@@ -827,9 +1049,12 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Usage"
+            type: object
+            properties:
+              usages:
+                type: array
+                items:
+                  $ref: "#/definitions/Usage"
       tags:
         - Time Off
   /time_off/requests:
@@ -840,9 +1065,51 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Request"
+            type: object
+            properties:
+              time_off_requests:
+                type: array
+                items:
+                  $ref: "#/definitions/Request"
+              meta:
+                type: object
+                items:
+                  $ref: "#/definitions/Meta"
+              links:
+                type: object
+                items:
+                  $ref: "#/definitions/Time Off Requests Links"
+              linked:
+                type: object
+                items:
+                  $ref: "#definitions/Profile"
+      tags:
+        - Time Off
+    post:
+      summary: Create A Time Off Request
+      description: This endpoint creates a time off request.
+      responses:
+        201:
+          description: "Created Response"
+          schema:
+            type: object
+            properties:
+              time_off_requests:
+                type: array
+                items:
+                  $ref: "#/definitions/Request"
+              meta:
+                type: object
+                items:
+                  $ref: "#/definitions/Meta"
+              links:
+                type: object
+                items:
+                  $ref: "#/definitions/Time Off Requests Links"
+              linked:
+                type: object
+                items:
+                  $ref: "#definitions/Profile"
       tags:
         - Time Off
 definitions:
@@ -929,8 +1196,12 @@ definitions:
                 type: string
           groups:
             type: array
+            items:
+              $ref: "#/definitions/Group"
           teams:
             type: array
+            items:
+              $ref: "#/definitions/Team"
       middle_name:
         type: string
       job_change_reason:
@@ -1067,6 +1338,10 @@ definitions:
         type: integer
       status:
         type: integer
+      current_user_date_format:
+        type: string
+      has_profile:
+        type: boolean
   Links:
     type: object
     properties:
@@ -1096,26 +1371,29 @@ definitions:
       job_titles:
         type: array
         properties:
-          job_titles:
+          id:
+            type: string
+          parent_id:
+            type: string
+          title:
+            type: string
+          links:
             type: object
             properties:
-              id:
+              job_tier:
                 type: string
-              parent_id:
-                type: string
-              title:
-                type: string
-              links:
-                type: object
-                properties:
-                    job_tier:
-                      type: string
       files:
         type: array
+        items:
+          $ref: "#/definitions/File"
       groups:
         type: array
+        items:
+          $ref: "#/definitions/Group"
       teams:
         type: array
+        items:
+          $ref: "#/definitions/Team"
       profiles.image:
         type: object
         properties:
@@ -1148,8 +1426,8 @@ definitions:
         type: boolean
       valid_format_info:
         type: string
-      links:
-        type: array
+      # links:
+      #   type: array
   Section:
     type: object
     properties:
@@ -1254,6 +1532,8 @@ definitions:
                 type: string
               comments:
                 type: array
+                items:
+                  $ref: "#/definitions/Comment"
               file:
                 type: string
           can_like:
@@ -1298,11 +1578,11 @@ definitions:
         type: string
       links:
         type: object
-        properties:
-          id:
-            type: string
-          name:
-            type: string
+        # properties:
+        #   id:
+        #     type: string
+        #   name:
+        #     type: string
   Job Tier:
     type: object
     properties:
@@ -1430,6 +1710,8 @@ definitions:
         type: boolean
       qualifiers:
         type: array
+        items:
+          $ref: "#/definitions/Qualifier"
       title:
         type: string
       notes:
@@ -1462,50 +1744,78 @@ definitions:
         type: boolean
       calendar_options_strip_pattern:
         type: boolean
-  Usage:
-    type: array
+  Qualifier:
+    type: object
     properties:
-      usages:
-        type: object
-        properties:
-          year:
-            type: array
-          display_era:
-            type: array
-          plan_details_link:
-            type: array
-          time_off_type:
-            type: array
-          plan_hide_details:
-            type: array
-          units:
-            type: array
-          accrual_entitlement:
-            type: array
-          accrued:
-            type: array
-          used_from_accrued:
-            type: array
-          scheduled_from_accrued:
-            type: array
-          carryover_entitlement:
-            type: array
-          carryover_expired:
-            type: array
-          used_from_carryover:
-            type: array
-          scheduled_from_carryover:
-            type: array
-          used:
-            type: array
-          scheduled:
-            type: array
-          available_now:
-            type: array
-          used_in_period:
-            type: array
-          plan_period:
-            type: array
+      test:
+        type: string
+  Usage:
+    type: object
+    properties:
+      year:
+        type: array
+        items:
+          type: integer
+      display_era:
+        type: array
+        items:
+          type: string
+      plan_details_link:
+        type: array
+        items:
+          type: string
+      time_off_type:
+        type: array
+        items:
+          type: string
+      plan_hide_details:
+        type: array
+        items:
+          type: boolean
+      units:
+        type: array
+        items:
+          type: string
+      accrual_entitlement:
+        type: array
+        items:
+          type: string
+      accrued:
+        type: array
+        items:
+          type: string
+      scheduled_from_accrued:
+        type: array
+        items:
+          type: integer
+      carryover_entitlement:
+        type: array
+        items:
+          type: string
+      carryover_expired:
+        type: array
+        items:
+          type: string
+      used_from_carryover:
+        type: array
+        items:
+          type: string
+      scheduled_from_carryover:
+        type: array
+        items:
+          type: string
+      scheduled:
+        type: array
+        items:
+          type: integer
+      available_now:
+        type: array
+        items:
+          type: string
+      plan_period:
+        type: array
+        items:
+          type: string
   Time Off Request:
     type: object
     properties:
@@ -1569,3 +1879,28 @@ definitions:
             type: string
           responder:
             type: string
+  Time Off Request Links:
+    type: object
+    properties:
+      time_off_requests.profile:
+        $ref: "#/definitions/Link"
+      time_off_requests.requester:
+        $ref: "#/definitions/Link"
+      time_off_requests.responder:
+        $ref: "#/definitions/Link"
+  Profile Links:
+    type: object
+    properties:
+      profiles.job_title:
+        $ref: "#/definitions/Link"
+      profiles.image:
+        $ref: "#/definitions/Link"
+      profiles.groups:
+        $ref: "#/definitions/Link"
+      profiles.teams:
+        $ref: "#/definitions/Link"
+  Link:
+    type: object
+    properties:
+      type:
+        type: string
