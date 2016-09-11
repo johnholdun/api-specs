@@ -46,17 +46,12 @@ paths:
                   $ref: "#/definitions/Profile"
               meta:
                 type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
-                    items:
-                      $ref: "#/definitions/Meta"
+                items:
+                  $ref: "#/definitions/Meta"
               links:
                 type: object
                 items:
-                  $ref: "#/definitions/Links"
+                  $ref: "#/definitions/Profile Links"
               linked:
                 type: object
                 properties:
@@ -1090,6 +1085,33 @@ paths:
                   $ref: "#definitions/Profile"
       tags:
         - Time Off
+    post:
+      summary: Create A Time Off Request
+      description: This endpoint creates a time off request.
+      responses:
+        201:
+          description: "Created Response"
+          schema:
+            type: object
+            properties:
+              time_off_requests:
+                type: array
+                items:
+                  $ref: "#/definitions/Request"
+              meta:
+                type: object
+                items:
+                  $ref: "#/definitions/Meta"
+              links:
+                type: object
+                items:
+                  $ref: "#/definitions/Time Off Requests Links"
+              linked:
+                type: object
+                items:
+                  $ref: "#definitions/Profile"
+      tags:
+        - Time Off
 definitions:
   Profile:
     type: object
@@ -1855,13 +1877,28 @@ definitions:
             type: string
           responder:
             type: string
-    Time Off Request Links:
-      type: object
-      properties:
-        time_off_requests.profile:
-          $ref: "#/definitions/Link"
-    Link:
-      type: object
-      properties:
-        type:
-          type: string
+  Time Off Request Links:
+    type: object
+    properties:
+      time_off_requests.profile:
+        $ref: "#/definitions/Link"
+      time_off_requests.requester:
+        $ref: "#/definitions/Link"
+      time_off_requests.responder:
+        $ref: "#/definitions/Link"
+  Profile Links:
+    type: object
+    properties:
+      profiles.job_title:
+        $ref: "#/definitions/Link"
+      profiles.image:
+        $ref: "#/definitions/Link"
+      profiles.groups:
+        $ref: "#/definitions/Link"
+      profiles.teams:
+        $ref: "#/definitions/Link"
+  Link:
+    type: object
+    properties:
+      type:
+        type: string
