@@ -53,7 +53,7 @@ paths:
                     type: integer
               links:
                 type: object
-                  $ref: "#/definitions/Profile Links"
+                $ref: "#/definitions/Profile Links"
               linked:
                 type: object
                 properties:
@@ -163,7 +163,7 @@ paths:
                     type: integer
               links:
                 type: object
-                  $ref: "#/definitions/Profile Links"
+                $ref: "#/definitions/Profile Links"
               linked:
                 type: object
                 properties:
@@ -1172,7 +1172,7 @@ definitions:
         properties:
           job_title:
             type: object
-              $ref: "#/definitions/Job Title"
+            $ref: "#/definitions/Job Title"
           groups:
             type: array
             items:
@@ -1569,22 +1569,6 @@ definitions:
             type: string
           name:
             type: string
-  Job Title:
-    type: object
-    properties:
-      id:
-        type: string
-      parent_id:
-        type: string
-      title:
-        type: string
-      links:
-        type: object
-        # properties:
-        #   id:
-        #     type: string
-        #   name:
-        #     type: string
   Job Tier:
     type: object
     properties:
@@ -1863,7 +1847,7 @@ definitions:
         type: string
       urls:
         type: object
-          $ref: "#/definitions/URL"
+        $ref: "#/definitions/URL"
       status:
         type: string
       status_color:
