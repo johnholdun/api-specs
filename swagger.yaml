@@ -646,6 +646,17 @@ paths:
       tags:
         - Profile Fields Sections
   /files:
+    get:
+      summary: Download File
+      description: Obtain the "file_url" from GET show resource endpoint and pass as parameter.
+      parameters:
+        - name: id
+          in: query
+          description: ID given by file_url in Show Resource GET endpoint
+          required: Yes
+          type: string
+      tags:
+        - Files
     post:
       summary: Create File
       description: |
