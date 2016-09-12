@@ -342,6 +342,43 @@ paths:
       tags:
         - Profiles
   /profiles/fields:
+    get:
+      summary: Profile Fields Index
+      description: |
+        Returns all currently supported Fields, default and custom.
+        NAME is the internal name of the field, which is also the key that should be used in the profile API endpoints. This may be distinct from LABEL, which is what will appear in the web interface.
+        The valid format info is an attempt to explain what the proper format and possible values are for that field.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: object
+            properties:
+              fields:
+                type: array
+                items:
+                  $ref: "#/definitions/Field"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  fields.sections:
+                    type: string
+              linked:
+                type: object
+                properties:
+                  sections:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Section"
+      tags:
+        - Profile Fields
     post:
       summary: Create Profile Field
       description: |
@@ -384,12 +421,11 @@ paths:
                     type: integer
                   status:
                     type: integer
-                    items:
-                      $ref: "#/definitions/Meta"
               links:
                 type: object
-                items:
-                  $ref: "#/definitions/Links"
+                properties:
+                  fields.sections:
+                    type: string
               linked:
                 type: object
                 properties:
@@ -397,21 +433,6 @@ paths:
                     type: array
                     items:
                       $ref: "#/definitions/Section"
-      tags:
-        - Profile Fields
-    get:
-      summary: Profile Fields Index
-      description: |
-        Returns all currently supported Fields, default and custom.
-        NAME is the internal name of the field, which is also the key that should be used in the profile API endpoints. This may be distinct from LABEL, which is what will appear in the web interface.
-        The valid format info is an attempt to explain what the proper format and possible values are for that field.
-      responses:
-        200:
-          description: "Successful Response"
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/Field"
       tags:
         - Profile Fields
     put:
@@ -1428,62 +1449,61 @@ definitions:
         type: boolean
       valid_format_info:
         type: string
-      # links:
-      #   type: array
+      block_index:
+        type: integer
+      links:
+        type: object
+        properties:
+          section:
+            type: string
   Section:
     type: object
     properties:
-      General:
+      id:
+        type: string
+      title:
+        type: string
+      block_titles:
+        type: array
+        items:
+          type: string
+      links:
         type: object
         properties:
-          first_name:
-            type: string
-          last_name:
-            type: string
-          email:
-            type: string
-          user_status:
-            type: string
-          start_date:
-            type: string
-          depature_date:
-            type: string
-          gender:
-            type: string
-          marital_status:
-            type: string
-          job_title:
-            type: string
-      Compensation & Benefits:
-        type: object
-        properties:
-          address1:
-            type: string
-          address2:
-            type: string
-          city:
-            type: string
-          country_id:
-            type: string
-          state_id:
-            type: string
-          zip:
-            type: string
-      Office:
-        type: object
-        properties:
-          address1:
-            type: string
-          address2:
-            type: string
-          city:
-            type: string
-          country_id:
-            type: string
-          state_id:
-            type: string
-          zip:
-            type: string
+          fields:
+            type: array
+            items:
+              type: string
+  Compensation & Benefits:
+    type: object
+    properties:
+      address1:
+        type: string
+      address2:
+        type: string
+      city:
+        type: string
+      country_id:
+        type: string
+      state_id:
+        type: string
+      zip:
+        type: string
+  Office:
+    type: object
+    properties:
+      address1:
+        type: string
+      address2:
+        type: string
+      city:
+        type: string
+      country_id:
+        type: string
+      state_id:
+        type: string
+      zip:
+        type: string
       resume:
         type: string
       image:
