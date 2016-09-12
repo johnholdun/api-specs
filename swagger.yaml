@@ -701,9 +701,43 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Event"
+            type: object
+            properties:
+              events:
+                type: array
+                items:
+                  $ref: "#/definitions/Event"
+              meta:
+                type: object
+                $ref: "#/definitions/Events Meta"
+              links:
+                type: object
+                properties:
+                  events.profile:
+                    $ref: "#/definitions/Link"
+                  events.comments:
+                    $ref: "#/definitions/Link"
+                  events.file:
+                    $ref: "#/definitions/Link"
+                  comments.profile:
+                    $ref: "#/definitions/Link"
+                  profile.image:
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  profiles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Profile"
+                  comments:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Comment"
+                  files:
+                    type: array
+                    items:
+                      $ref: "#/definitions/File"
       tags:
         - Events
     post:
@@ -728,9 +762,43 @@ paths:
         201:
           description: "Create Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Event"
+            type: object
+            properties:
+              events:
+                type: array
+                items:
+                  $ref: "#/definitions/Event"
+              meta:
+                type: object
+                $ref: "#/definitions/Events Meta"
+              links:
+                type: object
+                properties:
+                  events.profile:
+                    $ref: "#/definitions/Link"
+                  events.comments:
+                    $ref: "#/definitions/Link"
+                  events.file:
+                    $ref: "#/definitions/Link"
+                  comments.profile:
+                    $ref: "#/definitions/Link"
+                  profile.image:
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  profiles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Profile"
+                  comments:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Comment"
+                  files:
+                    type: array
+                    items:
+                      $ref: "#/definitions/File"
       tags:
         - Events
   /events/:id:
@@ -747,9 +815,43 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Event"
+            type: object
+            properties:
+              events:
+                type: array
+                items:
+                  $ref: "#/definitions/Event"
+              meta:
+                type: object
+                $ref: "#/definitions/Events Meta"
+              links:
+                type: object
+                properties:
+                  events.profile:
+                    $ref: "#/definitions/Link"
+                  events.comments:
+                    $ref: "#/definitions/Link"
+                  events.file:
+                    $ref: "#/definitions/Link"
+                  comments.profile:
+                    $ref: "#/definitions/Link"
+                  profile.image:
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  profiles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Profile"
+                  comments:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Comment"
+                  files:
+                    type: array
+                    items:
+                      $ref: "#/definitions/File"
       tags:
         - Events
     put:
@@ -770,9 +872,43 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Event"
+            type: object
+            properties:
+              events:
+                type: array
+                items:
+                  $ref: "#/definitions/Event"
+              meta:
+                type: object
+                $ref: "#/definitions/Events Meta"
+              links:
+                type: object
+                properties:
+                  events.profile:
+                    $ref: "#/definitions/Link"
+                  events.comments:
+                    $ref: "#/definitions/Link"
+                  events.file:
+                    $ref: "#/definitions/Link"
+                  comments.profile:
+                    $ref: "#/definitions/Link"
+                  profile.image:
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  profiles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Profile"
+                  comments:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Comment"
+                  files:
+                    type: array
+                    items:
+                      $ref: "#/definitions/File"
       tags:
         - Events
   /countries:
