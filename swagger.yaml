@@ -479,6 +479,44 @@ paths:
       tags:
         - Profile Fields
   /profiles/fields/sections:
+    get:
+      summary: Sections Index
+      description: |
+        Returns all currently supported Sections, default and custom.
+        NAME is the internal name of the field, which is also the key that should be used in the profile API endpoints. This may be distinct from LABEL, which is what will appear in the web interface.
+        The valid format info is an attempt to explain what the proper format and possible values are for that field.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: object
+            properties:
+              sections:
+                type: array
+                items:
+                  $ref: "#/definitions/Section"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  sections.fields:
+                    type:
+                      type: string
+              linked:
+                type: object
+                properties:
+                  fields:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Field"
+      tags:
+        - Profile Fields Sections
     post:
       summary: Create Section
       description: |
@@ -493,24 +531,32 @@ paths:
         201:
           description: "Created Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Section"
-      tags:
-        - Profile Fields Sections
-    get:
-      summary: Sections Index
-      description: |
-        Returns all currently supported Sections, default and custom.
-        NAME is the internal name of the field, which is also the key that should be used in the profile API endpoints. This may be distinct from LABEL, which is what will appear in the web interface.
-        The valid format info is an attempt to explain what the proper format and possible values are for that field.
-      responses:
-        200:
-          description: "Successful Response"
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/Section"
+            type: object
+            properties:
+              sections:
+                type: array
+                items:
+                  $ref: "#/definitions/Section"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  sections.fields:
+                    type:
+                      type: string
+              linked:
+                type: object
+                properties:
+                  fields:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Field"
       tags:
         - Profile Fields Sections
   /profiles/fields/sections/:id:
@@ -529,9 +575,32 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Section"
+            type: object
+            properties:
+              sections:
+                type: array
+                items:
+                  $ref: "#/definitions/Section"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  sections.fields:
+                    type:
+                      type: string
+              linked:
+                type: object
+                properties:
+                  fields:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Field"
       tags:
         - Profile Fields Sections
     put:
@@ -548,9 +617,32 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Section"
+            type: object
+            properties:
+              sections:
+                type: array
+                items:
+                  $ref: "#/definitions/Section"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  sections.fields:
+                    type:
+                      type: string
+              linked:
+                type: object
+                properties:
+                  fields:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Field"
       tags:
         - Profile Fields Sections
   /files:
