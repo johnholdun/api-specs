@@ -1134,38 +1134,8 @@ definitions:
         type: string
       image:
         type: object
-        properties:
-          id:
-            type: string
-          filename:
-            type: string
-          mime_type:
-            type: string
-          original:
-            type: string
-          thumbs:
-            type: object
-            properties:
-              75x75:
-                type: string
-              75x75c:
-                type: string
-              150x150:
-                type: string
-              150x150c:
-                type: string
-              300x300:
-                type: string
-              300x300c:
-                type: string
-              450x450:
-                type: string
-              550x450c:
-                type: string
-              800x800:
-                type: string
-              800x800c:
-                type: string
+        items:
+          $ref: "#/definitions/Image"
       full_name:
         type: string
       job_title:
@@ -1365,6 +1335,40 @@ definitions:
         properties:
           type:
            type: string
+  Image:
+    type: object
+    properties:
+      id:
+        type: string
+      filename:
+        type: string
+      mime_type:
+        type: string
+      original:
+        type: string
+      thumbs:
+        type: object
+        properties:
+          75x75:
+            type: string
+          75x75c:
+            type: string
+          150x150:
+            type: string
+          150x150c:
+            type: string
+          300x300:
+            type: string
+          300x300c:
+            type: string
+          450x450:
+            type: string
+          550x450c:
+            type: string
+          800x800:
+            type: string
+          800x800c:
+            type: string
   Linked:
     type: object
     properties:
