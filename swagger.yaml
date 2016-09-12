@@ -1159,11 +1159,7 @@ definitions:
         properties:
           job_title:
             type: object
-            properties:
-              id:
-                type: string
-              title:
-                type: string
+              $ref: "#/definitions/Job Title"
           groups:
             type: array
             items:
@@ -1374,18 +1370,8 @@ definitions:
     properties:
       job_titles:
         type: array
-        properties:
-          id:
-            type: string
-          parent_id:
-            type: string
-          title:
-            type: string
-          links:
-            type: object
-            properties:
-              job_tier:
-                type: string
+        items:
+          $ref: "#/definitions/Job Title"
       files:
         type: array
         items:
@@ -1398,21 +1384,13 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/Team"
-      profiles.image:
-        type: object
-        properties:
-          type:
-            type: string
-      profiles.groups:
-        type: object
-        properties:
-          type:
-            type: string
-      profiles.teams:
-        type: object
-        properties:
-          type:
-           type: string
+  Job Title:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
   Field:
     type: object
     properties:
@@ -1643,27 +1621,31 @@ definitions:
         type: string
       thumbs:
         type: object
-        properties:
-          75x75:
-            type: string
-          75x75c:
-            type: string
-          150x150:
-            type: string
-          150x150c:
-            type: string
-          300x300:
-            type: string
-          300x300c:
-            type: string
-          450x450:
-            type: string
-          550x450c:
-            type: string
-          800x800:
-            type: string
-          800x800c:
-            type: string
+        items:
+          $ref: "#/definitions/Thumb"
+  Thumb:
+    type: object
+    properties:
+      75x75:
+        type: string
+      75x75c:
+        type: string
+      150x150:
+        type: string
+      150x150c:
+        type: string
+      300x300:
+        type: string
+      300x300c:
+        type: string
+      450x450:
+        type: string
+      550x450c:
+        type: string
+      800x800:
+        type: string
+      800x800c:
+        type: string
   Holiday:
     type: object
     properties:
@@ -1861,13 +1843,7 @@ definitions:
         type: string
       urls:
         type: object
-        properties:
-          link_type:
-            type: string
-          link_url:
-            type: string
-          link_text:
-            type: string
+          $ref: "#/definitions/URL"
       status:
         type: string
       status_color:
@@ -1883,6 +1859,15 @@ definitions:
             type: string
           responder:
             type: string
+  URL:
+    type: object
+    properties:
+      link_type:
+        type: string
+      link_url:
+        type: string
+      link_text:
+        type: string
   Time Off Request Links:
     type: object
     properties:
