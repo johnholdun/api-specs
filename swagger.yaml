@@ -46,11 +46,13 @@ paths:
                   $ref: "#/definitions/Profile"
               meta:
                 type: object
-                items:
-                  $ref: "#/definitions/Meta"
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
               links:
                 type: object
-                items:
                   $ref: "#/definitions/Profile Links"
               linked:
                 type: object
@@ -66,7 +68,11 @@ paths:
                   groups:
                     type: array
                     items:
-                      $ref: "#/definitions/Groups"
+                      $ref: "#/definitions/Group"
+                  teams:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Team"
       tags:
         - Profiles
     post:
@@ -155,12 +161,9 @@ paths:
                     type: integer
                   status:
                     type: integer
-                    items:
-                      $ref: "#/definitions/Meta"
               links:
                 type: object
-                items:
-                  $ref: "#/definitions/Links"
+                  $ref: "#/definitions/Profile Links"
               linked:
                 type: object
                 properties:
@@ -175,7 +178,11 @@ paths:
                   groups:
                     type: array
                     items:
-                      $ref: "#/definitions/Groups"
+                      $ref: "#/definitions/Group"
+                  teams:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Team"
       tags:
         - Profiles
   /profiles/:id:
@@ -205,12 +212,10 @@ paths:
                     type: integer
                   status:
                     type: integer
-                    items:
-                      $ref: "#/definitions/Meta"
               links:
                 type: object
                 items:
-                  $ref: "#/definitions/Links"
+                  $ref: "#/definitions/Profile Links"
               linked:
                 type: object
                 properties:
@@ -225,7 +230,11 @@ paths:
                   groups:
                     type: array
                     items:
-                      $ref: "#/definitions/Groups"
+                      $ref: "#/definitions/Group"
+                  teams:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Team"
       tags:
         - Profiles
     put:
@@ -239,43 +248,45 @@ paths:
       responses:
         200:
           description: "Successful Response"
-          schema:
-            type: object
-            properties:
-              profiles:
-                type: array
-                items:
-                  $ref: "#/definitions/Profile"
-              meta:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
-                    items:
-                      $ref: "#/definitions/Meta"
-              links:
-                type: object
-                items:
-                  $ref: "#/definitions/Links"
-              linked:
-                type: object
-                properties:
-                  job_titles:
-                    type: array
-                    items:
-                      $ref: "#/definitions/Job Title"
-                  files:
-                    type: array
-                    items:
-                      $ref: "#/definitions/File"
-                  groups:
-                    type: array
-                    items:
-                      $ref: "#/definitions/Groups"
+  schema:
+    type: object
+    properties:
+      profiles:
+        type: array
+        items:
+          $ref: "#/definitions/Profile"
+      meta:
+        type: object
+        properties:
+          count:
+            type: integer
+          status:
+            type: integer
+      links:
+        type: object
+        items:
+          $ref: "#/definitions/Profile Links"
+      linked:
+        type: object
+        properties:
+          job_titles:
+            type: array
+            items:
+              $ref: "#/definitions/Job Title"
+          files:
+            type: array
+            items:
+              $ref: "#/definitions/File"
+          groups:
+            type: array
+            items:
+              $ref: "#/definitions/Group"
+          teams:
+            type: array
+            items:
+              $ref: "#/definitions/Team"
       tags:
-        - Profiles
+      - Profiles
   /profiles/me:
     get:
       summary: Current User
@@ -291,41 +302,43 @@ paths:
       responses:
         200:
           description: "Successful Response"
-          schema:
-            type: object
-            properties:
-              profiles:
-                type: array
-                items:
-                  $ref: "#/definitions/Profile"
-              meta:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
-                    items:
-                      $ref: "#/definitions/Meta"
-              links:
-                type: object
-                items:
-                  $ref: "#/definitions/Links"
-              linked:
-                type: object
-                properties:
-                  job_titles:
-                    type: array
-                    items:
-                      $ref: "#/definitions/Job Title"
-                  files:
-                    type: array
-                    items:
-                      $ref: "#/definitions/File"
-                  groups:
-                    type: array
-                    items:
-                      $ref: "#/definitions/Groups"
+    schema:
+      type: object
+      properties:
+        profiles:
+          type: array
+          items:
+            $ref: "#/definitions/Profile"
+        meta:
+          type: object
+          properties:
+            count:
+              type: integer
+            status:
+              type: integer
+        links:
+          type: object
+          items:
+            $ref: "#/definitions/Profile Links"
+        linked:
+          type: object
+          properties:
+            job_titles:
+              type: array
+              items:
+                $ref: "#/definitions/Job Title"
+            files:
+              type: array
+              items:
+                $ref: "#/definitions/File"
+            groups:
+              type: array
+              items:
+                $ref: "#/definitions/Group"
+            teams:
+              type: array
+              items:
+                $ref: "#/definitions/Team"
       tags:
         - Profiles
   /profiles/fields:
@@ -1389,8 +1402,15 @@ definitions:
     properties:
       id:
         type: string
+      parent_id:
+        type: string
       title:
         type: string
+      links:
+        type: object
+        properties:
+          job_tier:
+            type: string
   Field:
     type: object
     properties:
