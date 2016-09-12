@@ -951,9 +951,32 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Job Title"
+            type: object
+            properties:
+              job_titles:
+                type: array
+                items:
+                  $ref: "#/definitions/Job Title"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  job_titles.job_tier:
+                    type: object
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  job_tiers:
+                    type: array
+                    items:
+                      $ref: "#/defintions/Job Tier"
       tags:
         - Job Title
     post:
@@ -974,9 +997,32 @@ paths:
         201:
           description: "Create Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Job Title"
+            type: object
+            properties:
+              job_titles:
+                type: array
+                items:
+                  $ref: "#/definitions/Job Title"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  job_titles.job_tier:
+                    type: object
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  job_tiers:
+                    type: array
+                    items:
+                      $ref: "#/defintions/Job Tier"
       tags:
         - Job Title
   /job_titles/:id:
@@ -993,9 +1039,32 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Job Title"
+            type: object
+            properties:
+              job_titles:
+                type: array
+                items:
+                  $ref: "#/definitions/Job Title"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  job_titles.job_tier:
+                    type: object
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  job_tiers:
+                    type: array
+                    items:
+                      $ref: "#/defintions/Job Tier"
       tags:
         - Job Title
     put:
@@ -1016,9 +1085,32 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Job Title"
+            type: object
+            properties:
+              job_titles:
+                type: array
+                items:
+                  $ref: "#/definitions/Job Title"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  job_titles.job_tier:
+                    type: object
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  job_tiers:
+                    type: array
+                    items:
+                      $ref: "#/defintions/Job Tier"
       tags:
         - Job Title
   /job_tiers:
@@ -1029,9 +1121,32 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Job Tier"
+            type: object
+            properties:
+              job_tiers:
+                type: array
+                items:
+                  $ref: "#/definitions/Job Tier"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  job_tiers.job_titles:
+                    type: object
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  job_titles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Job Title"
       tags:
         - Job Tier
     post:
@@ -1047,9 +1162,32 @@ paths:
         201:
           description: "Create Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Job Tier"
+            type: object
+            properties:
+              job_tiers:
+                type: array
+                items:
+                  $ref: "#/definitions/Job Tier"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  job_tiers.job_titles:
+                    type: object
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  job_titles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Job Title"
       tags:
         - Job Tier
   /job_tiers/:id:
@@ -1066,9 +1204,32 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Job Tier"
+            type: object
+            properties:
+              job_tiers:
+                type: array
+                items:
+                  $ref: "#/definitions/Job Tier"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  job_tiers.job_titles:
+                    type: object
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  job_titles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Job Title"
       tags:
         - Job Tier
     put:
@@ -1084,9 +1245,32 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Job Tier"
+            type: object
+            properties:
+              job_tiers:
+                type: array
+                items:
+                  $ref: "#/definitions/Job Tier"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  job_tiers.job_titles:
+                    type: object
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  job_titles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Job Title"
       tags:
         - Job Tier
   /groups:
