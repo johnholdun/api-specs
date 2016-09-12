@@ -451,9 +451,31 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Field"
+            type: object
+            properties:
+              fields:
+                type: array
+                items:
+                  $ref: "#/definitions/Field"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  fields.sections:
+                    type: string
+              linked:
+                type: object
+                properties:
+                  sections:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Section"
       tags:
         - Profile Fields
   /profiles/fields/sections:
