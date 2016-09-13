@@ -1722,30 +1722,49 @@ paths:
     post:
       summary: Create A Time Off Request
       description: This endpoint creates a time off request.
-      responses:
-        201:
-          description: "Created Response"
+      parameters:
+        - name: time_off_request
+          in: body
+          required: true
           schema:
-            type: object
-            properties:
-              time_off_requests:
-                type: array
-                items:
-                  $ref: "#/definitions/Request"
-              meta:
-                type: object
-                items:
-                  $ref: "#/definitions/Meta"
-              links:
-                type: object
-                items:
-                  $ref: "#/definitions/Time Off Requests Links"
-              linked:
-                type: object
-                items:
-                  $ref: "#definitions/Profile"
-      tags:
-        - Time Off
+            type: array
+            items:
+              type: object
+              required:
+                - profile_id
+                - leave_start
+                - leave_end
+                - requester_id
+                - time_off_type_id
+              properties:
+                profile_id:
+                  type: string
+                leave_start:
+                  type: string
+                leave_end:
+                  type: string
+                requester_id:
+                  type: string
+                time_off_type_id:
+                  type: string
+        - name: time_off_request_days
+          in: body
+          required: true
+          schema:
+            type: array
+            items:
+              type: object
+              required:
+                - date
+                - used_accrual
+                - used_carryover
+              properties:
+                date:
+                  type: string
+                used_accrual:
+                  type: string
+                used_carryover:
+                  type: string
 definitions:
   Profile:
     type: object
