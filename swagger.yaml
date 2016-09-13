@@ -1612,7 +1612,7 @@ paths:
               holidays:
                 type: array
                 items:
-                  $ref: "#/definitions/Holidays"
+                  $ref: "#/definitions/Holiday"
               meta:
                 type: object
                 properties:
@@ -1622,8 +1622,6 @@ paths:
                     type: boolean
                   current_user_date_format:
                     type: string
-                  items:
-                    $ref: "#/definitions/Meta"
       tags:
         - Time Off
   /time_off/plans:
