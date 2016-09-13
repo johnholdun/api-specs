@@ -1277,6 +1277,40 @@ paths:
     get:
       summary: Groups Index
       description: This method returns an array of groups and department names.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: object
+            properties:
+              groups:
+                type: array
+                items:
+                  $ref: "#/definitions/Group"
+              meta:
+                type: object
+                properties:
+                  response:
+                    type: integer
+                  count:
+                    type: integer
+                  page_title:
+                    type: string
+                  page_copy:
+                    type: string
+              links:
+                type: object
+                properties:
+                  groups.group_type:
+                    type: object
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  group_types:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Group Type"
       tags:
         - Groups
   /groups/:id:
@@ -1293,9 +1327,36 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Group"
+            type: object
+            properties:
+              groups:
+                type: array
+                items:
+                  $ref: "#/definitions/Group"
+              meta:
+                type: object
+                properties:
+                  response:
+                    type: integer
+                  count:
+                    type: integer
+                  page_title:
+                    type: string
+                  page_copy:
+                    type: string
+              links:
+                type: object
+                properties:
+                  groups.group_type:
+                    type: object
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  group_types:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Group Type"
       tags:
         - Groups
     put:
@@ -1321,9 +1382,36 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Group"
+            type: object
+            properties:
+              groups:
+                type: array
+                items:
+                  $ref: "#/definitions/Group"
+              meta:
+                type: object
+                properties:
+                  response:
+                    type: integer
+                  count:
+                    type: integer
+                  page_title:
+                    type: string
+                  page_copy:
+                    type: string
+              links:
+                type: object
+                properties:
+                  groups.group_type:
+                    type: object
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  group_types:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Group Type"
       tags:
         - Groups
   /group_types:
