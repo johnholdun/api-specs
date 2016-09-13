@@ -1428,9 +1428,32 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Group Type"
+            type: object
+            properties:
+              group_types:
+                type: array
+                items:
+                  $ref: "#/definitions/Group Type"
+              meta:
+                type: object
+                properties:
+                  response:
+                    type: integer
+                  count:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  group_type.group:
+                    type: object
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  group_types:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Group Type"
       tags:
         - Groups
     post:
@@ -1456,9 +1479,32 @@ paths:
         201:
           description: "Create Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Group Type"
+            type: object
+            properties:
+              group_types:
+                type: array
+                items:
+                  $ref: "#/definitions/Group Type"
+              meta:
+                type: object
+                properties:
+                  response:
+                    type: integer
+                  count:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  group_type.group:
+                    type: object
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  group_types:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Group Type"
       tags:
         - Groups
   /group_types/:id:
@@ -1485,9 +1531,32 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Group Type"
+            type: object
+            properties:
+              group_types:
+                type: array
+                items:
+                  $ref: "#/definitions/Group Type"
+              meta:
+                type: object
+                properties:
+                  response:
+                    type: integer
+                  count:
+                    type: integer
+              links:
+                type: object
+                properties:
+                  group_type.group:
+                    type: object
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  group_types:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Group Type"
       tags:
         - Groups
   /file:
