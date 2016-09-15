@@ -380,3 +380,10 @@ In the response the user receives the calculated time off request object:
   }
 }
 ```
+
+If you manage your own time off or you have the ability to "edit" the "time off" field in profile fields, in iOS we created a workaround (definitely for manage self, maybe not "edit"), where you can approve your request as you're creating it.
+
+We also have to consider editing a time off request depending on your permissions: 
+* who/when can edit
+* who/when can delete
+* what types of changes can you make
