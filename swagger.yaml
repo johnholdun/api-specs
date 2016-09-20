@@ -248,43 +248,43 @@ paths:
       responses:
         200:
           description: "Successful Response"
-  schema:
-    type: object
-    properties:
-      profiles:
-        type: array
-        items:
-          $ref: "#/definitions/Profile"
-      meta:
-        type: object
-        properties:
-          count:
-            type: integer
-          status:
-            type: integer
-      links:
-        type: object
-        items:
-          $ref: "#/definitions/Profile Links"
-      linked:
-        type: object
-        properties:
-          job_titles:
-            type: array
-            items:
-              $ref: "#/definitions/Job Title"
-          files:
-            type: array
-            items:
-              $ref: "#/definitions/File"
-          groups:
-            type: array
-            items:
-              $ref: "#/definitions/Group"
-          teams:
-            type: array
-            items:
-              $ref: "#/definitions/Team"
+          schema:
+            type: object
+            properties:
+              profiles:
+                type: array
+                items:
+                  $ref: "#/definitions/Profile"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+              links:
+                type: object
+                items:
+                  $ref: "#/definitions/Profile Links"
+              linked:
+                type: object
+                properties:
+                  job_titles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Job Title"
+                  files:
+                    type: array
+                    items:
+                      $ref: "#/definitions/File"
+                  groups:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Group"
+                  teams:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Team"
       tags:
       - Profiles
   /profiles/me:
@@ -1647,7 +1647,6 @@ paths:
                   $ref: "#/definitions/Time Off Plan"
               meta:
                 type: object
-                additionalProperties: boolean
                 properties:
                   status:
                     type: integer
@@ -1657,7 +1656,6 @@ paths:
                     type: string
               links:
                 type: object
-                additionalProperties: boolean
                 properties:
                   plan_presenters.time_off_type:
                     type: object
@@ -1668,7 +1666,6 @@ paths:
                           $ref: "#/definitions/Time Off Type"
               linked:
                 type: object
-                additionalProperties: boolean
                 properties:
                   time_off_types:
                     type: array
@@ -1717,7 +1714,7 @@ paths:
               linked:
                 type: object
                 items:
-                  $ref: "#definitions/Profile"
+                  $ref: "#/definitions/Profile"
       tags:
         - Time Off
     post:
@@ -1766,6 +1763,30 @@ paths:
                   type: string
                 used_carryover:
                   type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: object
+            properties:
+              time_off_requests:
+                type: array
+                items:
+                  $ref: "#/definitions/Time Off Request"
+              meta:
+                type: object
+                items:
+                  $ref: "#/definitions/Meta"
+              links:
+                type: object
+                items:
+                  $ref: "#/definitions/Time Off Request Links"
+              linked:
+                type: object
+                items:
+                  $ref: "#/definitions/Profile"
+      tags:
+        - Time Off
 definitions:
   Profile:
     type: object
