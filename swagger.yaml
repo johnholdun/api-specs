@@ -969,14 +969,15 @@ paths:
                 properties:
                   job_titles.job_tier:
                     type: object
-                    $ref: "#/definitions/Link"
+                    items:
+                      $ref: "#/definitions/Link"
               linked:
                 type: object
                 properties:
                   job_tiers:
                     type: array
                     items:
-                      $ref: "#/defintions/Job Tier"
+                      $ref: "#/definitions/Job Tier"
       tags:
         - Job Title
     post:
@@ -1022,7 +1023,7 @@ paths:
                   job_tiers:
                     type: array
                     items:
-                      $ref: "#/defintions/Job Tier"
+                      $ref: "#/definitions/Job Tier"
       tags:
         - Job Title
   /job_titles/:id:
@@ -1064,7 +1065,7 @@ paths:
                   job_tiers:
                     type: array
                     items:
-                      $ref: "#/defintions/Job Tier"
+                      $ref: "#/definitions/Job Tier"
       tags:
         - Job Title
     put:
@@ -1110,7 +1111,7 @@ paths:
                   job_tiers:
                     type: array
                     items:
-                      $ref: "#/defintions/Job Tier"
+                      $ref: "#/definitions/Job Tier"
       tags:
         - Job Title
   /job_tiers:
@@ -1704,7 +1705,7 @@ paths:
               time_off_requests:
                 type: array
                 items:
-                  $ref: "#/definitions/Request"
+                  $ref: "#/definitions/Time Off Request"
               meta:
                 type: object
                 items:
@@ -1712,7 +1713,7 @@ paths:
               links:
                 type: object
                 items:
-                  $ref: "#/definitions/Time Off Requests Links"
+                  $ref: "#/definitions/Time Off Request Links"
               linked:
                 type: object
                 items:
@@ -2051,6 +2052,13 @@ definitions:
         properties:
           job_tier:
             type: string
+  Team:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
   Field:
     type: object
     properties:
@@ -2183,6 +2191,45 @@ definitions:
             type: integer
           liked_by_current_profile:
             type: boolean
+  Events Meta:
+    type: object
+    properties:
+      response:
+        type: integer
+      use_comments:
+        type: boolean
+      use_updates:
+        type: boolean
+      use_mentions:
+        type: boolean
+      use_likes:
+        type: boolean
+      count:
+        type: integer
+  Comment:
+    type: object
+    properties:
+      id:
+        type: string
+      content:
+        type: string
+      html_content:
+        type: string
+      created_at:
+        type: integer
+      can_destroy:
+        type: boolean
+      links:
+        type: object
+        properties:
+          profile:
+            type: string
+      utc_offset:
+        type: integer
+      likes_count:
+        type: integer
+      liked_by_current_profile:
+        type: boolean
   Currency Type:
     type: object
     properties:
@@ -2511,6 +2558,7 @@ definitions:
         type: string
       link_text:
         type: string
+
   Time Off Request Links:
     type: object
     properties:
