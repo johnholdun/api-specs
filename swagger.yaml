@@ -30,10 +30,6 @@ paths:
           in: query
           description: An attribute to sort by fields on profiles. Allowed attributes are first_name, last_name, and job_title. Prepend with a - (minus) sign to reverse the order.
           type: string
-        - name: filter
-          in: query
-          description: A hash containing a filter you'd like to apply before profiles are returned.
-          type: object
       responses:
         200:
           description: "Successful Response"
@@ -82,68 +78,68 @@ paths:
         - name: first_name
           in: query
           description: First name
-          type: String
-          required: Yes
+          type: string
+          required: true
         - name: last_name
           in: query
           description: Last name
-          type: String
-          required: Yes
+          type: string
+          required: true
         - name: email
           in: query
           description: Email.
-          type: String
-          required: Yes
+          type: string
+          required: true
         - name: user_status
           in: query
           description: User status, should be "active" or "inactive"
           type: string
-          required: Yes
+          required: true
         - name: start_date
           in: query
-          description: Start date
-          type: yyyy-mm-dd
-          required: No
+          description: Start Date(yyyy-mm-dd)
+          type: string
+          required: false
         - name: departure_date
           in: query
-          description: Depature date
-          type: yyyy-mm-dd
-          required: No
+          description: Depature date(yyyy-mm-dd)
+          type: string
+          required: false
         - name: gender
           in: query
           description: Gender, should be "male", "female"
           type: string
-          required: No
+          required: false
         - name: marital_status
           in: query
           description: Marital status, should be "single", "married", "civil partnership", "separated", or "divorced"
           type: string
-          required: No
+          required: false
         - name: job_title
           in: query
           description: Valid job title GUID
           type: string
-          required: No
+          required: false
         - name: resume
           in: query
           description: Resume file GUID
           type: string
-          required: No
+          required: false
         - name: image
           in: query
           description: Image file GUID
           type: string
-          required: No
+          required: false
         - name: office
           in: query
           description: Office address, hash[see below]
           type: string
-          required: No
+          required: false
         - name: home
           in: query
           description: Home address, hash[see below]
           type: string
-          required: No
+          required: false
       responses:
         201:
           description: "Created Response"
@@ -297,48 +293,48 @@ paths:
       parameters:
         - name: id
           in: query
-          required: No
+          required: false
           type: string
       responses:
         200:
           description: "Successful Response"
-    schema:
-      type: object
-      properties:
-        profiles:
-          type: array
-          items:
-            $ref: "#/definitions/Profile"
-        meta:
-          type: object
-          properties:
-            count:
-              type: integer
-            status:
-              type: integer
-        links:
-          type: object
-          items:
-            $ref: "#/definitions/Profile Links"
-        linked:
-          type: object
-          properties:
-            job_titles:
-              type: array
-              items:
-                $ref: "#/definitions/Job Title"
-            files:
-              type: array
-              items:
-                $ref: "#/definitions/File"
-            groups:
-              type: array
-              items:
-                $ref: "#/definitions/Group"
-            teams:
-              type: array
-              items:
-                $ref: "#/definitions/Team"
+          schema:
+            type: object
+            properties:
+              profiles:
+                type: array
+                items:
+                  $ref: "#/definitions/Profile"
+              meta:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  status:
+                    type: integer
+              links:
+                type: object
+                items:
+                  $ref: "#/definitions/Profile Links"
+              linked:
+                type: object
+                properties:
+                  job_titles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Job Title"
+                  files:
+                    type: array
+                    items:
+                      $ref: "#/definitions/File"
+                  groups:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Group"
+                  teams:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Team"
       tags:
         - Profiles
   /profiles/fields:
@@ -387,22 +383,22 @@ paths:
         - name: section_id
           in: query
           description: Section ID
-          required: Yes
+          required: true
           type: string
         - name: title
           in: query
           description: Field Title
-          required: Yes
+          required: true
           type: string
         - name: type
           in: query
           description: Field Type
-          required: Yes
+          required: true
           type: string
         - name: choices
           in: query
           description: An array of choices for checkboxes and select fields.
-          required: No
+          required: false
           type: string
       responses:
         201:
@@ -445,7 +441,7 @@ paths:
         - name: section
           in: query
           description: Profile Field Section ID
-          required: Yes
+          required: true
           type: string
       responses:
         200:
@@ -494,7 +490,7 @@ paths:
               sections:
                 type: array
                 items:
-                  $ref: "#/definitions/Section"
+                  $ref: '#/definitions/Section'
               meta:
                 type: object
                 properties:
@@ -505,8 +501,9 @@ paths:
               links:
                 type: object
                 properties:
-                  sections.fields:
-                    type:
+                  fields:
+                    type: array
+                    items:
                       type: string
               linked:
                 type: object
@@ -525,7 +522,7 @@ paths:
         - name: title
           in: query
           description: Section ID
-          required: Yes
+          required: true
           type: string
       responses:
         201:
@@ -533,30 +530,32 @@ paths:
           schema:
             type: object
             properties:
+              hello:
+                type: string
               sections:
                 type: array
                 items:
-                  $ref: "#/definitions/Section"
-              meta:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
-              links:
-                type: object
-                properties:
-                  sections.fields:
-                    type:
-                      type: string
-              linked:
-                type: object
-                properties:
-                  fields:
-                    type: array
-                    items:
-                      $ref: "#/definitions/Field"
+                  $ref: '#/definitions/Section'
+              # meta:
+              #   type: object
+              #   properties:
+              #     count:
+              #       type: integer
+              #     status:
+              #       type: integer
+              # links:
+              #   type: object
+              #   properties:
+              #     sections.fields:
+              #       type:
+              #         type: string
+              # linked:
+              #   type: object
+              #   properties:
+              #     fields:
+              #       type: array
+              #       items:
+              #         $ref: "#/definitions/Field"
       tags:
         - Profile Fields Sections
   /profiles/fields/sections/:id:
@@ -569,7 +568,7 @@ paths:
         - name: id
           in: query
           description: Section ID
-          required: Yes
+          required: true
           type: string
       responses:
         200:
@@ -577,30 +576,32 @@ paths:
           schema:
             type: object
             properties:
-              sections:
-                type: array
-                items:
-                  $ref: "#/definitions/Section"
-              meta:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
-              links:
-                type: object
-                properties:
-                  sections.fields:
-                    type:
-                      type: string
-              linked:
-                type: object
-                properties:
-                  fields:
-                    type: array
-                    items:
-                      $ref: "#/definitions/Field"
+              hello:
+                type: string
+              # sections:
+              #   type: array
+              #   items:
+              #     $ref: "#/definitions/Section"
+              # meta:
+              #   type: object
+              #   properties:
+              #     count:
+              #       type: integer
+              #     status:
+              #       type: integer
+              # links:
+              #   type: object
+              #   properties:
+              #     sections.fields:
+              #       type:
+              #         type: string
+              # linked:
+              #   type: object
+              #   properties:
+              #     fields:
+              #       type: array
+              #       items:
+              #         $ref: "#/definitions/Field"
       tags:
         - Profile Fields Sections
     put:
@@ -611,7 +612,7 @@ paths:
         - name: id
           in: query
           description: Section ID
-          required: Yes
+          required: true
           type: string
       responses:
         200:
@@ -619,60 +620,56 @@ paths:
           schema:
             type: object
             properties:
-              sections:
-                type: array
-                items:
-                  $ref: "#/definitions/Section"
-              meta:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
-              links:
-                type: object
-                properties:
-                  sections.fields:
-                    type:
-                      type: string
-              linked:
-                type: object
-                properties:
-                  fields:
-                    type: array
-                    items:
-                      $ref: "#/definitions/Field"
+              hello:
+                type: string
+        #       sections:
+        #         type: array
+        #         items:
+        #           $ref: "#/definitions/Section"
+        #       meta:
+        #         type: object
+        #         properties:
+        #           count:
+        #             type: integer
+        #           status:
+        #             type: integer
+        #       links:
+        #         type: object
+        #         properties:
+        #           sections.fields:
+        #             type:
+        #               type: string
+        #       linked:
+        #         type: object
+        #         properties:
+        #           fields:
+        #             type: array
+        #             items:
+        #               $ref: "#/definitions/Field"
       tags:
         - Profile Fields Sections
-  /files:
-    get:
-      summary: Download File
-      description: Obtain the "file_url" from GET show resource endpoint and pass as parameter.
-      parameters:
-        - name: id
-          in: query
-          description: ID given by file_url in Show Resource GET endpoint
-          required: Yes
-          type: string
-      tags:
-        - Files
-    post:
-      summary: Create File
-      description: |
-        In order to set a file attribute in another API endpoint (such as a profile file or image field, or adding a file to an event), it is first necessary to upload the file in a separate request.
-        The format for this post request is different from other endpoints of the API. While other endpoints require a json formatted post request, uploading a file should be in a multipart/form-data format.
-        Once you have successfully completed this upload, the response will give you the id of the newly uploaded file, to set for profile attributes or events.
-        As a security feature the download links to files will expire after 10 minutes. Every file download link will include a one-time token.
-        In the case of an image file, the response will show available thumbs, as shown above.
-      parameters:
-        - name: file
-          in: query
-          description: File Object
-          required: Yes
-          type: string
-      tags:
-        - Files
+  # /files:
+  #   get:
+  #     summary: Download File
+  #     description: Obtain the "file_url" from GET show resource endpoint and pass as parameter.
+  #     tags:
+  #       - Files
+  #   post:
+  #     summary: Create File
+  #     description: |
+  #       In order to set a file attribute in another API endpoint (such as a profile file or image field, or adding a file to an event), it is first necessary to upload the file in a separate request.
+  #       The format for this post request is different from other endpoints of the API. While other endpoints require a json formatted post request, uploading a file should be in a multipart/form-data format.
+  #       Once you have successfully completed this upload, the response will give you the id of the newly uploaded file, to set for profile attributes or events.
+  #       As a security feature the download links to files will expire after 10 minutes. Every file download link will include a one-time token.
+  #       In the case of an image file, the response will show available thumbs, as shown above.
+  #     parameters:
+  #       - name: file
+  #         in: query
+  #         description: File Object
+  #         required: true
+  #         type: string
+  #     tags:
+  #       - Files
   /events:
     get:
       summary: Events Index
@@ -690,12 +687,12 @@ paths:
         - name: limit
           in: query
           description: Limit of records to be retrieved
-          required: No
+          required: false
           type: integer
         - name: after
           in: query
           description: ID of first record BEFORE the reecords you want to retrieve
-          required: No
+          required: false
           type: string
       responses:
         200:
@@ -751,12 +748,12 @@ paths:
         - name: content
           in: query
           description: Content of event, whch may contain markdown.
-          required: No
+          required: false
           type: string
         - name: file
           in: query
           description: ID of file object to be included in event.
-          required: No
+          required: false
           type: string
       responses:
         201:
@@ -809,7 +806,7 @@ paths:
         - name: id
           in: query
           description: ID of event.
-          required: No
+          required: false
           type: string
       responses:
         200:
@@ -861,12 +858,12 @@ paths:
         - name: content
           in: query
           description: Content of event, whch may contain markdown.
-          required: No
+          required: false
           type: string
         - name: file
           in: query
           description: ID of file object to be included in event.
-          required: No
+          required: false
           type: string
       responses:
         200:
@@ -932,7 +929,7 @@ paths:
         - name: id
           in: query
           description: ID of desired country (an abbreviation of countries name).
-          required: No
+          required: false
           type: string
       responses:
         200:
@@ -987,12 +984,12 @@ paths:
         - name: title
           in: query
           description: Title.
-          required: Yes
+          required: true
           type: string
         - name: job_tier
           in: query
           description: ID of Job Tier.
-          required: Yes
+          required: true
           type: string
       responses:
         201:
@@ -1034,7 +1031,7 @@ paths:
         - name: id
           in: query
           description: ID of Job Title.
-          required: Yes
+          required: true
           type: string
       responses:
         200:
@@ -1075,12 +1072,12 @@ paths:
         - name: title
           in: query
           description: Title.
-          required: Yes
+          required: true
           type: string
         - name: job_tier
           in: query
           description: ID of Job Tier.
-          required: Yes
+          required: true
           type: string
       responses:
         200:
@@ -1157,8 +1154,8 @@ paths:
         - name: title
           in: query
           description: Title
-          required: Yes
-          type: String
+          required: true
+          type: string
       responses:
         201:
           description: "Create Response"
@@ -1199,7 +1196,7 @@ paths:
         - name: id
           in: query
           description: ID
-          required: Yes
+          required: true
           type: string
       responses:
         200:
@@ -1240,7 +1237,7 @@ paths:
         - name: title
           in: query
           description: Updates a Job Tier.
-          required: Yes
+          required: true
           type: string
       responses:
         200:
@@ -1322,7 +1319,7 @@ paths:
         - name: id
           in: query
           description: Group ID.
-          required: Yes
+          required: true
           type: string
       responses:
         200:
@@ -1367,17 +1364,17 @@ paths:
         - name: title
           in: query
           description: Group type title.
-          required: Yes
+          required: true
           type: string
         - name: office_title
           in: query
-          description:
-          required: No
+          description: Office title.
+          required: false
           type: boolean
         - name: x_groups_as_teams
           in: query
           description: Display group in teams section.
-          required: No
+          required: false
           type: boolean
       responses:
         200:
@@ -1423,7 +1420,7 @@ paths:
         - name: id
           in: query
           description: ID
-          required: Yes
+          required: true
           type: string
       responses:
         200:
@@ -1464,17 +1461,17 @@ paths:
         - name: title
           in: query
           description: Group type title.
-          required: Yes
+          required: true
           type: string
         - name: office_title
           in: query
-          description:
-          required: No
+          description: Office type title.
+          required: false
           type: boolean
         - name: x_groups_as_teams
           in: query
           description: Display group in teams section.
-          required: No
+          required: false
           type: boolean
       responses:
         201:
@@ -1516,17 +1513,17 @@ paths:
         - name: title
           in: query
           description: Group type title.
-          required: Yes
+          required: true
           type: string
         - name: office_title
           in: query
-          description:
-          required: No
+          description: Office title.
+          required: false
           type: boolean
         - name: x_groups_as_teams
           in: query
           description: Display group in teams section.
-          required: No
+          required: false
           type: boolean
       responses:
         200:
@@ -1573,7 +1570,7 @@ paths:
         - name: file
           in: query
           description: File Object
-          required: Yes
+          required: true
           type: string
       responses:
         200:
@@ -1589,7 +1586,7 @@ paths:
         - name: file
           in: query
           description: ID given by file_url in 'Show Resource GET Endpoint'.
-          required: Yes
+          required: true
           type: string
       responses:
         200:
@@ -1628,13 +1625,7 @@ paths:
   /time_off/plans:
     get:
       summary: Time Off Plans Index
-      description: This endpoint returns an array of time off plans.
-      parameters:
-        - name: profile_id
-          in: query
-          description: ID given by file_url in 'Show Resource GET Endpoint'.
-          required: Yes
-          type: string
+      description: This endpoint returns an array of time off plans
       responses:
         200:
           description: "Successful Response"
@@ -1717,52 +1708,52 @@ paths:
                   $ref: "#/definitions/Profile"
       tags:
         - Time Off
-    post:
-      summary: Create A Time Off Request
-      description: This endpoint creates a time off request.
-      parameters:
-        - name: time_off_request
-          in: body
-          required: true
-          schema:
-            type: array
-            items:
-              type: object
-              required:
-                - profile_id
-                - leave_start
-                - leave_end
-                - requester_id
-                - time_off_type_id
-              properties:
-                profile_id:
-                  type: string
-                leave_start:
-                  type: string
-                leave_end:
-                  type: string
-                requester_id:
-                  type: string
-                time_off_type_id:
-                  type: string
-        - name: time_off_request_days
-          in: body
-          required: true
-          schema:
-            type: array
-            items:
-              type: object
-              required:
-                - date
-                - used_accrual
-                - used_carryover
-              properties:
-                date:
-                  type: string
-                used_accrual:
-                  type: string
-                used_carryover:
-                  type: string
+    # post:
+    #   summary: Create A Time Off Request
+    #   description: This endpoint creates a time off request.
+    #   parameters:
+    #     - name: time_off_request
+    #       in: body
+    #       required: true
+    #       schema:
+    #         type: array
+    #         items:
+    #           type: object
+    #           required:
+    #             - profile_id
+    #             - leave_start
+    #             - leave_end
+    #             - requester_id
+    #             - time_off_type_id
+    #           properties:
+    #             profile_id:
+    #               type: string
+    #             leave_start:
+    #               type: string
+    #             leave_end:
+    #               type: string
+    #             requester_id:
+    #               type: string
+    #             time_off_type_id:
+    #               type: string
+    #     - name: time_off_request_days
+    #       in: body
+    #       required: true
+    #       schema:
+    #         type: array
+    #         items:
+    #           type: object
+    #           required:
+    #             - date
+    #             - used_accrual
+    #             - used_carryover
+    #           properties:
+    #             date:
+    #               type: string
+    #             used_accrual:
+    #               type: string
+    #             used_carryover:
+    #               type: string
       responses:
         200:
           description: "Successful Response"
