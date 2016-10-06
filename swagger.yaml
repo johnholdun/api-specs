@@ -1778,6 +1778,28 @@ paths:
                   $ref: "#/definitions/Profile"
       tags:
         - Time Off
+  /likes/event/:eventID/recent:
+    get:
+      summary: Likes Index
+      description: Returns references to profiles who liked the specified event.
+      parameters:
+        - name: eventID
+          in: query
+          description: ID of the event.
+          required: true
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: object
+            properties:
+              groups:
+                type: array
+                items:
+                  $ref: "#/definitions/Like"
+      tags:
+        - Likes
 definitions:
   Profile:
     type: object
@@ -2596,3 +2618,23 @@ definitions:
     properties:
       type:
         type: string
+  Like:
+    type: object
+    properties:
+      id:
+        type: string
+      href:
+        type: string
+      full_name:
+        type: string
+      job_title:
+        type: string
+      links:
+        type: object
+        properties:
+          image:
+            type: string
+          thumbs:
+            type: object
+            items:
+              $ref: "#/definitions/Thumb"
