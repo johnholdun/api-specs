@@ -1800,6 +1800,31 @@ paths:
                   $ref: "#/definitions/Like"
       tags:
         - Likes
+  /likes/event/:id:
+    post:
+      summary: Create Like
+      description: Pass in the event ID to post a like.
+      parameters:
+        - name: ID
+          in: query
+          description: Event ID.
+          required: true
+          type: string
+      responses:
+        201:
+          description: "Success!"
+    delete:
+      summary: Delete Like
+      description: Pass in the event ID to delete a like.
+      parameters:
+        - name: ID
+          in: query
+          description: Event ID.
+          required: true
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
 definitions:
   Profile:
     type: object
