@@ -1825,6 +1825,19 @@ paths:
       responses:
         200:
           description: "Successful Response"
+  /reports/:id:
+    get:
+      summary: Show Report
+      description: You will receive a list of fields included in the report you created in Namely. To export the fields in the CSV file, please use the endpoint - https://[company].namely.com/reports/[report_id]/results.csv.
+      parameters:
+        - name: ID
+          in: query
+          description: Report ID.
+          required: true
+          type: string
+      responses:
+        201:
+          description: "Success!"
 definitions:
   Profile:
     type: object
