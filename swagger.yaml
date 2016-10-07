@@ -1836,8 +1836,135 @@ paths:
           required: true
           type: string
       responses:
-        201:
-          description: "Success!"
+        200:
+          description: "Successful Response"
+          schema:
+            type: object
+            properties:
+              resources:
+                type: array
+                items:
+                  $ref: "#/definitions/Resource"
+              meta:
+                type: object
+                properties:
+                  is_super_admin:
+                    type: boolean
+                  accepted_file_extensions:
+                    type: string
+  /resources:
+    get:
+      summary: Resources Index
+      description: This method returns an array of resources, whose format and content will be the same as the show resource endpoint.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: object
+            properties:
+              resources:
+                type: array
+                items:
+                  $ref: "#/definitions/Resource"
+              meta:
+                type: object
+                properties:
+                  is_super_admin:
+                    type: boolean
+                  accepted_file_extensions:
+                    type: string
+    post:
+      summary: Create Resource
+      description: To create a resource, you will need to either upload a file or provide a link.
+      parameters:
+      - name: ID
+        in: query
+        description: ID.
+        required: true
+        type: string
+      - name: user_file_id
+        in: query
+        description: ID of the uploaded file (if no link).
+        required: true
+        type: string
+      - name: link
+        in: query
+        description: Valid URL link (if no file ID).
+        required: true
+        type: string
+      - name: description
+        in: query
+        description: Description.
+        required: true
+        type: string
+      - name: folder_id
+        in: query
+        description: ID of the resource folder.
+        required: true
+        type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: object
+            properties:
+              resources:
+                type: array
+                items:
+                  $ref: "#/definitions/Resource"
+              meta:
+                type: object
+                properties:
+                  is_super_admin:
+                    type: boolean
+                  accepted_file_extensions:
+                    type: string
+    delete:
+      summary: Delete Resource
+      description: This endpoint deletes a specified resource.
+      parameters:
+        - name: id
+          in: query
+          description: The resource's ID.
+          required: true
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: object
+            properties:
+              resources:
+                type: array
+                items:
+                  $ref: "#/definitions/Resource"
+              meta:
+                type: object
+                properties:
+                  is_super_admin:
+                    type: boolean
+                  accepted_file_extensions:
+                    type: string
+  /resources/:id:
+    get:
+      summary: Show Resource
+      description: Specify the ID of the resource to get a complete description. Please see "Download Resource" documentation to actually download a specific resource.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: object
+            properties:
+              groups:
+                type: array
+                items:
+                  $ref: "#/definitions/Resource"
+    put:
+      summary: Update Resource
+      description: Pass in the necessary parameters to update a resource.
+      responses:
+        200:
+          description: "Successful Response"
 definitions:
   Profile:
     type: object
@@ -2676,3 +2803,26 @@ definitions:
             type: object
             items:
               $ref: "#/definitions/Thumb"
+  Resource:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      link:
+        type: string
+      file_name:
+        type: string
+      file_format:
+        type: string
+      file_format:
+        type: string
+      file_size:
+        type: string
+      file_url:
+        type: string
+      last_edited:
+        type: string
+      folder_id:
+        type: integer
