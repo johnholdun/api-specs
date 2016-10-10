@@ -691,7 +691,7 @@ paths:
           type: integer
         - name: after
           in: query
-          description: ID of first record BEFORE the reecords you want to retrieve
+          description: ID of first record BEFORE the records you want to retrieve
           required: false
           type: string
       responses:
@@ -806,7 +806,7 @@ paths:
         - name: ID
           in: query
           description: ID of event.
-          required: false
+          required: true
           type: string
       responses:
         200:
@@ -840,7 +840,7 @@ paths:
                   profiles:
                     type: array
                     items:
-                      $ref: "#/definitions/Profile"
+                      $ref: "#/definitions/Linked Profile"
                   comments:
                     type: array
                     items:
@@ -2175,7 +2175,7 @@ definitions:
   Event:
     type: object
     properties:
-      General:
+      events:
         type: object
         properties:
           ID:
@@ -2198,10 +2198,8 @@ definitions:
             type: boolean
           can_comment:
             type: boolean
-            default: true
           can_destroy:
             type: boolean
-            default: false
           links:
             type: object
             properties:
@@ -2210,7 +2208,7 @@ definitions:
               comments:
                 type: array
                 items:
-                  $ref: "#/definitions/Comment"
+                  type: string
               file:
                 type: string
           can_like:
@@ -2338,7 +2336,7 @@ definitions:
       original:
         type: string
       thumbs:
-        type: object
+        type: array
         items:
           $ref: "#/definitions/Thumb"
   Thumb:
@@ -2423,3 +2421,28 @@ definitions:
         type: string
       folder_ID:
         type: integer
+  Linked Profile:
+    type: object
+    properties:
+      ID:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      user_status:
+        type: string
+      updated_at:
+        type: integer
+      created_at:
+        type: integer
+      preferred_name:
+        type: string
+      image:
+        type: object
+        items:
+          $ref: "#/definitions/Image"
+      full_name:
+        type: string
