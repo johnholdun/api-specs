@@ -1,3 +1,9 @@
+
+
+
+
+
+
 swagger: '2.0'
 info:
   title: Namely API
@@ -1578,6 +1584,12 @@ paths:
           description: Event ID.
           required: true
           type: string
+        - name: body
+          in: body
+          required: true
+          description: Create a like.
+          schema:
+            $ref: "#/definitions/Create Like"
       responses:
         201:
           description: "Success!"
@@ -1590,6 +1602,12 @@ paths:
           description: Event ID.
           required: true
           type: string
+        - name: body
+          in: body
+          required: true
+          description: Delete a like.
+          schema:
+            $ref: "#/definitions/Delete Like"
       responses:
         200:
           description: "Successful Response"
@@ -2483,7 +2501,35 @@ definitions:
         items:
           $ref: "#/definitions/Create Job Tier Payload"
   Update Job Tier Payload:
-      type: object
-      properties:
-        title:
-          type: string
+    type: object
+    properties:
+      title:
+        type: string
+  Create Like:
+    type: object
+    properties:
+      message:
+        type: array
+        items:
+          $ref: "#/definitions/Create Like Payload"
+  Create Like Payload:
+    type: object
+    properties:
+      liked_by_current_profile:
+        type: boolean
+      likes_count:
+        type: integer
+  Delete Like:
+    type: object
+    properties:
+      message:
+        type: array
+        items:
+          $ref: "#/definitions/Delete Like Payload"
+  Delete Like Payload:
+    type: object
+    properties:
+      liked_by_current_profile:
+        type: boolean
+      likes_count:
+        type: integer
