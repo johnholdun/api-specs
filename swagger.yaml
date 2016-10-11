@@ -1093,7 +1093,7 @@ paths:
                   job_titles:
                     type: array
                     items:
-                      $ref: "#/definitions/Job Title"
+                      $ref: "#/definitions/Job Title Link"
       tags:
         - Job Tier
     post:
@@ -1105,6 +1105,12 @@ paths:
           description: Title
           required: true
           type: string
+        - name: body
+          in: body
+          required: true
+          description: Endpoint to create a job tier.
+          schema:
+            $ref: "#/definitions/Create Job Tier"
       responses:
         201:
           description: "Create Response"
@@ -1144,7 +1150,7 @@ paths:
       parameters:
         - name: ID
           in: query
-          description: ID
+          description: ID of the Job Tier.
           required: true
           type: string
       responses:
@@ -2007,6 +2013,13 @@ definitions:
         properties:
           job_tier:
             type: string
+  Job Title Link:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
   Team:
     type: object
     properties:
@@ -2444,3 +2457,15 @@ definitions:
             type: string
           x_groups_as_teams:
             type: boolean
+  Create Job Tier:
+    type: object
+    properties:
+      job_tiers:
+        type: array
+        items:
+          $ref: "#/definitions/Create Job Tier Payload"
+  Create Job Tier Payload:
+    type: object
+    properties:
+      title:
+        type: string
