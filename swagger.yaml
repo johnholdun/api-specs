@@ -1627,17 +1627,16 @@ paths:
           schema:
             type: object
             properties:
-              resources:
+              reports:
                 type: array
                 items:
-                  $ref: "#/definitions/Resource"
+                  $ref: "#/definitions/Report"
               meta:
                 type: object
-                properties:
-                  is_super_admin:
-                    type: boolean
-                  accepted_file_extensions:
-                    type: string
+              links:
+                type: object
+              linked:
+                type: object
   /resources:
     get:
       summary: Resources Index
@@ -2533,3 +2532,29 @@ definitions:
         type: boolean
       likes_count:
         type: integer
+  Report:
+    type: object
+    properties:
+      id:
+        type: string
+      type:
+        type: string
+      columns:
+        type: array
+        items:
+          $ref: "#/definitions/Column"
+      content:
+        type: array
+        items:
+          type: string
+      links:
+        type: object
+  Column:
+    type: object
+    properties:
+      name:
+        type: string
+      type:
+        type: string
+      label:
+        type: string
