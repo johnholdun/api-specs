@@ -1297,6 +1297,9 @@ paths:
                   groups.group_type:
                     type: object
                     $ref: "#/definitions/Link"
+                  groups.profiles:
+                    type: object
+                    $ref: "#/definitions/Link"
               linked:
                 type: object
                 properties:
@@ -1304,6 +1307,14 @@ paths:
                     type: array
                     items:
                       $ref: "#/definitions/Group Type"
+                  profiles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Linked Profile"
+                  files:
+                    type: array
+                    items:
+                      $ref: "#/definitions/File"
       tags:
         - Groups
     put:
@@ -2245,8 +2256,7 @@ definitions:
         type: string
       address:
         type: object
-        items:
-          $ref: "#/definitions/Address"
+        $ref: "#/definitions/Address"
       links:
         type: object
         properties:
