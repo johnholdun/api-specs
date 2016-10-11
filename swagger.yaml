@@ -745,16 +745,12 @@ paths:
         The file parameters allows you to include file in the crated in the event. As with uploading a file to a profile, the file must be previously uploaded via the file create endpoint.
         Events belong to a profile and therefore cannot be created by a dedicated API user.
       parameters:
-        - name: content
-          in: query
-          description: Content of event, which may contain markdown.
-          required: false
-          type: string
-        - name: file
-          in: query
-          description: ID of file object to be included in event.
-          required: false
-          type: string
+        - name: body
+          in: body
+          required: true
+          description: Event to be added as an announcement.
+          schema:
+            $ref: "#/definitions/Post Event"
       responses:
         201:
           description: "Create Response"
@@ -2411,8 +2407,6 @@ definitions:
         type: string
       file_format:
         type: string
-      file_format:
-        type: string
       file_size:
         type: string
       file_url:
@@ -2446,3 +2440,17 @@ definitions:
           $ref: "#/definitions/Image"
       full_name:
         type: string
+  Post Event:
+    type: object
+    properties:
+      events:
+        type: object
+        properties:
+          content:
+            type: string
+          email_all:
+            type: boolean
+          mentions:
+            type: string
+          file_id:
+            type: string
