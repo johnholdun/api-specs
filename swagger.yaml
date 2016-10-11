@@ -2546,9 +2546,13 @@ definitions:
       content:
         type: array
         items:
-          type: string
+          $ref: "#/definitions/Content"
       links:
         type: object
+  Content:
+    type: array
+    items:
+      type: string
   Column:
     type: object
     properties:
