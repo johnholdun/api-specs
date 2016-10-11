@@ -1321,21 +1321,17 @@ paths:
       summary: Update Group
       description: This method updates a specific group.
       parameters:
-        - name: title
+        - name: ID
           in: query
-          description: Group type title.
+          description: Group ID.
           required: true
           type: string
-        - name: office_title
-          in: query
-          description: Office title.
-          required: false
-          type: boolean
-        - name: x_groups_as_teams
-          in: query
-          description: Display group in teams section.
-          required: false
-          type: boolean
+        - name: body
+          in: body
+          required: true
+          description: Endpoint to update a group.
+          schema:
+            $ref: "#/definitions/Update Group"
       responses:
         200:
           description: "Successful Response"
@@ -2430,3 +2426,20 @@ definitions:
             type: string
           file_id:
             type: string
+  Update Group:
+    type: object
+    properties:
+      groups:
+        type: array
+        items:
+          $ref: "#/definitions/Update Group Paylod"
+  Update Group Paylod:
+    type: object
+    properties:
+      address:
+        type: object
+        $ref: "#/definitions/Address"
+      group_type:
+        type: string
+      title:
+        type: string
