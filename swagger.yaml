@@ -1372,12 +1372,6 @@ paths:
     get:
       summary: Group Types Index
       description: This endpoint returns an array of group types.
-      parameters:
-        - name: ID
-          in: query
-          description: ID
-          required: true
-          type: string
       responses:
         200:
           description: "Successful Response"
@@ -1414,21 +1408,12 @@ paths:
       summary: Create Group
       description: This endpoint creates a new group type.
       parameters:
-        - name: title
-          in: query
-          description: Group type title.
+        - name: body
+          in: body
           required: true
-          type: string
-        - name: office_title
-          in: query
-          description: Office type title.
-          required: false
-          type: boolean
-        - name: x_groups_as_teams
-          in: query
-          description: Display group in teams section.
-          required: false
-          type: boolean
+          description: Createa a new group type.
+          schema:
+            $ref: "#/definitions/Create Group Type"
       responses:
         201:
           description: "Create Response"
@@ -2443,3 +2428,13 @@ definitions:
         type: string
       title:
         type: string
+  Create Group Type:
+    type: object
+    properties:
+      group_types:
+        type: object
+        properties:
+          title:
+            type: string
+          x_groups_as_teams:
+            type: boolean
