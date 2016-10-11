@@ -1189,11 +1189,17 @@ paths:
       summary: Update Job Tier
       description: Updates a Job Tier.
       parameters:
-        - name: title
+        - name: id
           in: query
-          description: Updates a Job Tier.
+          description: ID of the Job Tier to update.
           required: true
           type: string
+        - name: body
+          in: body
+          required: true
+          description: Endpoint to update a job tier.
+          schema:
+            $ref: "#/definitions/Update Job Tier"
       responses:
         200:
           description: "Successful Response"
@@ -2469,3 +2475,15 @@ definitions:
     properties:
       title:
         type: string
+  Update Job Tier:
+    type: object
+    properties:
+      job_tiers:
+        type: array
+        items:
+          $ref: "#/definitions/Create Job Tier Payload"
+  Update Job Tier Payload:
+      type: object
+      properties:
+        title:
+          type: string
