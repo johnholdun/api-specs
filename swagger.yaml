@@ -1451,21 +1451,17 @@ paths:
       summary: Update Group Type
       description: You can update a Group Type with the viable parameters.
       parameters:
-        - name: title
+        - name: id
           in: query
-          description: Group type title.
+          description: Group type ID.
           required: true
           type: string
-        - name: office_title
-          in: query
-          description: Office title.
-          required: false
-          type: boolean
-        - name: x_groups_as_teams
-          in: query
-          description: Display group in teams section.
-          required: false
-          type: boolean
+        - name: body
+          in: body
+          required: true
+          description: Edit an existing group type.
+          schema:
+            $ref: "#/definitions/Update Group Type"
       responses:
         200:
           description: "Successful Response"
@@ -2429,6 +2425,16 @@ definitions:
       title:
         type: string
   Create Group Type:
+    type: object
+    properties:
+      group_types:
+        type: object
+        properties:
+          title:
+            type: string
+          x_groups_as_teams:
+            type: boolean
+  Update Group Type:
     type: object
     properties:
       group_types:
