@@ -750,7 +750,7 @@ paths:
           required: true
           description: Event to be added as an announcement.
           schema:
-            $ref: "#/definitions/Post Event"
+            $ref: "#/definitions/Create Event"
       responses:
         201:
           description: "Create Response"
@@ -2416,7 +2416,7 @@ definitions:
           $ref: "#/definitions/Image"
       full_name:
         type: string
-  Post Event:
+  Create Event:
     type: object
     properties:
       events:
