@@ -1791,44 +1791,44 @@ paths:
                 type: array
                 items:
                   $ref: "#/definitions/Folder"
-    /folder/:id:
-      put:
-        summary: Update Folder
-        description: You must know the id of the folder to update it.
-        parameters:
-          - name: ID
-            in: query
-            description: The folder's ID.
-            required: true
-            type: string
-          - name: body
-            in: body
-            required: true
-            description: JSON payload for updating an existing folder.
-            schema:
-              $ref: "#/definitions/Update Folder"
-        responses:
-          200:
-            description: "Successful Response"
-            schema:
-              type: object
-              properties:
-                resources:
-                  type: array
-                  items:
-                    $ref: "#/definitions/Folder"
-      delete:
-        summary: Delete Folder
-        description: You must pass in the folder id to delete a specific folder.
-        parameters:
-          - name: ID
-            in: query
-            description: The folder's ID.
-            required: true
-            type: string
-        responses:
-          200:
-            description: "Successful Response"
+  /folders/:ID:
+    put:
+      summary: Update Folder
+      description: You must know the id of the folder to update it.
+      parameters:
+        - name: ID
+          in: query
+          description: The folder's ID.
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          description: JSON payload for updating an existing folder.
+          schema:
+            $ref: "#/definitions/Update Folder"
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: object
+            properties:
+              resources:
+                type: array
+                items:
+                  $ref: "#/definitions/Folder"
+    delete:
+      summary: Delete Folder
+      description: You must pass in the folder id to delete a specific folder.
+      parameters:
+        - name: ID
+          in: query
+          description: The folder's ID.
+          required: true
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
 definitions:
   Profile:
     type: object
