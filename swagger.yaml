@@ -1750,6 +1750,27 @@ paths:
       responses:
         200:
           description: "Successful Response"
+          schema:
+            type: object
+            properties:
+              resources:
+                type: array
+                items:
+                  $ref: "#/definitions/Resource"
+  /folders:
+    get:
+      summary: Show folders
+      description: This endpoint returns a list of folders and their information.
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: object
+            properties:
+              resources:
+                type: array
+                items:
+                  $ref: "#/definitions/Folder"
 definitions:
   Profile:
     type: object
@@ -2562,3 +2583,14 @@ definitions:
         type: string
       label:
         type: string
+  Folder:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      type:
+        type: string
+      items_count:
+        type: integer
