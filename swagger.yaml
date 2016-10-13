@@ -1759,11 +1759,31 @@ paths:
                   $ref: "#/definitions/Resource"
   /folders:
     get:
-      summary: Show folders
+      summary: Show Folders
       description: This endpoint returns a list of folders and their information.
       responses:
         200:
           description: "Successful Response"
+          schema:
+            type: object
+            properties:
+              resources:
+                type: array
+                items:
+                  $ref: "#/definitions/Folder"
+    post:
+      summary: Create Folder
+      description: To create a folder, a title is required. An array of folders will be returned upon success, similar to folders index endpoint.
+      parameters:
+        - name: body
+          in: body
+          required: true
+          description: JSON payload for creating a new folder.
+          schema:
+            $ref: "#/definitions/Create Folder"
+      responses:
+        201:
+          description: "Created Reponse"
           schema:
             type: object
             properties:
@@ -2594,3 +2614,15 @@ definitions:
         type: string
       items_count:
         type: integer
+  Create Folder:
+    type: object
+    properties:
+      folders:
+        type: array
+        items:
+          $ref: "#/definitions/Create Folder Payload"
+  Create Folder Payload:
+    type: object
+    properties:
+      title:
+        type: string
