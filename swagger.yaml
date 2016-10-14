@@ -1816,15 +1816,15 @@ definitions:
         properties:
           job_title:
             type: object
-            $ref: "#/definitions/Job Title"
+            $ref: "#/definitions/Job Title Link"
           groups:
             type: array
             items:
-              $ref: "#/definitions/Group"
+              $ref: "#/definitions/Group Link"
           teams:
             type: array
             items:
-              $ref: "#/definitions/Team"
+              $ref: "#/definitions/Team Link"
       middle_name:
         type: string
       job_change_reason:
@@ -2034,6 +2034,20 @@ definitions:
         properties:
           job_tier:
             type: string
+  Group Link:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+  Team Link:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
   Job Title Link:
     type: object
     properties:
