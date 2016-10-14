@@ -36,6 +36,10 @@ paths:
           in: query
           description: An attribute to sort by fields on profiles. Allowed attributes are first_name, last_name, and job_title. Prepend with a - (minus) sign to reverse the order.
           type: string
+        - name: per_page
+          in: query
+          # description: Fill this in?
+          type: integer
       responses:
         200:
           description: "Successful Response"
@@ -81,71 +85,12 @@ paths:
       summary: Create Profile
       description: The fields that you can set and will receive are a combination of Namely's defaults fields and custom fields that exist only for your company.
       parameters:
-        - name: first_name
-          in: query
-          description: First name
-          type: string
-          required: true
-        - name: last_name
-          in: query
-          description: Last name
-          type: string
-          required: true
-        - name: email
-          in: query
-          description: Email.
-          type: string
-          required: true
-        - name: user_status
-          in: query
-          description: User status, should be "active" or "inactive"
-          type: string
-          required: true
-        - name: start_date
-          in: query
-          description: Start Date(yyyy-mm-dd)
-          type: string
-          required: false
-        - name: departure_date
-          in: query
-          description: Depature date(yyyy-mm-dd)
-          type: string
-          required: false
-        - name: gender
-          in: query
-          description: Gender, should be "male", "female"
-          type: string
-          required: false
-        - name: marital_status
-          in: query
-          description: Marital status, should be "single", "married", "civil partnership", "separated", or "divorced"
-          type: string
-          required: false
-        - name: job_title
-          in: query
-          description: Valid job title GUID
-          type: string
-          required: false
-        - name: resume
-          in: query
-          description: Resume file GUID
-          type: string
-          required: false
-        - name: image
-          in: query
-          description: Image file GUID
-          type: string
-          required: false
-        - name: office
-          in: query
-          description: Office address, hash[see below]
-          type: string
-          required: false
-        - name: home
-          in: query
-          description: Home address, hash[see below]
-          type: string
-          required: false
+      - name: body
+        in: body
+        required: true
+        description: JSON payload for the post request.
+        schema:
+          $ref: "#/definitions/Create Profile"
       responses:
         201:
           description: "Created Response"
@@ -296,11 +241,6 @@ paths:
         The response will contain information about the user who owns the access token used to access the API.
         If the access token belongs to a full Profile, the response content and format will be Identical as if you did a show request for that profile.
         However, if you are accessing via a dedicated API user, the response will be much shorter. The most important element in such a response would be EMAIL. FIRST_NAME and LAST_NAME will both be "Admin".
-      parameters:
-        - name: ID
-          in: query
-          required: false
-          type: string
       responses:
         200:
           description: "Successful Response"
@@ -2675,4 +2615,15 @@ definitions:
     type: object
     properties:
       title:
+        type: string
+  Create Profile:
+    type: object
+    properties:
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      user_status:
         type: string
