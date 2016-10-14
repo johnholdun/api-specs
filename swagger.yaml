@@ -36,10 +36,10 @@ paths:
           in: query
           description: An attribute to sort by fields on profiles. Allowed attributes are first_name, last_name, and job_title. Prepend with a - (minus) sign to reverse the order.
           type: string
-        - name: per_page
+        - name: filter
           in: query
-          # description: Fill this in?
-          type: integer
+          description: A hash containing a filter you'd like to apply before profiles are returned.
+          type: object
       responses:
         200:
           description: "Successful Response"
