@@ -234,16 +234,9 @@ paths:
                 items:
                   $ref: "#/definitions/Profile"
               meta:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
+                $ref: "#/definitions/Profile Meta"
               links:
-                type: object
-                items:
-                  $ref: "#/definitions/Profile Links"
+                $ref: "#/definitions/Profile Links"
               linked:
                 type: object
                 properties:
