@@ -276,12 +276,7 @@ paths:
                 items:
                   $ref: "#/definitions/Field"
               meta:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
+                $ref: "#/definitions/Meta"
               links:
                 type: object
                 properties:
