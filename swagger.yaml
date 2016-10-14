@@ -51,14 +51,8 @@ paths:
                 items:
                   $ref: "#/definitions/Profile"
               meta:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
+                $ref: "#/definitions/Profile Meta"
               links:
-                type: object
                 $ref: "#/definitions/Profile Links"
               linked:
                 type: object
@@ -1872,37 +1866,9 @@ definitions:
       mobile_phone:
         type: string
       home:
-        type: object
-        properties:
-          address1:
-            type: string
-          address2:
-            type: string
-          city:
-            type: string
-          state_ID:
-            type: string
-          country_ID:
-            type: string
-          zip:
-            type: string
+        $ref: "#/definitions/Home"
       office:
-        type: object
-        properties:
-          address1:
-            type: string
-          address2:
-            type: string
-          city:
-            type: string
-          state_ID:
-            type: string
-          country_ID:
-            type: string
-          zip:
-            type: string
-          phone:
-            type: string
+        $ref: "#/definitions/Office"
       emergency_contact:
         type: string
       emergency_contact_phone:
@@ -1914,45 +1880,18 @@ definitions:
       job_description:
         type: string
       salary:
-        type: object
-        properties:
-          yearly_amount:
-            type: integer
-          currency_type:
-            type: string
-          rate:
-            type: string
-          guid:
-            type: string
+        $ref: "#/definitions/Salary"
       healthcare:
-        type: object
-        properties:
-          beneficiary:
-            type: string
-          amount:
-            type: string
-          currency_type:
-            type: string
+        $ref: "#/definitions/Healthcare"
       healthcare_info:
         type: string
       dental:
-        type: object
-        properties:
-          beneficiary:
-            type: string
-          amount:
-            type: string
-          currency_type:
-            type: string
+        $ref: "#/definitions/Dental"
       dental_info:
         type: string
       vision_plan_info:
         type: string
       life_insurance_info:
-        type: string
-      employee_handbook:
-        type: string
-      employee_wage_theft_prevention_act:
         type: string
   Meta:
     type: object
@@ -2128,25 +2067,14 @@ definitions:
         type: string
       city:
         type: string
-      country_ID:
-        type: string
       state_ID:
+        type: string
+      country_ID:
         type: string
       zip:
         type: string
-      resume:
+      phone:
         type: string
-      image:
-        type: string
-      salary:
-        type: object
-        properties:
-          yearly_amount:
-            type: integer
-          currency_type:
-            type: string
-          date:
-            type: string
   Event:
     type: object
     properties:
@@ -2307,6 +2235,19 @@ definitions:
       country_id:
         type: string
       phone:
+        type: string
+  Home:
+    type: object
+    properties:
+      address1:
+        type: string
+      address2:
+        type: string
+      city:
+        type: string
+      state_id:
+        type: string
+      zip:
         type: string
   Group Type:
     type: object
@@ -2620,3 +2561,41 @@ definitions:
         type: string
       user_status:
         type: string
+  Salary:
+    type: object
+    properties:
+      yearly_amount:
+        type: integer
+      currency_type:
+        type: string
+      date:
+        type: string
+      rate:
+        type: string
+      guid:
+        type: string
+  Healthcare:
+    type: object
+    properties:
+      beneficiary:
+        type: string
+      amount:
+        type: string
+      currency_type:
+        type: string
+  Dental:
+    type: object
+    properties:
+      beneficiary:
+        type: string
+      amount:
+        type: string
+      currency_type:
+        type: string
+  Profile Meta:
+    type: object
+    properties:
+      count:
+        type: integer
+      status:
+        type: integer
