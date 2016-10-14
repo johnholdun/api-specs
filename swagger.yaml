@@ -39,7 +39,7 @@ paths:
         - name: filter
           in: query
           description: A hash containing a filter you'd like to apply before profiles are returned.
-          type: object
+          type: string
       responses:
         200:
           description: "Successful Response"
