@@ -397,17 +397,11 @@ paths:
                   $ref: '#/definitions/Section'
               meta:
                 type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
+                $ref: '#/definitions/Meta'
               links:
                 type: object
                 properties:
-                  fields:
-                    type: array
-                    items:
+                  sections.fields:
                       type: string
               linked:
                 type: object
@@ -834,16 +828,12 @@ paths:
       summary: Create Job Title
       description: To get a list of available job tiers, use the job tiers index endpoint.
       parameters:
-        - name: title
-          in: query
-          description: Title.
+        - name: body
+          in: body
           required: true
-          type: string
-        - name: job_tier
-          in: query
-          description: ID of Job Tier.
-          required: true
-          type: string
+          description: Endpoint to create a job title.
+          schema:
+            $ref: "#/definitions/Create Job Title"
       responses:
         201:
           description: "Create Response"
@@ -856,11 +846,7 @@ paths:
                   $ref: "#/definitions/Job Title"
               meta:
                 type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
+                $ref: "#/definitions/Meta"
               links:
                 type: object
                 properties:
@@ -2591,3 +2577,17 @@ definitions:
         type: integer
       status:
         type: integer
+  Create Job Title:
+    type: object
+    properties:
+      job_titles:
+        type: array
+        items:
+          $ref: "#/definitions/Create Job Title Payload"
+  Create Job Title Payload:
+    type: object
+    properties:
+      title:
+        type: string
+      parent:
+        type: string
