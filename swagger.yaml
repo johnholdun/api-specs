@@ -296,26 +296,12 @@ paths:
       description: |
         Allows you to create a profile field within a section.
       parameters:
-        - name: section_ID
-          in: query
-          description: Section ID
-          required: true
-          type: string
-        - name: title
-          in: query
-          description: Field Title
-          required: true
-          type: string
-        - name: type
-          in: query
-          description: Field Type
-          required: true
-          type: string
-        - name: choices
-          in: query
-          description: An array of choices for checkboxes and select fields.
-          required: false
-          type: string
+      - name: body
+        in: body
+        required: true
+        description: JSON payload for the post request.
+        schema:
+          $ref: "#/definitions/Create Profile Field"
       responses:
         201:
           description: "Created Response"
@@ -328,11 +314,7 @@ paths:
                   $ref: "#/definitions/Field"
               meta:
                 type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
+                $ref: "#/definitions/Meta"
               links:
                 type: object
                 properties:
@@ -2513,6 +2495,22 @@ definitions:
     type: object
     properties:
       title:
+        type: string
+  Create Profile Field:
+    type: object
+    properties:
+      fields:
+        type: array
+        items:
+          $ref: "#/definitions/Create Profile Field Payload"
+  Create Profile Field Payload:
+    type: object
+    properties:
+      section:
+        type: string
+      title:
+        type: string
+      type:
         type: string
   Update Folder:
     type: object
