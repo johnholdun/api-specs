@@ -329,6 +329,7 @@ paths:
                       $ref: "#/definitions/Section"
       tags:
         - Profile Fields
+  /profiles/fields/:id:
     put:
       summary: Update Profile Field
       description: |
@@ -336,11 +337,16 @@ paths:
         NAME is the internal name of the field, which is also the key that should be used in the profile API endpoints. This may be distinct from LABEL, which is what will appear in the web interface.
         The valid format info is an attempt to explain what the proper format and possible values are for that field.
       parameters:
-        - name: section
+        - name: ID
           in: query
-          description: Profile Field Section ID
-          required: true
+          description: ID of the field name you wish to change.
           type: string
+        - name: body
+          in: body
+          required: true
+          description: JSON payload for the post request.
+          schema:
+            $ref: "#/definitions/Update Profile Field"
       responses:
         200:
           description: "Successful Response"
@@ -2520,6 +2526,18 @@ definitions:
         items:
           $ref: "#/definitions/Update Folder Payload"
   Update Folder Payload:
+    type: object
+    properties:
+      title:
+        type: string
+  Update Profile Field:
+    type: object
+    properties:
+      fields:
+        type: array
+        items:
+          $ref: "#/definitions/Update Profile Field Payload"
+  Update Profile Field Payload:
     type: object
     properties:
       title:
