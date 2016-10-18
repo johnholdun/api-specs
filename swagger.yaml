@@ -1521,10 +1521,16 @@ paths:
                 type: object
               linked:
                 type: object
-  /resources:
+  /folder/:id/resources:
     get:
       summary: Resources Index
       description: This method returns an array of resources, whose format and content will be the same as the show resource endpoint.
+      parameters:
+        - name: ID
+          in: query
+          description:  Use the folder ID to pull the resources you want to see.
+          required: true
+          type: string
       responses:
         200:
           description: "Successful Response"
@@ -1546,31 +1552,12 @@ paths:
       summary: Create Resource
       description: To create a resource, you will need to either upload a file or provide a link.
       parameters:
-      - name: ID
-        in: query
-        description: ID.
-        required: true
-        type: string
-      - name: user_file_ID
-        in: query
-        description: ID of the uploaded file (if no link).
-        required: true
-        type: string
-      - name: link
-        in: query
-        description: Valid URL link (if no file ID).
-        required: true
-        type: string
-      - name: description
-        in: query
-        description: Description.
-        required: true
-        type: string
-      - name: folder_ID
-        in: query
-        description: ID of the resource folder.
-        required: true
-        type: string
+        - name: body
+          in: body
+          required: true
+          description: JSON payload for creating a new resource.
+          schema:
+            $ref: "#/definitions/Create Resource"
       responses:
         200:
           description: "Successful Response"
@@ -1618,6 +1605,12 @@ paths:
     get:
       summary: Show Resource
       description: Specify the ID of the resource to get a complete description. Please see "Download Resource" documentation to actually download a specific resource.
+      parameters:
+        - name: ID
+          in: query
+          description: The resource's ID.
+          required: true
+          type: string
       responses:
         200:
           description: "Successful Response"
@@ -2590,4 +2583,22 @@ definitions:
       title:
         type: string
       parent:
+        type: string
+  Create Resource:
+    type: object
+    properties:
+      folder_id:
+        type: string
+      resources:
+        type: array
+        items:
+          $ref: "#/definitions/Create Resource Payload"
+  Create Resource Payload:
+    type: object
+    properties:
+      title:
+        type: string
+      description:
+        type: string
+      user_file_id:
         type: string
