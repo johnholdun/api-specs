@@ -1635,12 +1635,7 @@ definitions:
       full_name:
         type: string
       job_title:
-        type: object
-        properties:
-          ID:
-            type: string
-          title:
-            type: string
+        $ref: "#/definitions/Job Title Link"
       reports_to:
         type: object
         properties:
@@ -1747,33 +1742,6 @@ definitions:
         type: integer
       status:
         type: integer
-      current_user_date_format:
-        type: string
-      has_profile:
-        type: boolean
-  Links:
-    type: object
-    properties:
-      profiles.job_title:
-        type: object
-        properties:
-          type:
-            type: string
-      profiles.image:
-        type: object
-        properties:
-          type:
-            type: string
-      profiles.groups:
-        type: object
-        properties:
-          type:
-            type: string
-      profiles.teams:
-        type: object
-        properties:
-          type:
-           type: string
   Image:
     type: object
     properties:
