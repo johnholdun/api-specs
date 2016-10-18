@@ -1611,6 +1611,574 @@ paths:
         200:
           description: "Successful Response"
 definitions:
+  Address:
+    type: object
+    properties:
+      address1:
+        type: string
+      address2:
+        type: string
+      city:
+        type: string
+      state_id:
+        type: string
+      zip:
+        type: string
+      state:
+        type: string
+      country:
+        type: string
+      country_id:
+        type: string
+      phone:
+        type: string
+  Column:
+    type: object
+    properties:
+      name:
+        type: string
+      type:
+        type: string
+      label:
+        type: string
+  Comment:
+    type: object
+    properties:
+      ID:
+        type: string
+      content:
+        type: string
+      html_content:
+        type: string
+      created_at:
+        type: integer
+      can_destroy:
+        type: boolean
+      links:
+        type: object
+        properties:
+          profile:
+            type: string
+      utc_offset:
+        type: integer
+      likes_count:
+        type: integer
+      liked_by_current_profile:
+        type: boolean
+  Compensation & Benefits:
+    type: object
+    properties:
+      address1:
+        type: string
+      address2:
+        type: string
+      city:
+        type: string
+      country_ID:
+        type: string
+      state_ID:
+        type: string
+      zip:
+        type: string
+  Content:
+    type: array
+    items:
+      type: string
+  Country:
+    type: object
+    properties:
+      ID:
+        type: string
+      name:
+        type: string
+      subdivision_type:
+        type: string
+  Create Event:
+    type: object
+    properties:
+      events:
+        type: object
+        properties:
+          content:
+            type: string
+          email_all:
+            type: boolean
+          mentions:
+            type: string
+          file_id:
+            type: string
+  Create Folder:
+    type: object
+    properties:
+      folders:
+        type: array
+        items:
+          $ref: "#/definitions/Create Folder Payload"
+  Create Folder Payload:
+    type: object
+    properties:
+      title:
+        type: string
+  Create Group Type:
+    type: object
+    properties:
+      group_types:
+        type: object
+        properties:
+          title:
+            type: string
+          x_groups_as_teams:
+            type: boolean
+  Create Job Tier:
+    type: object
+    properties:
+      job_tiers:
+        type: array
+        items:
+          $ref: "#/definitions/Create Job Tier Payload"
+  Create Job Tier Payload:
+    type: object
+    properties:
+      title:
+        type: string
+  Create Job Title:
+    type: object
+    properties:
+      job_titles:
+        type: array
+        items:
+          $ref: "#/definitions/Create Job Title Payload"
+  Create Job Title Payload:
+    type: object
+    properties:
+      title:
+        type: string
+      parent:
+        type: string
+  Create Like:
+    type: object
+    properties:
+      message:
+        type: array
+        items:
+          $ref: "#/definitions/Create Like Payload"
+  Create Like Payload:
+    type: object
+    properties:
+      liked_by_current_profile:
+        type: boolean
+      likes_count:
+        type: integer
+  Create Profile:
+    type: object
+    properties:
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      user_status:
+        type: string
+  Create Profile Field:
+    type: object
+    properties:
+      fields:
+        type: array
+        items:
+          $ref: "#/definitions/Create Profile Field Payload"
+  Create Profile Field Payload:
+    type: object
+    properties:
+      section:
+        type: string
+      title:
+        type: string
+      type:
+        type: string
+  Create Resource:
+    type: object
+    properties:
+      folder_id:
+        type: string
+      resources:
+        type: array
+        items:
+          $ref: "#/definitions/Create Resource Payload"
+  Create Resource Payload:
+    type: object
+    properties:
+      title:
+        type: string
+      description:
+        type: string
+      user_file_id:
+        type: string
+  Create Section:
+    type: object
+    properties:
+      sections:
+        type: array
+        items:
+          $ref: "#/definitions/Create Section Payload"
+  Create Section Payload:
+    type: object
+    properties:
+      title:
+        type: string
+  Currency Type:
+    type: object
+    properties:
+      iso:
+        type: string
+      name:
+        type: string
+      symbol:
+        type: string
+  Event:
+    type: object
+    properties:
+      events:
+        type: object
+        properties:
+          ID:
+            type: string
+          href:
+            type: string
+          type:
+            type: string
+          time:
+            type: integer
+          ufc_offset:
+            type: integer
+          content:
+            type: string
+          html_content:
+            type: string
+          years_at_company:
+            type: integer
+          use_comments:
+            type: boolean
+          can_comment:
+            type: boolean
+          can_destroy:
+            type: boolean
+          links:
+            type: object
+            properties:
+              profile:
+                type: string
+              comments:
+                type: array
+                items:
+                  type: string
+              file:
+                type: string
+          can_like:
+            type: boolean
+          likes_count:
+            type: integer
+          liked_by_current_profile:
+            type: boolean
+  Events Meta:
+    type: object
+    properties:
+      response:
+        type: integer
+      use_comments:
+        type: boolean
+      use_updates:
+        type: boolean
+      use_mentions:
+        type: boolean
+      use_likes:
+        type: boolean
+      count:
+        type: integer
+  Folder:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      type:
+        type: string
+      items_count:
+        type: integer
+  Delete Like:
+    type: object
+    properties:
+      message:
+        type: array
+        items:
+          $ref: "#/definitions/Delete Like Payload"
+  Delete Like Payload:
+    type: object
+    properties:
+      liked_by_current_profile:
+        type: boolean
+      likes_count:
+        type: integer
+  Dental:
+    type: object
+    properties:
+      beneficiary:
+        type: string
+      amount:
+        type: string
+      currency_type:
+        type: string
+  Field:
+    type: object
+    properties:
+      ID:
+        type: string
+      name:
+        type: string
+      label:
+        type: string
+      type:
+        type: string
+      default:
+        type: boolean
+      deletable:
+        type: boolean
+      valid_format_info:
+        type: string
+      block_index:
+        type: integer
+      links:
+        type: object
+        properties:
+          section:
+            type: string
+  File:
+    type: object
+    properties:
+      ID:
+        type: string
+      filename:
+        type: string
+      mime_type:
+        type: string
+      original:
+        type: string
+      thumbs:
+        type: array
+        items:
+          $ref: "#/definitions/Thumb"
+  Group:
+    type: object
+    properties:
+      ID:
+        type: string
+      title:
+        type: string
+      type:
+        type: string
+      address:
+        type: object
+        $ref: "#/definitions/Address"
+      links:
+        type: object
+        properties:
+          group_type:
+            type: string
+  Group Link:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+  Group Type:
+    type: object
+    properties:
+      ID:
+        type: string
+      field_name:
+        type: string
+      title:
+        type: string
+      deletable:
+        type: boolean
+      x_groups_as_teams:
+        type: boolean
+  Healthcare:
+    type: object
+    properties:
+      beneficiary:
+        type: string
+      amount:
+        type: string
+      currency_type:
+        type: string
+  Home:
+    type: object
+    properties:
+      address1:
+        type: string
+      address2:
+        type: string
+      city:
+        type: string
+      state_id:
+        type: string
+      zip:
+        type: string
+  Image:
+    type: object
+    properties:
+      ID:
+        type: string
+      filename:
+        type: string
+      mime_type:
+        type: string
+      original:
+        type: string
+      thumbs:
+        $ref: "#/definitions/Thumb"
+  Job Tier:
+    type: object
+    properties:
+      ID:
+        type: string
+      numerical_ID:
+        type: string
+      title:
+        type: string
+      links:
+        type: object
+        properties:
+          job_titles:
+            type: string
+  Job Title:
+    type: object
+    properties:
+      ID:
+        type: string
+      parent_ID:
+        type: string
+      title:
+        type: string
+      links:
+        type: object
+        properties:
+          job_tier:
+            type: string
+  Job Title Link:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+  Like:
+    type: object
+    properties:
+      ID:
+        type: string
+      href:
+        type: string
+      full_name:
+        type: string
+      job_title:
+        type: string
+      links:
+        type: object
+        properties:
+          image:
+            type: string
+          thumbs:
+            type: object
+            items:
+              $ref: "#/definitions/Thumb"
+  Link:
+    type: object
+    properties:
+      type:
+        type: string
+  Linked:
+    type: object
+    properties:
+      job_titles:
+        type: array
+        items:
+          $ref: "#/definitions/Job Title"
+      files:
+        type: array
+        items:
+          $ref: "#/definitions/File"
+      groups:
+        type: array
+        items:
+          $ref: "#/definitions/Group"
+      teams:
+        type: array
+        items:
+          $ref: "#/definitions/Team"
+  Linked Profile:
+    type: object
+    properties:
+      ID:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      user_status:
+        type: string
+      updated_at:
+        type: integer
+      created_at:
+        type: integer
+      preferred_name:
+        type: string
+      image:
+        type: object
+        items:
+          $ref: "#/definitions/Image"
+      full_name:
+        type: string
+  Meta:
+    type: object
+    properties:
+      count:
+        type: integer
+      status:
+        type: integer
+  Meta Group:
+    type: object
+    properties:
+      response:
+        type: integer
+      count:
+        type: integer
+      page_title:
+        type: string
+      page_copy:
+        type: string
+  Office:
+    type: object
+    properties:
+      address1:
+        type: string
+      address2:
+        type: string
+      city:
+        type: string
+      state_ID:
+        type: string
+      country_ID:
+        type: string
+      zip:
+        type: string
+      phone:
+        type: string
   Profile:
     type: object
     properties:
@@ -1735,111 +2303,75 @@ definitions:
         type: string
       life_insurance_info:
         type: string
-  Meta:
+  Profile Links:
+    type: object
+    properties:
+      profiles.job_title:
+        $ref: "#/definitions/Link"
+      profiles.image:
+        $ref: "#/definitions/Link"
+      profiles.groups:
+        $ref: "#/definitions/Link"
+      profiles.teams:
+        $ref: "#/definitions/Link"
+  Profile Meta:
     type: object
     properties:
       count:
         type: integer
       status:
         type: integer
-  Image:
-    type: object
-    properties:
-      ID:
-        type: string
-      filename:
-        type: string
-      mime_type:
-        type: string
-      original:
-        type: string
-      thumbs:
-        $ref: "#/definitions/Thumb"
-  Linked:
-    type: object
-    properties:
-      job_titles:
-        type: array
-        items:
-          $ref: "#/definitions/Job Title"
-      files:
-        type: array
-        items:
-          $ref: "#/definitions/File"
-      groups:
-        type: array
-        items:
-          $ref: "#/definitions/Group"
-      teams:
-        type: array
-        items:
-          $ref: "#/definitions/Team"
-  Job Title:
-    type: object
-    properties:
-      ID:
-        type: string
-      parent_ID:
-        type: string
-      title:
-        type: string
-      links:
-        type: object
-        properties:
-          job_tier:
-            type: string
-  Group Link:
+  Report:
     type: object
     properties:
       id:
-        type: string
-      name:
-        type: string
-  Team Link:
-    type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-  Job Title Link:
-    type: object
-    properties:
-      id:
-        type: string
-      title:
-        type: string
-  Team:
-    type: object
-    properties:
-      ID:
-        type: string
-      name:
-        type: string
-  Field:
-    type: object
-    properties:
-      ID:
-        type: string
-      name:
-        type: string
-      label:
         type: string
       type:
         type: string
-      default:
-        type: boolean
-      deletable:
-        type: boolean
-      valid_format_info:
-        type: string
-      block_index:
-        type: integer
+      columns:
+        type: array
+        items:
+          $ref: "#/definitions/Column"
+      content:
+        type: array
+        items:
+          $ref: "#/definitions/Content"
       links:
         type: object
-        properties:
-          section:
-            type: string
+  Resource:
+    type: object
+    properties:
+      ID:
+        type: string
+      title:
+        type: string
+      link:
+        type: string
+      file_name:
+        type: string
+      file_format:
+        type: string
+      file_size:
+        type: string
+      file_url:
+        type: string
+      last_edited:
+        type: string
+      folder_ID:
+        type: integer
+  Salary:
+    type: object
+    properties:
+      yearly_amount:
+        type: integer
+      currency_type:
+        type: string
+      date:
+        type: string
+      rate:
+        type: string
+      guid:
+        type: string
   Section:
     type: object
     properties:
@@ -1858,140 +2390,6 @@ definitions:
             type: array
             items:
               type: string
-  Compensation & Benefits:
-    type: object
-    properties:
-      address1:
-        type: string
-      address2:
-        type: string
-      city:
-        type: string
-      country_ID:
-        type: string
-      state_ID:
-        type: string
-      zip:
-        type: string
-  Office:
-    type: object
-    properties:
-      address1:
-        type: string
-      address2:
-        type: string
-      city:
-        type: string
-      state_ID:
-        type: string
-      country_ID:
-        type: string
-      zip:
-        type: string
-      phone:
-        type: string
-  Event:
-    type: object
-    properties:
-      events:
-        type: object
-        properties:
-          ID:
-            type: string
-          href:
-            type: string
-          type:
-            type: string
-          time:
-            type: integer
-          ufc_offset:
-            type: integer
-          content:
-            type: string
-          html_content:
-            type: string
-          years_at_company:
-            type: integer
-          use_comments:
-            type: boolean
-          can_comment:
-            type: boolean
-          can_destroy:
-            type: boolean
-          links:
-            type: object
-            properties:
-              profile:
-                type: string
-              comments:
-                type: array
-                items:
-                  type: string
-              file:
-                type: string
-          can_like:
-            type: boolean
-          likes_count:
-            type: integer
-          liked_by_current_profile:
-            type: boolean
-  Events Meta:
-    type: object
-    properties:
-      response:
-        type: integer
-      use_comments:
-        type: boolean
-      use_updates:
-        type: boolean
-      use_mentions:
-        type: boolean
-      use_likes:
-        type: boolean
-      count:
-        type: integer
-  Comment:
-    type: object
-    properties:
-      ID:
-        type: string
-      content:
-        type: string
-      html_content:
-        type: string
-      created_at:
-        type: integer
-      can_destroy:
-        type: boolean
-      links:
-        type: object
-        properties:
-          profile:
-            type: string
-      utc_offset:
-        type: integer
-      likes_count:
-        type: integer
-      liked_by_current_profile:
-        type: boolean
-  Currency Type:
-    type: object
-    properties:
-      iso:
-        type: string
-      name:
-        type: string
-      symbol:
-        type: string
-  Country:
-    type: object
-    properties:
-      ID:
-        type: string
-      name:
-        type: string
-      subdivision_type:
-        type: string
   Subdivision:
     type: object
     properties:
@@ -1999,99 +2397,20 @@ definitions:
         type: string
       name:
         type: string
-  Job Tier:
+  Team:
     type: object
     properties:
       ID:
         type: string
-      numerical_ID:
+      name:
         type: string
-      title:
-        type: string
-      links:
-        type: object
-        properties:
-          job_titles:
-            type: string
-  Group:
+  Team Link:
     type: object
     properties:
-      ID:
+      id:
         type: string
-      title:
+      name:
         type: string
-      type:
-        type: string
-      address:
-        type: object
-        $ref: "#/definitions/Address"
-      links:
-        type: object
-        properties:
-          group_type:
-            type: string
-  Address:
-    type: object
-    properties:
-      address1:
-        type: string
-      address2:
-        type: string
-      city:
-        type: string
-      state_id:
-        type: string
-      zip:
-        type: string
-      state:
-        type: string
-      country:
-        type: string
-      country_id:
-        type: string
-      phone:
-        type: string
-  Home:
-    type: object
-    properties:
-      address1:
-        type: string
-      address2:
-        type: string
-      city:
-        type: string
-      state_id:
-        type: string
-      zip:
-        type: string
-  Group Type:
-    type: object
-    properties:
-      ID:
-        type: string
-      field_name:
-        type: string
-      title:
-        type: string
-      deletable:
-        type: boolean
-      x_groups_as_teams:
-        type: boolean
-  File:
-    type: object
-    properties:
-      ID:
-        type: string
-      filename:
-        type: string
-      mime_type:
-        type: string
-      original:
-        type: string
-      thumbs:
-        type: array
-        items:
-          $ref: "#/definitions/Thumb"
   Thumb:
     type: object
     properties:
@@ -2115,102 +2434,18 @@ definitions:
         type: string
       800x800c:
         type: string
-  Profile Links:
+  Update Folder:
     type: object
     properties:
-      profiles.job_title:
-        $ref: "#/definitions/Link"
-      profiles.image:
-        $ref: "#/definitions/Link"
-      profiles.groups:
-        $ref: "#/definitions/Link"
-      profiles.teams:
-        $ref: "#/definitions/Link"
-  Link:
+      folders:
+        type: array
+        items:
+          $ref: "#/definitions/Update Folder Payload"
+  Update Folder Payload:
     type: object
     properties:
-      type:
-        type: string
-  Like:
-    type: object
-    properties:
-      ID:
-        type: string
-      href:
-        type: string
-      full_name:
-        type: string
-      job_title:
-        type: string
-      links:
-        type: object
-        properties:
-          image:
-            type: string
-          thumbs:
-            type: object
-            items:
-              $ref: "#/definitions/Thumb"
-  Resource:
-    type: object
-    properties:
-      ID:
-        type: string
       title:
         type: string
-      link:
-        type: string
-      file_name:
-        type: string
-      file_format:
-        type: string
-      file_size:
-        type: string
-      file_url:
-        type: string
-      last_edited:
-        type: string
-      folder_ID:
-        type: integer
-  Linked Profile:
-    type: object
-    properties:
-      ID:
-        type: string
-      email:
-        type: string
-      first_name:
-        type: string
-      last_name:
-        type: string
-      user_status:
-        type: string
-      updated_at:
-        type: integer
-      created_at:
-        type: integer
-      preferred_name:
-        type: string
-      image:
-        type: object
-        items:
-          $ref: "#/definitions/Image"
-      full_name:
-        type: string
-  Create Event:
-    type: object
-    properties:
-      events:
-        type: object
-        properties:
-          content:
-            type: string
-          email_all:
-            type: boolean
-          mentions:
-            type: string
-          file_id:
-            type: string
   Update Group:
     type: object
     properties:
@@ -2228,16 +2463,6 @@ definitions:
         type: string
       title:
         type: string
-  Create Group Type:
-    type: object
-    properties:
-      group_types:
-        type: object
-        properties:
-          title:
-            type: string
-          x_groups_as_teams:
-            type: boolean
   Update Group Type:
     type: object
     properties:
@@ -2248,18 +2473,6 @@ definitions:
             type: string
           x_groups_as_teams:
             type: boolean
-  Create Job Tier:
-    type: object
-    properties:
-      job_tiers:
-        type: array
-        items:
-          $ref: "#/definitions/Create Job Tier Payload"
-  Create Job Tier Payload:
-    type: object
-    properties:
-      title:
-        type: string
   Update Job Tier:
     type: object
     properties:
@@ -2268,115 +2481,6 @@ definitions:
         items:
           $ref: "#/definitions/Create Job Tier Payload"
   Update Job Tier Payload:
-    type: object
-    properties:
-      title:
-        type: string
-  Create Like:
-    type: object
-    properties:
-      message:
-        type: array
-        items:
-          $ref: "#/definitions/Create Like Payload"
-  Create Like Payload:
-    type: object
-    properties:
-      liked_by_current_profile:
-        type: boolean
-      likes_count:
-        type: integer
-  Delete Like:
-    type: object
-    properties:
-      message:
-        type: array
-        items:
-          $ref: "#/definitions/Delete Like Payload"
-  Delete Like Payload:
-    type: object
-    properties:
-      liked_by_current_profile:
-        type: boolean
-      likes_count:
-        type: integer
-  Report:
-    type: object
-    properties:
-      id:
-        type: string
-      type:
-        type: string
-      columns:
-        type: array
-        items:
-          $ref: "#/definitions/Column"
-      content:
-        type: array
-        items:
-          $ref: "#/definitions/Content"
-      links:
-        type: object
-  Content:
-    type: array
-    items:
-      type: string
-  Column:
-    type: object
-    properties:
-      name:
-        type: string
-      type:
-        type: string
-      label:
-        type: string
-  Folder:
-    type: object
-    properties:
-      id:
-        type: string
-      title:
-        type: string
-      type:
-        type: string
-      items_count:
-        type: integer
-  Create Folder:
-    type: object
-    properties:
-      folders:
-        type: array
-        items:
-          $ref: "#/definitions/Create Folder Payload"
-  Create Folder Payload:
-    type: object
-    properties:
-      title:
-        type: string
-  Create Profile Field:
-    type: object
-    properties:
-      fields:
-        type: array
-        items:
-          $ref: "#/definitions/Create Profile Field Payload"
-  Create Profile Field Payload:
-    type: object
-    properties:
-      section:
-        type: string
-      title:
-        type: string
-      type:
-        type: string
-  Update Folder:
-    type: object
-    properties:
-      folders:
-        type: array
-        items:
-          $ref: "#/definitions/Update Folder Payload"
-  Update Folder Payload:
     type: object
     properties:
       title:
@@ -2392,87 +2496,6 @@ definitions:
     type: object
     properties:
       title:
-        type: string
-  Create Profile:
-    type: object
-    properties:
-      email:
-        type: string
-      first_name:
-        type: string
-      last_name:
-        type: string
-      user_status:
-        type: string
-  Salary:
-    type: object
-    properties:
-      yearly_amount:
-        type: integer
-      currency_type:
-        type: string
-      date:
-        type: string
-      rate:
-        type: string
-      guid:
-        type: string
-  Healthcare:
-    type: object
-    properties:
-      beneficiary:
-        type: string
-      amount:
-        type: string
-      currency_type:
-        type: string
-  Dental:
-    type: object
-    properties:
-      beneficiary:
-        type: string
-      amount:
-        type: string
-      currency_type:
-        type: string
-  Profile Meta:
-    type: object
-    properties:
-      count:
-        type: integer
-      status:
-        type: integer
-  Create Job Title:
-    type: object
-    properties:
-      job_titles:
-        type: array
-        items:
-          $ref: "#/definitions/Create Job Title Payload"
-  Create Job Title Payload:
-    type: object
-    properties:
-      title:
-        type: string
-      parent:
-        type: string
-  Create Resource:
-    type: object
-    properties:
-      folder_id:
-        type: string
-      resources:
-        type: array
-        items:
-          $ref: "#/definitions/Create Resource Payload"
-  Create Resource Payload:
-    type: object
-    properties:
-      title:
-        type: string
-      description:
-        type: string
-      user_file_id:
         type: string
   Update Resource:
     type: object
@@ -2490,18 +2513,6 @@ definitions:
         type: string
       description:
         type: string
-  Create Section:
-    type: object
-    properties:
-      sections:
-        type: array
-        items:
-          $ref: "#/definitions/Create Section Payload"
-  Create Section Payload:
-    type: object
-    properties:
-      title:
-        type: string
   Update Section:
     type: object
     properties:
@@ -2513,15 +2524,4 @@ definitions:
     type: object
     properties:
       title:
-        type: string
-  Meta Group:
-    type: object
-    properties:
-      response:
-        type: integer
-      count:
-        type: integer
-      page_title:
-        type: string
-      page_copy:
         type: string
