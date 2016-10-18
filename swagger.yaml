@@ -417,11 +417,12 @@ paths:
       description: |
         Allows you to create a section that will include several profile fields. For example, a "General" section can include profile fields for "First Name", "Last Name", "Titles", etc.
       parameters:
-        - name: title
-          in: query
-          description: Section ID
+        - name: body
+          in: body
           required: true
-          type: string
+          description: JSON payload for creating a new section.
+          schema:
+            $ref: "#/definitions/Create Section"
       responses:
         201:
           description: "Created Response"
@@ -434,26 +435,21 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/Section'
-              # meta:
-              #   type: object
-              #   properties:
-              #     count:
-              #       type: integer
-              #     status:
-              #       type: integer
-              # links:
-              #   type: object
-              #   properties:
-              #     sections.fields:
-              #       type:
-              #         type: string
-              # linked:
-              #   type: object
-              #   properties:
-              #     fields:
-              #       type: array
-              #       items:
-              #         $ref: "#/definitions/Field"
+              meta:
+                type: object
+                $ref: "#/definitions/Meta"
+              links:
+                type: object
+                properties:
+                  sections.fields:
+                    type: string
+              linked:
+                type: object
+                properties:
+                  fields:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Field"
       tags:
         - Profile Fields Sections
   /profiles/fields/sections/:ID:
@@ -476,30 +472,25 @@ paths:
             properties:
               hello:
                 type: string
-              # sections:
-              #   type: array
-              #   items:
-              #     $ref: "#/definitions/Section"
-              # meta:
-              #   type: object
-              #   properties:
-              #     count:
-              #       type: integer
-              #     status:
-              #       type: integer
-              # links:
-              #   type: object
-              #   properties:
-              #     sections.fields:
-              #       type:
-              #         type: string
-              # linked:
-              #   type: object
-              #   properties:
-              #     fields:
-              #       type: array
-              #       items:
-              #         $ref: "#/definitions/Field"
+              sections:
+                type: array
+                items:
+                  $ref: '#/definitions/Section'
+              meta:
+                type: object
+                $ref: "#/definitions/Meta"
+              links:
+                type: object
+                properties:
+                  sections.fields:
+                    type: string
+              linked:
+                type: object
+                properties:
+                  fields:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Field"
       tags:
         - Profile Fields Sections
     put:
@@ -512,6 +503,12 @@ paths:
           description: Section ID
           required: true
           type: string
+        - name: body
+          in: body
+          required: true
+          description: JSON payload for updating a section.
+          schema:
+            $ref: "#/definitions/Update Section"
       responses:
         200:
           description: "Successful Response"
@@ -520,54 +517,27 @@ paths:
             properties:
               hello:
                 type: string
-        #       sections:
-        #         type: array
-        #         items:
-        #           $ref: "#/definitions/Section"
-        #       meta:
-        #         type: object
-        #         properties:
-        #           count:
-        #             type: integer
-        #           status:
-        #             type: integer
-        #       links:
-        #         type: object
-        #         properties:
-        #           sections.fields:
-        #             type:
-        #               type: string
-        #       linked:
-        #         type: object
-        #         properties:
-        #           fields:
-        #             type: array
-        #             items:
-        #               $ref: "#/definitions/Field"
+              sections:
+                type: array
+                items:
+                  $ref: '#/definitions/Section'
+              meta:
+                type: object
+                $ref: "#/definitions/Meta"
+              links:
+                type: object
+                properties:
+                  sections.fields:
+                    type: string
+              linked:
+                type: object
+                properties:
+                  fields:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Field"
       tags:
         - Profile Fields Sections
-  # /files:
-  #   get:
-  #     summary: Download File
-  #     description: Obtain the "file_url" from GET show resource endpoint and pass as parameter.
-  #     tags:
-  #       - Files
-  #   post:
-  #     summary: Create File
-  #     description: |
-  #       In order to set a file attribute in another API endpoint (such as a profile file or image field, or adding a file to an event), it is first necessary to upload the file in a separate request.
-  #       The format for this post request is different from other endpoints of the API. While other endpoints require a json formatted post request, uploading a file should be in a multipart/form-data format.
-  #       Once you have successfully completed this upload, the response will give you the ID of the newly uploaded file, to set for profile attributes or events.
-  #       As a security feature the download links to files will expire after 10 minutes. Every file download link will include a one-time token.
-  #       In the case of an image file, the response will show available thumbs, as shown above.
-  #     parameters:
-  #       - name: file
-  #         in: query
-  #         description: File Object
-  #         required: true
-  #         type: string
-  #     tags:
-  #       - Files
   /events:
     get:
       summary: Events Index
@@ -803,11 +773,7 @@ paths:
                   $ref: "#/definitions/Job Title"
               meta:
                 type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
+                $ref: "#/definitions/Meta"
               links:
                 type: object
                 properties:
@@ -884,11 +850,7 @@ paths:
                   $ref: "#/definitions/Job Title"
               meta:
                 type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
+                $ref: "#/definitions/Meta"
               links:
                 type: object
                 properties:
@@ -930,11 +892,7 @@ paths:
                   $ref: "#/definitions/Job Title"
               meta:
                 type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
+                $ref: "#/definitions/Meta"
               links:
                 type: object
                 properties:
@@ -966,11 +924,7 @@ paths:
                   $ref: "#/definitions/Job Tier"
               meta:
                 type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
+                $ref: "#/definitions/Meta"
               links:
                 type: object
                 properties:
@@ -1013,11 +967,7 @@ paths:
                   $ref: "#/definitions/Job Tier"
               meta:
                 type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
+                $ref: "#/definitions/Meta"
               links:
                 type: object
                 properties:
@@ -1055,11 +1005,7 @@ paths:
                   $ref: "#/definitions/Job Tier"
               meta:
                 type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
+                $ref: "#/definitions/Meta"
               links:
                 type: object
                 properties:
@@ -1102,11 +1048,7 @@ paths:
                   $ref: "#/definitions/Job Tier"
               meta:
                 type: object
-                properties:
-                  count:
-                    type: integer
-                  status:
-                    type: integer
+                $ref: "#/definitions/Meta"
               links:
                 type: object
                 properties:
@@ -1138,15 +1080,7 @@ paths:
                   $ref: "#/definitions/Group"
               meta:
                 type: object
-                properties:
-                  response:
-                    type: integer
-                  count:
-                    type: integer
-                  page_title:
-                    type: string
-                  page_copy:
-                    type: string
+                $ref: "#/definitions/Meta Group"
               links:
                 type: object
                 properties:
@@ -1184,15 +1118,7 @@ paths:
                   $ref: "#/definitions/Group"
               meta:
                 type: object
-                properties:
-                  response:
-                    type: integer
-                  count:
-                    type: integer
-                  page_title:
-                    type: string
-                  page_copy:
-                    type: string
+                $ref: "#/definitions/Meta Group"
               links:
                 type: object
                 properties:
@@ -1246,15 +1172,7 @@ paths:
                   $ref: "#/definitions/Group"
               meta:
                 type: object
-                properties:
-                  response:
-                    type: integer
-                  count:
-                    type: integer
-                  page_title:
-                    type: string
-                  page_copy:
-                    type: string
+                $ref: "#/definitions/Meta Group"
               links:
                 type: object
                 properties:
@@ -1286,11 +1204,7 @@ paths:
                   $ref: "#/definitions/Group Type"
               meta:
                 type: object
-                properties:
-                  response:
-                    type: integer
-                  count:
-                    type: integer
+                $ref: "#/definitions/Meta"
               links:
                 type: object
                 properties:
@@ -1328,11 +1242,7 @@ paths:
                   $ref: "#/definitions/Group Type"
               meta:
                 type: object
-                properties:
-                  response:
-                    type: integer
-                  count:
-                    type: integer
+                $ref: "#/definitions/Meta"
               links:
                 type: object
                 properties:
@@ -1376,11 +1286,7 @@ paths:
                   $ref: "#/definitions/Group Type"
               meta:
                 type: object
-                properties:
-                  response:
-                    type: integer
-                  count:
-                    type: integer
+                $ref: "#/definitions/Meta"
               links:
                 type: object
                 properties:
@@ -2615,4 +2521,39 @@ definitions:
       title:
         type: string
       description:
+        type: string
+  Create Section:
+    type: object
+    properties:
+      sections:
+        type: array
+        items:
+          $ref: "#/definitions/Create Section Payload"
+  Create Section Payload:
+    type: object
+    properties:
+      title:
+        type: string
+  Update Section:
+    type: object
+    properties:
+      sections:
+        type: array
+        items:
+          $ref: "#/definitions/Update Section Payload"
+  Update Section Payload:
+    type: object
+    properties:
+      title:
+        type: string
+  Meta Group:
+    type: object
+    properties:
+      response:
+        type: integer
+      count:
+        type: integer
+      page_title:
+        type: string
+      page_copy:
         type: string
