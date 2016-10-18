@@ -1587,20 +1587,6 @@ paths:
       responses:
         200:
           description: "Successful Response"
-          schema:
-            type: object
-            properties:
-              resources:
-                type: array
-                items:
-                  $ref: "#/definitions/Resource"
-              meta:
-                type: object
-                properties:
-                  is_super_admin:
-                    type: boolean
-                  accepted_file_extensions:
-                    type: string
   /resources/:ID:
     get:
       summary: Show Resource
@@ -1624,6 +1610,18 @@ paths:
     put:
       summary: Update Resource
       description: Pass in the necessary parameters to update a resource.
+      parameters:
+        - name: ID
+          in: query
+          description: The resource's ID.
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          description: JSON payload for updating a new resource.
+          schema:
+            $ref: "#/definitions/Update Resource"
       responses:
         200:
           description: "Successful Response"
@@ -2601,4 +2599,20 @@ definitions:
       description:
         type: string
       user_file_id:
+        type: string
+  Update Resource:
+    type: object
+    properties:
+      folder_id:
+        type: string
+      resources:
+        type: array
+        items:
+          $ref: "#/definitions/Update Resource Payload"
+  Update Resource Payload:
+    type: object
+    properties:
+      title:
+        type: string
+      description:
         type: string
