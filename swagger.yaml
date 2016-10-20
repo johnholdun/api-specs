@@ -22,7 +22,7 @@ paths:
       summary: Profiles Index
       description: |
         This method returns an array of `profiles`, whose format and content will be the same as the show profile endpoint.
-        This endpoint uses pagination through two optional parameters. The first, limit, defaults to 30 and accepts EITHER an integer value, OR the string 'all' to return all records. The second, after, should be the ID of the first record BEFORE the recrods that you want to retrieve.
+        This endpoint uses pagination through two optional parameters. The first, limit, defaults to 30 and accepts EITHER an integer value, OR the string 'all' to return all records. The second, after, should be the id of the first record BEFORE the recrods that you want to retrieve.
       parameters:
         - name: per_page
           in: query
@@ -120,16 +120,16 @@ paths:
                       $ref: "#/definitions/Team"
       tags:
         - Profiles
-  /profiles/:ID:
+  /profiles/:id:
     get:
       summary: Show Profiles
       description: |
         This method allows users to retrieve a `profile`.
         The profile entry will contain additional information from all fields that your company has (default and custom) that are currently supported by the API and that the current user has access to for the given user. You can get a full list of accessible fields, as well as information on formatting them from the fields API endpoint.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: ID of the profile you wish to retrieve.
+          description: id of the profile you wish to retrieve.
           type: string
       responses:
         200:
@@ -171,7 +171,7 @@ paths:
       description: |
         The update action is similar to the create action in what is modifiable and how it should be set. You need only pass the attributes that you would like to modify. Any others will remain as they are.
       parameters:
-        - name: ID
+        - name: id
           in: query
           type: string
       responses:
@@ -337,9 +337,9 @@ paths:
         NAME is the internal name of the field, which is also the key that should be used in the profile API endpoints. This may be distinct from LABEL, which is what will appear in the web interface.
         The valid format info is an attempt to explain what the proper format and possible values are for that field.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: ID of the field name you wish to change.
+          description: id of the field name you wish to change.
           type: string
         - name: body
           in: body
@@ -452,16 +452,16 @@ paths:
                       $ref: "#/definitions/Field"
       tags:
         - Profile Fields Sections
-  /profiles/fields/sections/:ID:
+  /profiles/fields/sections/:id:
     get:
       summary: Show Section
       description: |
         This method allows users to retrieve a section.
         The results will contain additional information from all fields that your company has (default and custom) in that particular section that are currently supported by the API and that the current user has access to for the given user. You can get a full list of accessible fields, as well as information on formatting them from the fields API endpoint.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: Section ID
+          description: Section id
           required: true
           type: string
       responses:
@@ -498,9 +498,9 @@ paths:
       description: |
         The update action is similar to the create action in what is modifiable and how it should be set. You need only pass the attribute (name of section) that you would like to modify. Any others will remain as they are.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: Section ID
+          description: Section id
           required: true
           type: string
         - name: body
@@ -550,7 +550,7 @@ paths:
         Anniversary events will have "years_at_company" filled in with the integer value of how many years the profile has been at the company.
         Announcement events will contain "html_content" which is the html formatted content of the event.
         Each event and comment will contain information about whether the user can destroy it, located in "can_destroy".
-        This endpoint uses pagination through two optional parameters. The first, limit, defaults to 30 and accepts an integer value. The second, after, should be the ID of the first record BEFORE the records that you want to retrieve.
+        This endpoint uses pagination through two optional parameters. The first, limit, defaults to 30 and accepts an integer value. The second, after, should be the id of the first record BEFORE the records that you want to retrieve.
       parameters:
         - name: limit
           in: query
@@ -559,7 +559,7 @@ paths:
           type: integer
         - name: after
           in: query
-          description: ID of first record BEFORE the records you want to retrieve
+          description: id of first record BEFORE the records you want to retrieve
           required: false
           type: string
       responses:
@@ -662,14 +662,14 @@ paths:
                       $ref: "#/definitions/File"
       tags:
         - Events
-  /events/:ID:
+  /events/:id:
     get:
       summary: Show Event
       description: This endpoint has the same return format as the events index, except that it returns only one event.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: ID of event.
+          description: id of event.
           required: true
           type: string
       responses:
@@ -718,7 +718,7 @@ paths:
   /countries:
     get:
       summary: Countries Index
-      description: Returns all valid countries in Namely. Countries are universal and may not be modified. ID is the value that should be passed when setting address values. Each entry contains the proper naming for it's subdivision (e.g. 'State' or 'Province'). In order to get a list of a state's subdivisions, access the country's show endpoint.
+      description: Returns all valid countries in Namely. Countries are universal and may not be modified. id is the value that should be passed when setting address values. Each entry contains the proper naming for it's subdivision (e.g. 'State' or 'Province'). In order to get a list of a state's subdivisions, access the country's show endpoint.
       responses:
         200:
           description: "Successful Response"
@@ -728,14 +728,14 @@ paths:
               $ref: "#/definitions/Country"
       tags:
         - Countries
-  /countries/:ID:
+  /countries/:id:
     get:
       summary: Show Country
-      description: Returns all valid countries in Namely. A country is universal and may not be modified. ID is the value that should be passed when setting address values. Each entry contains the proper naming for it's subdivision (e.g. 'State' or 'Province'). In order to get a list of a state's subdivisions, access the country's show endpoint.
+      description: Returns all valid countries in Namely. A country is universal and may not be modified. id is the value that should be passed when setting address values. Each entry contains the proper naming for it's subdivision (e.g. 'State' or 'Province'). In order to get a list of a state's subdivisions, access the country's show endpoint.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: ID of desired country (an abbreviation of the country's name).
+          description: id of desired country (an abbreviation of the country's name).
           required: true
           type: string
       responses:
@@ -828,14 +828,14 @@ paths:
                       $ref: "#/definitions/Job Tier"
       tags:
         - Job Title
-  /job_titles/:ID:
+  /job_titles/:id:
     get:
       summary: Show Job Title
       description: This endpoint returns information about one job title. Each job title has one job tier, which is included in the "linked" section. For more information about how "links" and "linked" work, please consult the JSON API section of the documentation.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: ID of Job Title.
+          description: id of Job Title.
           required: true
           type: string
       responses:
@@ -877,7 +877,7 @@ paths:
           type: string
         - name: job_tier
           in: query
-          description: ID of Job Tier.
+          description: id of Job Tier.
           required: true
           type: string
       responses:
@@ -983,14 +983,14 @@ paths:
                       $ref: "#/definitions/Job Title"
       tags:
         - Job Tier
-  /job_tiers/:ID:
+  /job_tiers/:id:
     get:
       summary: Show Job Tier
       description: The linked objects will contain information on all of the job titles assosciated with the job tier. For more information on how "links" and "linked" work, please consult the JSON API section of the documentation.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: ID of the Job Tier.
+          description: id of the Job Tier.
           required: true
           type: string
       responses:
@@ -1027,7 +1027,7 @@ paths:
       parameters:
         - name: id
           in: query
-          description: ID of the Job Tier to update.
+          description: id of the Job Tier to update.
           required: true
           type: string
         - name: body
@@ -1096,14 +1096,14 @@ paths:
                       $ref: "#/definitions/Group Type"
       tags:
         - Groups
-  /groups/:ID:
+  /groups/:id:
     get:
       summary: Show Group
       description: This method allows users to retrieve a specific group.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: Group ID.
+          description: Group id.
           required: true
           type: string
       responses:
@@ -1149,9 +1149,9 @@ paths:
       summary: Update Group
       description: This method updates a specific group.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: Group ID.
+          description: Group id.
           required: true
           type: string
         - name: body
@@ -1258,14 +1258,14 @@ paths:
                       $ref: "#/definitions/Group Type"
       tags:
         - Groups
-  /group_types/:ID:
+  /group_types/:id:
     put:
       summary: Update Group Type
       description: You can update a Group Type with the viable parameters.
       parameters:
         - name: id
           in: query
-          description: Group type ID.
+          description: Group type id.
           required: true
           type: string
         - name: body
@@ -1308,7 +1308,7 @@ paths:
   #     description: |
   #       In order to set a file attribute in another API endpoint (such as a profile file or image field, or adding a file to an event), it is first necessary to upload the file in a separate request.
   #       The format for this post request is different from other endpoints of the API. While other endpoints require a json formatted post request, uploading a file should be in a multipart/form-data format.
-  #       Once you have successfully completed this upload, the response will give you the ID of the newly uploaded file, to set for profile attributes or events.
+  #       Once you have successfully completed this upload, the response will give you the id of the newly uploaded file, to set for profile attributes or events.
   #       As a security feature the download links to files will expire after 10 minutes. Every file download link will include a one-time token.
   #       In the case of an image file, the response will show available thumbs, as shown above.
   #     parameters:
@@ -1330,7 +1330,7 @@ paths:
   #     parameters:
   #       - name: file
   #         in: query
-  #         description: ID given by file_url in 'Show Resource GET Endpoint'.
+  #         description: id given by file_url in 'Show Resource GET Endpoint'.
   #         required: true
   #         type: string
   #     responses:
@@ -1342,14 +1342,14 @@ paths:
   #             $ref: "#/definitions/File"
   #     tags:
   #       - File
-  /likes/event/:eventID/recent:
+  /likes/event/:eventid/recent:
     get:
       summary: Likes Index
       description: Returns references to profiles who liked the specified event.
       parameters:
-        - name: eventID
+        - name: eventid
           in: query
-          description: ID of the event.
+          description: id of the event.
           required: true
           type: string
       responses:
@@ -1364,14 +1364,14 @@ paths:
                   $ref: "#/definitions/Like"
       tags:
         - Likes
-  /likes/event/:ID:
+  /likes/event/:id:
     post:
       summary: Create Like
-      description: Pass in the event ID to post a like.
+      description: Pass in the event id to post a like.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: Event ID.
+          description: Event id.
           required: true
           type: string
         - name: body
@@ -1385,11 +1385,11 @@ paths:
           description: "Success!"
     delete:
       summary: Delete Like
-      description: Pass in the event ID to delete a like.
+      description: Pass in the event id to delete a like.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: Event ID.
+          description: Event id.
           required: true
           type: string
         - name: body
@@ -1401,14 +1401,14 @@ paths:
       responses:
         200:
           description: "Successful Response"
-  /reports/:ID:
+  /reports/:id:
     get:
       summary: Show Report
-      description: You will receive a list of fields included in the report you created in Namely. To export the fields in the CSV file, please use the endpoint - https://[company].namely.com/reports/[report_ID]/results.csv.
+      description: You will receive a list of fields included in the report you created in Namely. To export the fields in the CSV file, please use the endpoint - https://[company].namely.com/reports/[report_id]/results.csv.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: Report ID.
+          description: Report id.
           required: true
           type: string
       responses:
@@ -1432,9 +1432,9 @@ paths:
       summary: Resources Index
       description: This method returns an array of resources, whose format and content will be the same as the show resource endpoint.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description:  Use the folder ID to pull the resources you want to see.
+          description:  Use the folder id to pull the resources you want to see.
           required: true
           type: string
       responses:
@@ -1485,22 +1485,22 @@ paths:
       summary: Delete Resource
       description: This endpoint deletes a specified resource.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: The resource's ID.
+          description: The resource's id.
           required: true
           type: string
       responses:
         200:
           description: "Successful Response"
-  /resources/:ID:
+  /resources/:id:
     get:
       summary: Show Resource
-      description: Specify the ID of the resource to get a complete description. Please see "Download Resource" documentation to actually download a specific resource.
+      description: Specify the id of the resource to get a complete description. Please see "Download Resource" documentation to actually download a specific resource.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: The resource's ID.
+          description: The resource's id.
           required: true
           type: string
       responses:
@@ -1517,9 +1517,9 @@ paths:
       summary: Update Resource
       description: Pass in the necessary parameters to update a resource.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: The resource's ID.
+          description: The resource's id.
           required: true
           type: string
         - name: body
@@ -1572,14 +1572,14 @@ paths:
                 type: array
                 items:
                   $ref: "#/definitions/Folder"
-  /folders/:ID:
+  /folders/:id:
     put:
       summary: Update Folder
       description: You must know the id of the folder to update it.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: The folder's ID.
+          description: The folder's id.
           required: true
           type: string
         - name: body
@@ -1602,9 +1602,9 @@ paths:
       summary: Delete Folder
       description: You must pass in the folder id to delete a specific folder.
       parameters:
-        - name: ID
+        - name: id
           in: query
-          description: The folder's ID.
+          description: The folder's id.
           required: true
           type: string
       responses:
@@ -1644,7 +1644,7 @@ definitions:
   Comment:
     type: object
     properties:
-      ID:
+      id:
         type: string
       content:
         type: string
@@ -1674,9 +1674,9 @@ definitions:
         type: string
       city:
         type: string
-      country_ID:
+      country_id:
         type: string
-      state_ID:
+      state_id:
         type: string
       zip:
         type: string
@@ -1687,7 +1687,7 @@ definitions:
   Country:
     type: object
     properties:
-      ID:
+      id:
         type: string
       name:
         type: string
@@ -1841,7 +1841,7 @@ definitions:
       events:
         type: object
         properties:
-          ID:
+          id:
             type: string
           href:
             type: string
@@ -1932,7 +1932,7 @@ definitions:
   Field:
     type: object
     properties:
-      ID:
+      id:
         type: string
       name:
         type: string
@@ -1956,7 +1956,7 @@ definitions:
   File:
     type: object
     properties:
-      ID:
+      id:
         type: string
       filename:
         type: string
@@ -1971,7 +1971,7 @@ definitions:
   Group:
     type: object
     properties:
-      ID:
+      id:
         type: string
       title:
         type: string
@@ -1995,7 +1995,7 @@ definitions:
   Group Type:
     type: object
     properties:
-      ID:
+      id:
         type: string
       field_name:
         type: string
@@ -2030,7 +2030,7 @@ definitions:
   Image:
     type: object
     properties:
-      ID:
+      id:
         type: string
       filename:
         type: string
@@ -2043,9 +2043,9 @@ definitions:
   Job Tier:
     type: object
     properties:
-      ID:
+      id:
         type: string
-      numerical_ID:
+      numerical_id:
         type: string
       title:
         type: string
@@ -2057,9 +2057,9 @@ definitions:
   Job Title:
     type: object
     properties:
-      ID:
+      id:
         type: string
-      parent_ID:
+      parent_id:
         type: string
       title:
         type: string
@@ -2078,7 +2078,7 @@ definitions:
   Like:
     type: object
     properties:
-      ID:
+      id:
         type: string
       href:
         type: string
@@ -2122,7 +2122,7 @@ definitions:
   Linked Profile:
     type: object
     properties:
-      ID:
+      id:
         type: string
       email:
         type: string
@@ -2171,9 +2171,9 @@ definitions:
         type: string
       city:
         type: string
-      state_ID:
+      state_id:
         type: string
-      country_ID:
+      country_id:
         type: string
       zip:
         type: string
@@ -2182,7 +2182,7 @@ definitions:
   Profile:
     type: object
     properties:
-      ID:
+      id:
         type: string
       email:
         type: string
@@ -2207,7 +2207,7 @@ definitions:
       reports_to:
         type: object
         properties:
-          ID:
+          id:
             type: string
           first_name:
             type: string
@@ -2237,7 +2237,7 @@ definitions:
         type: string
       depature_date:
         type: string
-      employee_ID:
+      employee_id:
         type: string
       personal_email:
         type: string
@@ -2341,7 +2341,7 @@ definitions:
   Resource:
     type: object
     properties:
-      ID:
+      id:
         type: string
       title:
         type: string
@@ -2357,7 +2357,7 @@ definitions:
         type: string
       last_edited:
         type: string
-      folder_ID:
+      folder_id:
         type: integer
   Salary:
     type: object
@@ -2375,7 +2375,7 @@ definitions:
   Section:
     type: object
     properties:
-      ID:
+      id:
         type: string
       title:
         type: string
@@ -2393,14 +2393,14 @@ definitions:
   Subdivision:
     type: object
     properties:
-      ID:
+      id:
         type: string
       name:
         type: string
   Team:
     type: object
     properties:
-      ID:
+      id:
         type: string
       name:
         type: string
