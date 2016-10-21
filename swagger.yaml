@@ -723,9 +723,12 @@ paths:
         200:
           description: "Successful Response"
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Country"
+            type: object
+            properties:
+              countries:
+                type: array
+                items:
+                  $ref: "#/definitions/Country"
       tags:
         - Countries
   /countries/:id:
