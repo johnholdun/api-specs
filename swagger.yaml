@@ -1615,6 +1615,42 @@ paths:
       responses:
         200:
           description: "Successful Response"
+  /companies/info:
+    get:
+      summary: Company Info
+      description: Get company related information (authentication methods, name and background image).
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Compay name
+              permalink:
+                type: string
+                description: Company permalink, the subdomain before namely.com
+              background_url:
+                type: string
+                description: Background image on the login page.
+              logo_url:
+                type: string
+                description: Logo image on the home page.
+              authentications:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                        - email_password
+                        - google_oauth2
+                        - saml
+                    init_url:
+                      type: string
+                      required: false
 definitions:
   Address:
     type: object
