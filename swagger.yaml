@@ -3,12 +3,9 @@ info:
   title: Namely API
   description: Move your app forward with the Namely API
   version: "1.0"
-# the domain of the service
 host: <<company>>.namely.com
-# array of all schemes that your API supports
 schemes:
   - https
-# will be prefixed to all paths
 basePath: /api/v1
 paths:
   /profiles:
