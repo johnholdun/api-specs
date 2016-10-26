@@ -19,18 +19,6 @@ paths:
           in: query
           description: Integer limit of records retrieved.
           type: integer
-        - name: page
-          in: query
-          description: The page number to retrieve.
-          type: integer
-        - name: sort
-          in: query
-          description: An attribute to sort by fields on profiles. Allowed attributes are first_name, last_name, and job_title. Prepend with a - (minus) sign to reverse the order.
-          type: string
-        - name: filter
-          in: query
-          description: A hash containing a filter you'd like to apply before profiles are returned.
-          type: string
       responses:
         200:
           description: "Successful Response"
