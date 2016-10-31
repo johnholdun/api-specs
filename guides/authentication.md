@@ -19,6 +19,20 @@ GET /api/v1/companies/info
 Response:
 
 ```json
-{"name":"Heat Agency","permalink":"sales","background_url":"/media/W1siZiIsIjIwMTQvMTAvMzEvMTcvMDIvMDQvMjA2L2trLmpwZyJdXQ/kk.jpg?sha=45aa5e61f12505cf","logo_url":"/media/W1siZiIsIjIwMTYvMDQvMTYvMTkvNDkvMTYvMDg5ZGUwYTQtZDQyZS00MDkwLWFmMTctY2VmMzE1M2Q0NTI1L0hlYXQuanBnIl1d/Heat.jpg?sha=d43134901e803899","authentications":[{"type":"email_password"},{"type":"google_oauth2","init_url":"https://auth.namely.com/auth/google_oauth2?permalink=sales"}]}
+{
+  "name": "Heat Agency",
+  "permalink": "sales",
+  "background_url": "/media/W1siZiIsIjIwMTQvMTAvMzEvMTcvMDIvMDQvMjA2L2trLmpwZyJdXQ/kk.jpg?sha=45aa5e61f12505cf",
+  "logo_url": "/media/W1siZiIsIjIwMTYvMDQvMTYvMTkvNDkvMTYvMDg5ZGUwYTQtZDQyZS00MDkwLWFmMTctY2VmMzE1M2Q0NTI1L0hlYXQuanBnIl1d/Heat.jpg?sha=d43134901e803899",
+  "authentications": [
+    {
+      "type": "email_password"
+    },
+    {
+      "type": "google_oauth2",
+      "init_url": "https://auth.namely.com/auth/google_oauth2?permalink=sales"
+    }
+  ]
+}
 ```
 
