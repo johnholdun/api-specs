@@ -14,7 +14,9 @@ Companies can choose to authenticate their users with the following combinations
 
 Use the company info endpoint to get the available authentication methods:
 
+```
 GET /api/v1/companies/info
+```
 
 Response:
 
@@ -35,4 +37,15 @@ Response:
   ]
 }
 ```
+
+Notes:
+* If you are using Namely OAuth authentication, ignore the `init_url` field.
+* `authentication` list has the list of available methods.
+
+
+
+OAuth authentication
+--------------------
+When implementing OAuth 2 authentication with Namely, we recommend always sending the user to the `api/v1/oauth2/authorize` endpoint. Documentation on this: https://developers.namely.com/1.0/getting-started/authentication
+
 
