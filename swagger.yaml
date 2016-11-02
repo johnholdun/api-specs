@@ -13,7 +13,7 @@ paths:
       summary: Profiles Index
       description: |
         This method returns an array of `profiles`, whose format and content will be the same as the show profile endpoint.
-        This endpoint uses pagination through two optional parameters. The first, limit, defaults to 30 and accepts EITHER an integer value, OR the string 'all' to return all records. The second, after, should be the id of the first record BEFORE the recrods that you want to retrieve.
+        This endpoint uses pagination through two optional parameters. The first, limit, defaults to 30 and accepts EITHER an integer value, OR the string 'all' to return all records. The second, after, should be the id of the first record BEFORE the records that you want to retrieve.
       parameters:
         - name: per_page
           in: query
@@ -701,6 +701,112 @@ paths:
                       $ref: "#/definitions/File"
       tags:
         - Events
+  /events/{id}/comments:
+    get:
+      summary: Show Comments
+      description: This endpoint shows an index of all comments.
+      parameters:
+        - name: id
+          in: path
+          description: id of event.
+          required: true
+          type: string
+      responses:
+        200:
+          description: "Successful Response"
+          schema:
+            type: object
+            properties:
+              events:
+                type: array
+                items:
+                  $ref: "#/definitions/Comment"
+              meta:
+                type: object
+                $ref: "#/definitions/Comment Meta"
+              links:
+                type: object
+                properties:
+                  comments.profile:
+                    $ref: "#/definitions/Link"
+                  profile.image:
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  profiles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Linked Profile"
+                  files:
+                    type: array
+                    items:
+                      $ref: "#/definitions/File"
+      tags:
+        - Comments
+  /events/{id}/comments:
+    post:
+      summary: Create Comment
+      description: This endpoint creates a comment.
+      parameters:
+        - name: id
+          in: path
+          description: id of event.
+          required: true
+          type: string
+      responses:
+        201:
+          description: "Created Response"
+          schema:
+            type: object
+            properties:
+              events:
+                type: array
+                items:
+                  $ref: "#/definitions/Comment"
+              meta:
+                type: object
+                $ref: "#/definitions/Comment Meta"
+              links:
+                type: object
+                properties:
+                  comments.profile:
+                    $ref: "#/definitions/Link"
+                  profile.image:
+                    $ref: "#/definitions/Link"
+              linked:
+                type: object
+                properties:
+                  profiles:
+                    type: array
+                    items:
+                      $ref: "#/definitions/Linked Profile"
+                  files:
+                    type: array
+                    items:
+                      $ref: "#/definitions/File"
+      tags:
+        - Comments
+  /events/{eventID}/comments/{commentID}:
+    delete:
+      summary: Delete Comment
+      description: This endpoint deletes a comment.
+      parameters:
+        - name: eventID
+          in: path
+          description: id of event.
+          required: true
+          type: string
+        - name: commentID
+          in: path
+          description: id of the comment.
+          required: true
+          type: string
+      responses:
+        200:
+          description: "Succssful Response"
+      tags:
+        - Comments
   /countries:
     get:
       summary: Countries Index
@@ -1691,6 +1797,15 @@ definitions:
         type: integer
       liked_by_current_profile:
         type: boolean
+  Comment Meta:
+    type: object
+    properties:
+      status:
+        type: integer
+      page:
+        type: integer
+      use_at_mentions:
+        type: boolean
   Compensation & Benefits:
     type: object
     properties:
@@ -1815,12 +1930,16 @@ definitions:
     properties:
       email:
         type: string
+        required: true
       first_name:
         type: string
+        required: true
       last_name:
         type: string
+        required: true
       user_status:
         type: string
+        required: true
   Create Profile Field:
     type: object
     properties:
