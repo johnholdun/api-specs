@@ -168,6 +168,7 @@ User Push Notification Settings API
     ```http
     GET /api/v1/settings/account/push_notifications HTTP/1.1
     ```
+    
     __Response__:
     ```json
     {
