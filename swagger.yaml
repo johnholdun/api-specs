@@ -1924,7 +1924,7 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/Create Profile Payload"
-        required: true
+      required: true
   Create Profile Payload:
     required:
       - email
