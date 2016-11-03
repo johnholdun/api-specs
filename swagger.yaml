@@ -1921,10 +1921,10 @@ definitions:
     type: object
     properties:
       profiles:
+        required: true
         type: array
         items:
           $ref: "#/definitions/Create Profile Payload"
-      required: true
   Create Profile Payload:
     required:
       - email
