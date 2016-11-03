@@ -753,6 +753,12 @@ paths:
           description: id of event.
           required: true
           type: string
+        - name: body
+          in: body
+          required: true
+          description: JSON body required for creating a new comment.
+          schema:
+            $ref: "#/definitions/Create Comment"        
       responses:
         201:
           description: "Created Response"
@@ -1832,6 +1838,22 @@ definitions:
       name:
         type: string
       subdivision_type:
+        type: string
+  Create Comment:
+    required:
+      - comments
+    type: object
+    properties:
+      comments:
+        type: array
+        items:
+          $ref: "#/definitions/Create Comment Payload"
+  Create Comment Payload:
+    required:
+      - content
+    type: object
+    properties:
+      content:
         type: string
   Create Event:
     required:
