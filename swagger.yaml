@@ -1918,10 +1918,10 @@ definitions:
       likes_count:
         type: integer
   Create Profile:
+    required: true
     type: object
     properties:
       profiles:
-        required: true
         type: array
         items:
           $ref: "#/definitions/Create Profile Payload"
