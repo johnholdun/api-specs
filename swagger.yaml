@@ -1924,21 +1924,23 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/Create Profile Payload"
+        required: true
   Create Profile Payload:
+    required:
+      - email
+      - first_name
+      - last_name
+      - user_status
     type: object
     properties:
       email:
         type: string
-        required: true
       first_name:
         type: string
-        required: true
       last_name:
         type: string
-        required: true
       user_status:
         type: string
-        required: true
   Create Profile Field:
     type: object
     properties:
