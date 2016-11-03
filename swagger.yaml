@@ -744,7 +744,6 @@ paths:
                       $ref: "#/definitions/File"
       tags:
         - Comments
-  /events/{id}/comments:
     post:
       summary: Create Comment
       description: This endpoint creates a comment.
