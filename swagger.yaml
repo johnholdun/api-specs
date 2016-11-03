@@ -1834,6 +1834,8 @@ definitions:
       subdivision_type:
         type: string
   Create Event:
+    required:
+      - events
     type: object
     properties:
       events:
@@ -1841,6 +1843,11 @@ definitions:
         items:
           $ref: "#/definitions/Create Event Payload"
   Create Event Payload:
+    required:
+      - content
+      - email_all
+      - mentions
+      - file_id
     type: object
     properties:
       content:
@@ -1852,6 +1859,8 @@ definitions:
       file_id:
         type: string
   Create Folder:
+    required:
+      - folders
     type: object
     properties:
       folders:
@@ -1859,11 +1868,15 @@ definitions:
         items:
           $ref: "#/definitions/Create Folder Payload"
   Create Folder Payload:
+    required:
+      - title
     type: object
     properties:
       title:
         type: string
   Create Group Type:
+    required:
+      - group_types
     type: object
     properties:
       group_types:
@@ -1871,6 +1884,9 @@ definitions:
         items:
           $ref: "#/definitions/Create Group Type Payload"
   Create Group Type Payload:
+    required:
+      - title
+      - x_groups_as_teams
     type: object
     properties:
       title:
@@ -1878,6 +1894,8 @@ definitions:
       x_groups_as_teams:
         type: boolean
   Create Job Tier:
+    required:
+      - job_tiers
     type: object
     properties:
       job_tiers:
@@ -1885,11 +1903,15 @@ definitions:
         items:
           $ref: "#/definitions/Create Job Tier Payload"
   Create Job Tier Payload:
+    required:
+      - title
     type: object
     properties:
       title:
         type: string
   Create Job Title:
+    required:
+      - job_titles
     type: object
     properties:
       job_titles:
@@ -1897,6 +1919,9 @@ definitions:
         items:
           $ref: "#/definitions/Create Job Title Payload"
   Create Job Title Payload:
+    required:
+      - title
+      - parent
     type: object
     properties:
       title:
@@ -1904,6 +1929,8 @@ definitions:
       parent:
         type: string
   Create Like:
+    required:
+      - message
     type: object
     properties:
       message:
@@ -1943,6 +1970,8 @@ definitions:
       user_status:
         type: string
   Create Profile Field:
+    required:
+      - fields
     type: object
     properties:
       fields:
@@ -1950,6 +1979,10 @@ definitions:
         items:
           $ref: "#/definitions/Create Profile Field Payload"
   Create Profile Field Payload:
+    required:
+      - section
+      - title
+      - type
     type: object
     properties:
       section:
@@ -1959,6 +1992,8 @@ definitions:
       type:
         type: string
   Create Resource:
+    required:
+      - resources
     type: object
     properties:
       resources:
@@ -1966,6 +2001,10 @@ definitions:
         items:
           $ref: "#/definitions/Create Resource Payload"
   Create Resource Payload:
+    required:
+      - title
+      - description
+      - user_file_id
     type: object
     properties:
       title:
@@ -1975,6 +2014,8 @@ definitions:
       user_file_id:
         type: string
   Create Section:
+    required:
+      - sections
     type: object
     properties:
       sections:
@@ -1982,6 +2023,8 @@ definitions:
         items:
           $ref: "#/definitions/Create Section Payload"
   Create Section Payload:
+    required:
+      - title
     type: object
     properties:
       title:
@@ -2064,6 +2107,8 @@ definitions:
       items_count:
         type: integer
   Delete Like:
+    required:
+      - message
     type: object
     properties:
       message:
@@ -2071,6 +2116,9 @@ definitions:
         items:
           $ref: "#/definitions/Delete Like Payload"
   Delete Like Payload:
+    required:
+      - liked_by_current_profile
+      - likes_count
     type: object
     properties:
       liked_by_current_profile:
@@ -2593,6 +2641,8 @@ definitions:
       800x800c:
         type: string
   Update Folder:
+    required:
+      - folders
     type: object
     properties:
       folders:
@@ -2600,11 +2650,15 @@ definitions:
         items:
           $ref: "#/definitions/Update Folder Payload"
   Update Folder Payload:
+    required:
+      - title
     type: object
     properties:
       title:
         type: string
   Update Group:
+    required:
+      - groups
     type: object
     properties:
       groups:
@@ -2612,6 +2666,10 @@ definitions:
         items:
           $ref: "#/definitions/Update Group Payload"
   Update Group Payload:
+    required:
+      - address
+      - group_type
+      - title
     type: object
     properties:
       address:
@@ -2622,6 +2680,8 @@ definitions:
       title:
         type: string
   Update Group Type:
+    required:
+      - group_types
     type: object
     properties:
       group_types:
@@ -2629,6 +2689,9 @@ definitions:
         items:
           $ref: "#/definitions/Update Group Type Payload"
   Update Group Type Payload:
+    required:
+      - title
+      - x_groups_as_teams
     type: object
     properties:
       title:
@@ -2636,6 +2699,8 @@ definitions:
       x_groups_as_teams:
         type: boolean
   Update Job Tier:
+    required:
+      - job_tiers
     type: object
     properties:
       job_tiers:
@@ -2643,11 +2708,16 @@ definitions:
         items:
           $ref: "#/definitions/Create Job Tier Payload"
   Update Job Tier Payload:
+    required:
+      - title
     type: object
     properties:
       title:
         type: string
   Update Job Title:
+    required:
+      - title
+      - job_tier
     type: object
     properties:
       title:
@@ -2655,6 +2725,8 @@ definitions:
       job_tier:
         type: string
   Update Profile:
+    required:
+      - profiles
     type: object
     properties:
       profiles:
@@ -2662,6 +2734,11 @@ definitions:
         items:
           $ref: "#/definitions/Update Profile Payload"
   Update Profile Payload:
+    required:
+      - email
+      - first_name
+      - last_name
+      - user_status
     type: object
     properties:
       email:
@@ -2673,6 +2750,8 @@ definitions:
       user_status:
         type: string
   Update Profile Field:
+    required:
+      - fields
     type: object
     properties:
       fields:
@@ -2680,11 +2759,16 @@ definitions:
         items:
           $ref: "#/definitions/Update Profile Field Payload"
   Update Profile Field Payload:
+    required:
+      - title
     type: object
     properties:
       title:
         type: string
   Update Resource:
+    required:
+      - folder_id
+      - resources
     type: object
     properties:
       folder_id:
@@ -2694,6 +2778,9 @@ definitions:
         items:
           $ref: "#/definitions/Update Resource Payload"
   Update Resource Payload:
+    required:
+      - title
+      - description
     type: object
     properties:
       title:
@@ -2701,6 +2788,8 @@ definitions:
       description:
         type: string
   Update Section:
+    required:
+      - sections
     type: object
     properties:
       sections:
@@ -2708,6 +2797,8 @@ definitions:
         items:
           $ref: "#/definitions/Update Section Payload"
   Update Section Payload:
+    required:
+      - title
     type: object
     properties:
       title:
