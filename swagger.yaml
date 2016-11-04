@@ -758,7 +758,7 @@ paths:
           required: true
           description: JSON body required for creating a new comment.
           schema:
-            $ref: "#/definitions/Create Comment"        
+            $ref: "#/definitions/Create Comment"
       responses:
         201:
           description: "Created Response"
@@ -1867,9 +1867,6 @@ definitions:
   Create Event Payload:
     required:
       - content
-      - email_all
-      - mentions
-      - file_id
     type: object
     properties:
       content:
